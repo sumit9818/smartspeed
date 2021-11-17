@@ -1,0 +1,14 @@
+<div *ngIf="progratitle">
+    <span *ngFor="let program of progratitle.data">
+        <span *ngIf="id === program.id">
+            <h6 class="page-title">{{program.title}}</h6>
+        </span>
+    </span>
+</div>
+
+<div *ngIf="programs">
+    <p *ngFor="let program of programs.data ; let i = index">
+        <input type="checkbox" [id]="program.id" [checked]="program.ischecked" (change)="update(i , program.id , $event)" > {{program.title}}
+    </p>
+</div>
+

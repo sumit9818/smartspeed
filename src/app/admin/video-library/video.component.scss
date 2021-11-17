@@ -1,0 +1,71 @@
+@import '../../../assets/comman-style.scss';
+
+.videobox {
+    position: relative;
+    margin-bottom: 20px;
+    display: block;
+    color: #000;
+    font-weight: 500;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        display: block;
+        border-radius: 4px;
+        margin-bottom: 14px;
+        box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+        transition: all 300ms linear;
+    }
+    &:hover {
+        color: $primary;
+        img {
+            transform: scale(1.1);
+        }
+    }
+    .v-btn {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, .7);
+        z-index: 4;
+        opacity: 0;
+        border-radius: 4px;
+        transition: all 200ms linear;
+    }
+    a,
+    button {
+        text-align: center;
+        outline: 0 !important;
+        text-decoration: none !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        padding: 0;
+        margin-right: 10px;
+    }
+    &:hover {
+        .v-btn {
+            opacity: 1;
+        }
+    }
+}
+
+video {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.bg-primary-light {
+    background: rgba(158,202,1,.2);
+}
+
+.v-title{
+    position: relative;
+    z-index: 5;
+}

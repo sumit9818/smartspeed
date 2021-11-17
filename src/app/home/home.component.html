@@ -1,0 +1,301 @@
+<app-navbar></app-navbar>
+<ng-template #SignUPModal let-modal>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<img src="assets/images/close.svg">
+    </button>
+    <div class="modal-body">
+        <app-register></app-register>
+    </div>
+</ng-template>
+
+
+<div *ngIf="homepage">
+    <div class="banner-home-content" >
+        <img src="assets/banner.jpg" style="width: 100%;">
+        <p *ngIf="HomePageData.Banner">
+            <img [src]="filepath+logo.data.logo" alt="SpeedAcadmy" *ngIf="logo" > <br>
+            {{HomePageData.Banner.title}}</p>
+    </div>
+
+
+
+    <div id="about"></div>
+    <div class="aboutnew">
+        <div class="container-fluid  mb-4">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-sm-3">
+                    <h3 class="mb-4">About Me</h3>
+                    <ng-container *ngIf="HomePageData.HomeOfferImage7">
+                        <img [src]="filepath+HomePageData.HomeOfferImage7.image" class="img-fluid">
+                    </ng-container>
+                </div>
+                <div class="col-sm-7">
+                    <ng-container *ngIf="HomePageData.HomeOfferImage1">
+                        <div class="hex">
+                            <span class="clippath">
+                                <img [src]="filepath+HomePageData.HomeOfferImage1.image">
+                            </span>
+                            <div [innerHTML]="HomePageData.HomeOfferImage1.title"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="HomePageData.HomeOfferImage2">
+                        <div class="hex">
+                            <span class="clippath">
+                                <img [src]="filepath+HomePageData.HomeOfferImage2.image">
+                            </span>
+                            <div [innerHTML]="HomePageData.HomeOfferImage2.title"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="HomePageData.HomeOfferImage3">
+                        <div class="hex">
+                            <span class="clippath">
+                                <img [src]="filepath+HomePageData.HomeOfferImage3.image">
+                            </span>
+                            <div [innerHTML]="HomePageData.HomeOfferImage3.title"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="HomePageData.HomeOfferImage4">
+                        <div class="hex">
+                            <span class="clippath">
+                                <img [src]="filepath+HomePageData.HomeOfferImage4.image">
+                            </span>
+                            <div [innerHTML]="HomePageData.HomeOfferImage4.title"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="HomePageData.HomeOfferImage5">
+                        <div class="hex">
+                            <span class="clippath">
+                                <img [src]="filepath+HomePageData.HomeOfferImage5.image">
+                            </span>
+                            <div [innerHTML]="HomePageData.HomeOfferImage5.title"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="HomePageData.HomeOfferImage6">
+                        <div class="hex">
+                            <span class="clippath">
+                                <img [src]="filepath+HomePageData.HomeOfferImage6.image">
+                            </span>
+                            <div [innerHTML]="HomePageData.HomeOfferImage6.title"></div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- 
+    <div class="home-about mt-5 mb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4" *ngIf="HomePageData.Banner">
+                    <div [innerHTML]='HomePageData.Banner.description'></div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col" *ngIf="HomePageData.HomeOfferImage1">
+                            <img [src]="filepath+HomePageData.HomeOfferImage1.image" class="img-fluid">
+                            <div [innerHTML]="HomePageData.HomeOfferImage1.title"></div>
+                            
+                        </div>
+                        <div class="col" *ngIf="HomePageData.HomeOfferImage2">
+                            <img [src]="filepath+HomePageData.HomeOfferImage2.image" class="img-fluid">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-4" *ngIf="HomePageData.HomeAbout">
+                    <div [innerHTML]='HomePageData.HomeAbout.description'></div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+    <div id="diffrence"></div>
+    <div class="makeusdiffrent">
+        <div class="container" *ngIf="HomePageData.HomeMakesDifferent">
+            <div class="row ">
+                <div class="col-sm-5">
+                    <h2>{{HomePageData.HomeMakesDifferent.title}}</h2>
+                    <p>{{HomePageData.HomeMakesDifferent.description}}</p>
+                    <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
+                </div>
+                <div class="col-sm-6 img-diffrence">
+                    <img [src]="filepath+HomePageData.HomeMakesDifferentImage.image" *ngIf="HomePageData.HomeMakesDifferentImage.image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container-fluid diffrent">
+        <div class="row  mb-4 justify-content-center" *ngIf="HomePageData.HomeMakesDifferent">
+            <div class="col-sm-6 text-center">
+                <h2>{{HomePageData.HomeMakesDifferent.title}}</h2>
+                <p>{{HomePageData.HomeMakesDifferent.description}}</p>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-3 text-right" *ngIf="HomePageData.HomeMakesDifferent1">
+                <h5><b>01</b>{{HomePageData.HomeMakesDifferent1.title}}</h5>
+                <p>{{HomePageData.HomeMakesDifferent1.description}}</p>
+            </div>
+            <div class="col-sm-4">
+                <div class="img-animation">
+
+                    <img [src]="filepath+HomePageData.HomeMakesDifferentImage.image" *ngIf="HomePageData.HomeMakesDifferentImage.image">
+                </div>
+            </div>
+            <div class="col-sm-3" *ngIf="HomePageData.HomeMakesDifferent2">
+                <h5><b>02</b>{{HomePageData.HomeMakesDifferent2.title}}</h5>
+                <p>{{HomePageData.HomeMakesDifferent2.description}}</p>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-3 text-right" *ngIf="HomePageData.HomeMakesDifferent3">
+                <h5><b>03</b>{{HomePageData.HomeMakesDifferent3.title}}</h5>
+                <p>{{HomePageData.HomeMakesDifferent3.description}}</p>
+            </div>
+            <div class="col-sm-3" *ngIf="HomePageData.HomeMakesDifferent4">
+                <h5><b>04</b>{{HomePageData.HomeMakesDifferent4.title}}</h5>
+                <p>{{HomePageData.HomeMakesDifferent4.description}}</p>
+            </div>
+
+            <div class="text-center col-sm-12 mt-3">
+                <button (click)="openSignUp(SignUPModal)" class="btn-dark"> Join Now</button>
+            </div>
+        </div>
+
+    </div> -->
+
+
+    
+    <div id="offer"></div>
+
+    <div class="offer">
+        <div class="container-fluid">
+            <div class="row align-items-center" *ngIf="HomePageData.HomeOffer">
+                <div class="col-sm-6">
+                    <img [src]="filepath+HomePageData.HomeOffer.image" class="img-fluid">
+                   
+                    <h4 class="mb-4">{{HomePageData.HomeOffer.title}}</h4>
+                    <p>{{HomePageData.HomeOffer.description}}</p>
+                    <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
+                </div>
+                <div class="col-sm-6">
+                    <div class="offer-points" *ngIf="slides">
+                        <div class="offer-box"  *ngFor="let slide of slides.data">
+                            <img [src]="iconpath+slide.image" *ngIf="slide.image">
+                            {{slide.title}}
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+    
+    
+    <div id="testimonial"></div>
+    <div class="testimonial" *ngIf="testimonials">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-sm-5">
+                    <div class="t-txt">
+                        <img src="assets/images/testimonialbg.svg">
+                        <span>What People Thinks About Us</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="">
+                        <owl-carousel-o [options]="customOptions" [carouselClasses]="['owl-theme testi-monial']">
+                            <ng-template carouselSlide *ngFor="let slide of testimonials.data;let i = index" class="testimonials">
+                            <div class="testimonials">
+                                <img src="assets/avtar.jpg" *ngIf="!slide.image">
+                                <img [src]="filepath+slide.image" *ngIf="slide.image">
+                                <p>{{slide.testimonial}}</p>
+                                <h5>{{slide.name}}</h5>
+                            </div>
+                            </ng-template>
+                        </owl-carousel-o>
+                        <br><br>
+                        <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="train-with-us"></div>
+    <div class=" pricing-wrapper" *ngIf="pricing">
+        <div class="container">
+            <h4 class="text-center mb-0">Select Your Plan</h4>
+            <p class="text-center">We offers These subscription plan which you can avail as per your need</p>
+            <div class="row">
+                <div class="col-sm-4" *ngFor="let package of pricing.data">
+                    <div class="pricing">
+                        <div class="price-header">
+                            <h6 class="p-name">{{package.title}}</h6>
+                            <h5 class="p-amount">{{package.price}} <small>Per Month</small></h5>
+                        </div>
+                        <br><br>
+                        <div [innerHTML]="package.description"></div>
+                        <button class="btn-white" (click)="openSignUp(SignUPModal)">Choose</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq pb-4" *ngIf="faqs">
+        <div class="container-fluid">
+            <h2>Frequently Asked Questions</h2>
+            <div class=" row" id="faq">
+                <div class="col-sm-6">
+                    <ngb-accordion [closeOthers]="true" activeIds="faqs-0">
+                        <ngb-panel id="faqs-{{i}}" *ngFor="let faq of faqs.data;let i = index;">
+                            <ng-template ngbPanelTitle>
+                                <i class="fa fa-plus"></i> <i class="fa fa-minus"></i> {{faq.question}}
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                {{faq.answer}}
+                            </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                    <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
+                </div>
+
+                <div class="col-sm-6">
+                    <img src="assets/faq.png" alt="">
+                    <!-- <div class="faqimage">
+                        <img src="assets/images/question.svg" alt="">
+                        <img src="assets/images/qcircle.svg" class="qcircle">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container-fluid blogs" *ngIf="blogs">
+        <h5>News Space</h5>
+        <div class="row ">
+            <a routerLink='news/{{blog.id}}' class="col-sm-3" *ngFor="let blog of blogs.data">
+                <img [src]="filepath+blog.image">
+                <h6>{{blog.title}}</h6>
+            </a>
+        </div>
+        <br>
+        <button (click)="openSignUp(SignUPModal)" class="btn-dark"> Join Now</button>
+    </div> -->
+
+    
+
+</div>
+  
+
+<app-footer></app-footer>

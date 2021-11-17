@@ -1,0 +1,49 @@
+<div class="container-fluid flex-table" *ngIf="subscription">
+    <div class="border col-sm-6" *ngIf="plan">
+        <div class="">
+            <br>
+            <h6 class="flex">Subscription Details</h6>
+            <hr>
+            <p class="flex"><span>Status</span> {{plan.data.status}}</p>
+            <p class="flex"><span>Subscription ID</span> {{plan.data.id}}</p>
+            <p class="flex"><span>Start Date</span> {{plan.data.start_time | date: 'dd MMM yyyy'}}</p>
+        </div>
+
+    </div>
+    <table class="">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Transaction ID</th>
+                <th>Name</th>
+                <th>Gross Amount</th>
+            </tr>
+        </thead>
+        <thead>
+            <tr *ngFor="let data of subscription.data.transactions">
+                <td>
+                    {{data.time | date: 'dd MMM yyyy'}}
+                </td>
+                <td>{{data.status}}</td>
+                <td>{{data.id}}</td>
+                <td>{{data.payer_name.given_name}} {{data.payer_name.surname}}</td>
+                <td>
+                    {{ data.amount_with_breakdown.gross_amount.value}} {{ data.amount_with_breakdown.gross_amount.currency_code}}
+                </td>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<style>
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .flex span {
+        font-weight: 600;
+    }
+</style>

@@ -1,0 +1,131 @@
+//FONT FAMILY
+@import '../../../assets/comman-style.scss';
+
+
+footer {
+    background: $secondry;
+    color: #fff;
+    padding-top: 40px;
+    margin-top: 0px;
+    overflow: hidden;
+    h5 {
+        color: $primary;
+        font-weight: 400;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    form {
+        color: #222;
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+            background: transparent !important;
+        }
+        input:-webkit-autofill,
+        select:-webkit-autofill {
+            background-color: transparent !important;
+            transition: background-color 5000s ease-in-out 0s;
+            -webkit-text-fill-color: #fff
+        }
+        .form-control {
+            background: transparent !important;
+            border-radius: 5px;
+            border: 1px solid $primary;
+            color: #fff !important;
+            box-shadow: none !important;
+            font-size: 14px;
+            padding: 10px 16px;
+            min-height: 46px;
+            line-height: 24px;
+            &:focus {
+                outline: 0px !important;
+                box-shadow: none !important;
+            }
+        }
+    }
+    .inputwrap {
+        position: relative;
+        margin-bottom: 20px;
+        label {
+            position: absolute;
+            color: #fff;
+            top: -10px;
+            left: 16px;
+            font-size: 13px;
+            margin: 0;
+            transition: all 200ms linear;
+            z-index: 2;
+            background: $secondry;
+        }
+    }
+    a {
+        display: block;
+        color: #fff;
+        margin-bottom: 10px;
+        font-weight: 300;
+        &:hover {
+            color: $primary
+        }
+    }
+    .follow {
+        display: flex;
+        flex-wrap: wrap;
+        a {
+            margin-right: 20px;
+            color: rgba(255, 255, 255, .7);
+            img{
+                width: 60px;
+            }
+        }
+        &:hover {
+            color: $primary
+        }
+    }
+    .copy {
+        padding: 20px 0;
+        text-align: right;
+        opacity: .8
+    }
+}
+
+
+.followme{
+    background: $secondry;
+    text-align: center;
+    border-top: 2px solid $primary;
+    border-bottom: 2px solid $primary;
+    padding: 60px 0;
+    .follow {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        a {
+            color: rgba(255, 255, 255, .7);
+            img{
+                width: 60px;
+            }
+            &:nth-child(1){
+                img{
+                    transform: rotate(26deg);
+                    border-radius: 4px;
+                }
+            }
+            &:nth-child(2){
+                position: relative;
+                z-index: 2;
+            }
+            &:nth-child(4){
+                img{
+                    transform: rotate(-26deg);
+                    border-radius: 4px;
+                }
+            }
+        }
+        
+        &:hover {
+            color: $primary
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<div *ngIf="blog">
+<h6><small>Created </small><br>
+    <small> {{blog.data.created_at | date: 'dd MMM yyyy'}} </small>
+<div>
+      
+    <label class="badge bg-success" style="color: #fff" *ngIf="blog.data.isactive">Active</label>
+    <label class="badge badge-warning" style="color: #fff" *ngIf="!blog.data.isactive">Inactive</label>
+    <hr>
+</div>
+</h6>
+<img [src]="filepath" class="img-fluid"><br> <br> <br>
+<h5>{{blog.data.title}}</h5> <br>
+<div [innerHTML]="blog.data.description"></div>
+
+</div>

@@ -1,0 +1,46 @@
+<h5 class="mt-2 pt-2 pl-3 pr-3 mb-4 row mr-2 ml-2 justify-content-between align-items-center">All FAQ
+    <a routerLink="add" class="add-btn">
+        <img src="assets/icons/add.svg"> Add FAQ
+    </a>
+</h5>
+
+<div class="container-fluid flex-table" *ngIf="faq">
+    <table >
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Question</th>
+                <th>Created On</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let faqs of faq.data; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{faqs.question}}</td>
+                <td>{{faqs.created_at | date: 'dd MMM yyyy'}}</td>
+                <td>
+                    <label class="badge bg-success" style="color: #fff" *ngIf="faqs.isactive">Active</label>
+                    <label class="badge badge-warning" style="color: #fff" *ngIf="!faqs.isactive">Inactive</label>
+                </td>
+                <td>
+                    
+                    <a routerLink="{{faqs._id}}">
+                        <svg width="20.379" viewBox="0 0 22.379 16.959"><g transform="translate(0 -62.003)"><g transform="translate(9.529 68.778)"><circle cx="1.705" cy="1.705" r="1.705" fill="#2b343b"></circle></g><g transform="translate(6.251 65.5)"><g transform="translate(0 0)"><path d="M148,142a4.983,4.983,0,1,0,4.983,4.983A4.988,4.988,0,0,0,148,142Zm0,8.217a3.234,3.234,0,1,1,3.234-3.234A3.238,3.238,0,0,1,148,150.219Z" transform="translate(-143.014 -142.002)" fill="#2b343b"></path></g></g><g transform="translate(0 62.003)"><g transform="translate(0 0)"><path d="M21.813,68.574a16.9,16.9,0,0,0-3.906-4.136A11.122,11.122,0,0,0,11.209,62a11.179,11.179,0,0,0-6.7,2.428,17.019,17.019,0,0,0-3.93,4.131,3.492,3.492,0,0,0,0,3.841A17.018,17.018,0,0,0,4.5,76.534a11.179,11.179,0,0,0,6.7,2.428,12.124,12.124,0,0,0,8.084-3.6.874.874,0,0,0-1.2-1.275,10.425,10.425,0,0,1-6.888,3.127c-4.244,0-7.763-3.628-9.173-5.772a1.745,1.745,0,0,1,0-1.919c1.41-2.144,4.929-5.772,9.173-5.772s7.741,3.631,9.139,5.777a1.749,1.749,0,0,1,0,1.908.874.874,0,0,0,1.465.954A3.5,3.5,0,0,0,21.813,68.574Z" transform="translate(0 -62.003)" fill="#2b343b"></path></g></g></g></svg>
+                    </a>
+
+                    <a routerLink="edit/{{faqs._id}}" class="mr-2">
+                        <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"/><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"/><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"/></svg>
+                    </a>
+                    <button (click)="deleteFaq(faqs._id);$event.stopPropagation()" [disabled]="faqs.isDeleting">
+                        <span *ngIf="faqs.isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!faqs.isDeleting">
+                            <svg  width="15.632" height="17.569" viewBox="0 0 15.632 17.569"><g transform="translate(0.2 0.2)"><g transform="translate(0 0)"><path d="M72.6,114.908H61.461a.44.44,0,0,0-.33.11.374.374,0,0,0-.11.33l1.145,9.971a2.179,2.179,0,0,0,2.179,1.915h5.547a2.179,2.179,0,0,0,2.2-1.981l.946-9.949a.374.374,0,0,0-.11-.286A.44.44,0,0,0,72.6,114.908Zm-1.387,10.3a1.277,1.277,0,0,1-1.321,1.145H64.344a1.255,1.255,0,0,1-1.3-1.123l-1.1-9.443H72.114Z" transform="translate(-59.414 -110.065)" fill="#fc1919" stroke="red" stroke-width="0.4"/><path d="M37.784,1.981H33.25v-.7A1.233,1.233,0,0,0,32.063,0h-2.84a1.233,1.233,0,0,0-1.255,1.21q0,.033,0,.067v.7H23.433a.44.44,0,1,0,0,.88H37.784a.44.44,0,1,0,0-.88Zm-5.415-.7v.7H28.848v-.7a.352.352,0,0,1,.374-.4H32a.352.352,0,0,1,.376.326A.348.348,0,0,1,32.37,1.277Z" transform="translate(-22.993 0)" fill="#fc1919" stroke="red" stroke-width="0.4"/></g></g></svg>
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,126 @@
+﻿import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AccountService, AlertService, SettingsService } from '@app/_services';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+import { environment } from '@environments/environment';
+import { map, catchError } from "rxjs/operators";
+import { throwError } from "rxjs";
+
+
+@Component({
+    selector: 'app-setting',
+     templateUrl: 'setting.component.html',
+     styleUrls: ['setting.component.scss']
+    })
+export class SettingComponent implements OnInit{
+    filepath= `${environment.imgUrl}`
+    form:FormGroup  ;
+    loading = false;
+	submitted = false;
+    picture:any;
+	progressImage: number;
+	progressVideo: number;
+    logo:any;
+    constructor(
+        private formBuilder:FormBuilder,
+        private accoutservice:AccountService,
+        private alertService:AlertService,
+		private http: HttpClient,
+		private SettingsService: SettingsService,
+    ) {}
+
+    adminID:any;
+    admin:any;
+    ngOnInit() {
+        this.adminID= JSON.parse(localStorage.getItem('smartuser')).id
+		// console.log(this.adminID)
+        this.SettingsService.GetLogo().subscribe(logo => {this.logo = logo;})
+        
+		// this.form = this.buildForm()
+		// this.updateFormValue()
+     }
+
+     get f() { return this.form.controls }
+
+     private buildForm(): FormGroup {
+		return this.formBuilder.group({
+            description: [''],
+            og_title: [''],
+            og_description: ['', Validators.required],
+            og_sitename: ['', Validators.required],
+		});
+	}
+
+	
+	
+	
+	private updateFormValue(): void {
+          this.accoutservice.getById(this.adminID).subscribe(admin => {
+            this.admin = admin;
+		});
+    }
+
+
+
+
+
+
+    onSubmit(): void {
+        this.submitted = true;
+        this.alertService.clear();
+        if (this.form.invalid) return;
+        this.loading = true;
+    
+        this.updateUser()
+      }
+    
+    
+    
+      private updateUser(){
+        return this.accoutservice.update(this.adminID, this.form.value).pipe(
+          tap((data) => {
+              this.alertService.success('Profile Update successful', {
+                keepAfterRouteChange: true,
+              });
+            })
+        );
+      }
+    
+
+
+      upFile(file): void {
+		this.progressImage = 1;
+		const formData = new FormData();
+		formData.append("file", file);
+		this.http.post(`${environment.imgUpload}`, formData, {
+			reportProgress: true,
+			observe: "events"
+		  }).pipe(map((event: any) => {
+			  if (event.type == HttpEventType.UploadProgress) {
+				this.progressImage = Math.round((100 / event.total) * event.loaded);
+			  } else if (event.type == HttpEventType.Response) {
+				this.picture = event.body.newfilename;
+				this.progressImage = null;
+                var newlogo = {isactive:true,logo:this.picture}
+                this.SettingsService.AddLogo(newlogo).subscribe(
+                    data => {
+                        this.alertService.success('Icon added successfully');
+                        this.SettingsService.GetLogo().subscribe(logo=>{this.logo =logo;})
+                    },
+                    error => {
+                        this.alertService.error(error);
+                        this.loading = false;
+                    });
+			  }
+			}),
+			catchError((err: any) => {
+			  this.progressImage = null;
+			  alert(err.message);
+			  return throwError(err.message);
+			})
+		  )
+		  .subscribe();
+	}
+    
+}

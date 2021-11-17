@@ -1,0 +1,110 @@
+$popins: 'Poppins',
+sans-serif;
+$primary:#9ECA01;
+$secondry:#2B343B;
+.page-title {
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #000;
+    }
+}
+
+.inputicon {
+    position: relative;
+    button {
+        background: transparent !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding-top: 2px !important;
+        img {
+            width: 40px;
+        }
+    }
+}
+
+.diary {
+    margin: 0;
+    padding: 0;
+    margin-top: 40px;
+    p {
+        margin: 0;
+        color: #fff;
+    }
+    .date{
+        text-align: right;
+        small {
+            display: inline-block;
+            margin-right: 10px;
+            opacity: .7;
+        }
+    }
+    li {
+        position: relative;
+        display: block;
+        padding-left: 40px;
+        button{
+            background: transparent !important;
+            outline: 0px !important;
+            border: 0px !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            svg{
+                margin:  0 !important;
+            }
+        }
+        span {
+            background: $secondry;
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        &::after {
+            content: "";
+            z-index: 1;
+            position: absolute;
+            top: calc(50% - 18px);
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            left: 0;
+            border-radius: 100%;
+            border: 3px solid $primary;
+        }
+        &::before {
+            content: "";
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            bottom: calc(0px - 18px);
+            width: 1px;
+            left: 9px;
+            background: $primary;
+        }
+        &:first-child {
+            &:before {
+                top: 50%
+            }
+        }
+        &:last-child {
+            &:before {
+                bottom: 50%
+            }
+        }
+    }
+}

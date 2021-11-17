@@ -1,0 +1,32 @@
+    <h6 class="page-title">Ask Clayton</h6>
+
+    <div class="row pr-2 chats">
+       
+        <div class="col-sm-12" *ngIf="chats">
+            <div class="tab-data active">
+                
+                <div class="chatbox" #scrollMe [scrollTop]="scrollMe.scrollHeight" style="max-height: 66vh;overflow-y: auto;padding-bottom: 30px;">
+                    <ng-container *ngFor="let data of chats.data">
+                        <div class="incoming-msg"  *ngIf="data.is_admin === true" >
+                            <div >
+                                <small>{{data.sent_date}}</small> <br> {{data.message}}
+                            </div>
+                        </div>
+                        <div class="outgoing-msg"  *ngIf="data.is_admin === false">
+                            <div>
+                                <small>{{data.sent_date}}</small> <br> {{data.message}}
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="msgbox">
+                <div class="inputicon">
+                    <input type="text"  formControlName="message" class="form-control" id="message">
+                    <button  [disabled]="loading">
+                        <img src="assets/icons/send.svg" alt="">
+                    </button>
+                </div>
+            </form>
+    </div>

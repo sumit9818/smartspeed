@@ -1,0 +1,38 @@
+<h6 class="mt-3 mb-4">View Video</h6>
+<div *ngIf="    videos">
+    <span *ngFor="let video of videos.data.videos">
+        <div *ngIf="id === video.id" class="row">
+            <div class="col-sm-5">
+                <h6>{{video.title}}</h6>
+                <video [poster]="filepath+video.thumbnail_image" controls="">
+                    <source [src]="filepath+video.video_url" type="video/mp4">
+                    <source src="filepath+video.video_url" type="video/ogg">
+                </video>
+    
+            </div>
+            <div class="col-sm-7 bg-primary-after">
+                <br><br>
+                <div [innerHTML]='video.description'></div>
+            </div>
+        </div>
+    </span>
+</div>
+<div *ngIf="videos">
+    <span *ngFor="let video of videos.data.my_videos">
+        <div *ngIf="id === video.id" class="row">
+            <div class="col-sm-5">
+                <h6>{{video.title}}</h6>
+                <video [poster]="filepath+video.thumbnail_image" controls="">
+                    <source [src]="filepath+video.video_url" type="video/mp4">
+                    <source src="filepath+video.video_url" type="video/ogg">
+                </video>
+    
+            </div>
+            <div class="col-sm-7 bg-primary-after">
+                <br><br>
+                <div [innerHTML]='video.description'></div>
+            </div>
+        </div>
+    </span>
+</div>
+

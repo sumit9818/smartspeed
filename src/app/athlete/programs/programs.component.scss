@@ -1,0 +1,60 @@
+$popins: 'Poppins',
+sans-serif;
+$primary:#9ECA01;
+$secondry:#2B343B;
+// PROGRAMS
+.programs {
+    border: 1px solid #dadada;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    transition: all 200ms linear;
+    background: #fff;
+    display: block;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        border-color: $primary;
+    }
+    a {
+        display: inline;
+        outline: 0 !important;
+        text-decoration: none !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        padding: 0;
+        color: $primary;
+        margin: auto;
+        margin-bottom: 4px;
+    }
+    p {
+        margin: 0;
+        font-weight: 400;
+    }
+    h6 {
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+a.programs:hover {
+    color: #000;
+    border-color: $primary;
+}
+
+
+.page-title {
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

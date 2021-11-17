@@ -1,0 +1,43 @@
+<h5 class="mt-2 pt-2 pl-3 pr-3 mb-4 row mr-2 ml-2 justify-content-between align-items-center">All Sports
+    <a routerLink="add" class="add-btn">
+        <img src="assets/icons/add.svg"> Add Sport
+    </a>
+</h5>
+<div class="container-fluid flex-table">
+    <table class="">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="sports">
+            <tr *ngFor="let sport of sports; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{sport.name}}</td>
+                <td>{{sport.created_at | date: 'dd MMM yyyy'}}</td>
+
+                <td style="white-space: nowrap">
+                    <a routerLink="edit/{{sport._id}}/{{sport.name}}" class="mr-2">
+                        <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"/><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"/><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"/></svg>
+                    </a>
+                    <button (click)="deleteSport(sport._id);$event.stopPropagation()" [disabled]="sport.isDeleting">
+                        <span *ngIf="sport.isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!sport.isDeleting">
+                            <svg  width="15.632" height="17.569" viewBox="0 0 15.632 17.569"><g transform="translate(0.2 0.2)"><g transform="translate(0 0)"><path d="M72.6,114.908H61.461a.44.44,0,0,0-.33.11.374.374,0,0,0-.11.33l1.145,9.971a2.179,2.179,0,0,0,2.179,1.915h5.547a2.179,2.179,0,0,0,2.2-1.981l.946-9.949a.374.374,0,0,0-.11-.286A.44.44,0,0,0,72.6,114.908Zm-1.387,10.3a1.277,1.277,0,0,1-1.321,1.145H64.344a1.255,1.255,0,0,1-1.3-1.123l-1.1-9.443H72.114Z" transform="translate(-59.414 -110.065)" fill="#fc1919" stroke="red" stroke-width="0.4"/><path d="M37.784,1.981H33.25v-.7A1.233,1.233,0,0,0,32.063,0h-2.84a1.233,1.233,0,0,0-1.255,1.21q0,.033,0,.067v.7H23.433a.44.44,0,1,0,0,.88H37.784a.44.44,0,1,0,0-.88Zm-5.415-.7v.7H28.848v-.7a.352.352,0,0,1,.374-.4H32a.352.352,0,0,1,.376.326A.348.348,0,0,1,32.37,1.277Z" transform="translate(-22.993 0)" fill="#fc1919" stroke="red" stroke-width="0.4"/></g></g></svg>
+                        </span>
+                    </button>
+                </td>
+            </tr>
+            <tr *ngIf="!sports">
+                <td colspan="4" class="text-center">
+                    <span class="spinner-border spinner-border-lg align-center"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>

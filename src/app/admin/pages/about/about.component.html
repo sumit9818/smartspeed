@@ -1,0 +1,11 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmitAbout()" class="row">
+    <div class="col-sm-12">
+        <input type="hidden" formControlName="title" class="form-control" />
+        <textarea formControlName="description"  [ngxSummernote]="config"></textarea>
+        <button [disabled]="loading" class="primary-btn mt-3">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Save Details
+        </button>
+    </div>
+</form>

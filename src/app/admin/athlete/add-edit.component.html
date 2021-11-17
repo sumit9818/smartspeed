@@ -1,0 +1,96 @@
+﻿<h5 *ngIf="isAddMode" class="mt-2">Add Athlete</h5>
+<h5 *ngIf="!isAddMode" class="mt-2">Edit Athlete</h5>
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="">
+    <div class="col-sm-6">
+        <file-upload class="preview" [(picture)]="picture" [(loadingfile)]="loadingfile"></file-upload>
+        <p><b>Note: </b><em>Image size shoulde be between 300*250 PX</em></p>
+        <input type="hidden" formControlName="profile_pic" [(ngModel)]="picture">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="name">Full Name</label>
+                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required"> Name is required</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="age">Age</label>
+                <input type="number" formControlName="age" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
+                <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                    <div *ngIf="f.age.errors.required"> Name is required</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="gender">Gender</label>
+                <select formControlName="gender" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="col-sm-6" *ngIf="sports">
+                <label for="sports_id">Sports</label>
+                <select formControlName="sports_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sports_id.errors }">
+                    <option  value="">Select Sport</option>
+                    <option *ngFor="let sport of sports" value="{{sport._id}}">{{sport.name}}</option>
+                </select>
+            </div>
+            <div class="col-sm-6" *ngIf="coach">
+                <label for="coach_id">Assign Coach</label>
+                <select formControlName="coach_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.coach_id.errors }">
+                    <option  value="">Select Coach</option>
+                    <option *ngFor="let coachs of coach.data" value="{{coachs.id}}">{{coachs.name}}</option>
+                </select>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="email">Email</label>
+                <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="contact">Contact</label>
+                <input type="text" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
+                <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                    <div *ngIf="f.contact.errors.required">contact is required</div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-12">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+                <label for="password">Password
+                            <em *ngIf="!isAddMode">(Leave blank to keep the same password)</em>
+                        </label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+
+            </div>
+            <div class="text-right col-sm-12 mt-2">
+                <button [disabled]="loading || loadingfile" class="secondry-btn">
+                    <span *ngIf="loading || loadingfile" class="spinner-border spinner-border-sm mr-1"></span>
+                    Save Details
+                </button>
+            </div>
+        </div>
+
+        <br>
+    </div>
+</form>

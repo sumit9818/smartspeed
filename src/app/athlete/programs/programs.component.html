@@ -1,0 +1,10 @@
+<h5 class="page-title">Programs</h5>
+
+<div class="row" *ngIf="programs">
+    <div class="col-sm-4" *ngFor="let program of programs.data">
+        <div class="programs" routerLink="{{program.id}}">
+            <p class="text-right"><small>{{program.created_at | date: 'dd MMM yyyy'}}</small></p>
+            <p>{{program.title}}</p>
+        </div>
+    </div>
+</div>

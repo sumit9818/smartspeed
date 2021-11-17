@@ -1,0 +1,17 @@
+﻿<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+    <label>Description</label>
+    <input type="text" formControlName="description" class="form-control">
+    <label>OG title</label>
+    <input type="text" formControlName="og_title" class="form-control">
+    <label>OG Description</label>
+    <input type="text" formControlName="og_description" class="form-control">
+    <label>OG Site Name</label>
+    <input type="text" formControlName="og_sitename" class="form-control">
+
+    <div class="text-left mt-2">
+        <button [disabled]="loading" class="secondry-btn">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Update Details
+        </button>
+    </div>
+</form>

@@ -1,0 +1,87 @@
+<h5 class="page-title">Edit Account</h5>
+
+<div class="row" *ngIf="user" style="max-width: 1000px;">
+    
+    <div class="col-sm-3">
+        <img src="assets/avtar.jpg" *ngIf="!picture" class="pro-pic">
+        <img [src]="filepath" *ngIf="picture" class="pro-pic"> <br>
+        <div class="progress" *ngIf="progressImage">
+            <div class="progress-bar" [style.width]="progressImage + '%'">{{progressImage}}%</div>
+        </div>
+        <label for="upload-img" class="upload-img">
+            <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"/><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"/><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"/></svg>
+            Upload
+            <input type="file"  #resumeInput 
+             accept="image/x-png,image/gif,image/jpeg" (change)="upFile()">
+        </label>
+    </div>
+    <form class="col-sm-9 pro-data" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input type="hidden" formControlName="profile_pic" [(ngModel)]="picture">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" value="{{user.username}}" disabled>
+            </div>
+            <div class="col-sm-6">
+                <label for="name">Full Name</label>
+                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required"> Name is required</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="age">Age</label>
+                <input type="number" formControlName="age" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
+                <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                    <div *ngIf="f.age.errors.required"> Age is required</div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6" >
+                <label for="gender">Gender</label>
+                <select formControlName="gender" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+
+            <div class="col-sm-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" value="{{user.email}}" disabled>
+            </div>
+            <div class="col-sm-6">
+                <label for="contact">Contact</label>
+                <input type="text" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
+                <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                    <div *ngIf="f.contact.errors.required">contact is required</div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-12">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+                <label for="password">Password
+                            <em *ngIf="!isAddMode">(Leave blank to keep the same password)</em>
+                        </label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+
+            </div>
+            <div class="text-left col-sm-12 mt-2">
+                <br>
+                <button [disabled]="loading" class="secondry-btn">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Update Profile
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>

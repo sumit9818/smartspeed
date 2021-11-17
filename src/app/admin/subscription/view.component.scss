@@ -1,0 +1,34 @@
+@import '../../../assets/comman-style.scss';
+
+.card{
+    padding: 15px;
+}
+
+.plan-details{
+    background: $secondry;
+    color: #fff;
+    padding: 15px;
+    margin: 22px -15px -15px -15px;
+}
+
+.c-header{
+    background: $secondry;
+    color: #fff;
+    padding: 8px 15px;
+    margin: -15px -15px 0 -15px;
+    a{
+        font-size: 13px;
+        padding: 4px 3px;
+    }
+}
+
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+        font-weight: 600;
+    }
+}

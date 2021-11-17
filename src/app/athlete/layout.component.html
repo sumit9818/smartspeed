@@ -1,0 +1,104 @@
+﻿
+<!-- <ng-container *ngIf="subscription">
+    <div *ngIf="plan== false" class="expired">
+        Your Plan is no longer Active
+    </div>
+</ng-container> -->
+<div class="body" *ngIf="user">
+    <header>
+        <div class="site-logo">
+            <img [src]="logoepath+logo.data.logo" alt="SpeedAcadmy" *ngIf="logo">
+        </div>
+        <div class="row p-0 align-items-center">
+
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0)">
+                    <img src="assets/avtar.jpg" *ngIf="!user.profile_pic" class="upic">
+                    <img [src]="filepath" *ngIf="user.profile_pic" class="upic profile_pic_update"> {{user.name}}
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" routerLink="account">Account details</a></li>
+                    <li><a class="dropdown-item" routerLink="programs">Programs</a></li>
+                    <li><a class="dropdown-item" routerLink="leaderboard">Leaderbord</a></li>
+                    <li><a class="dropdown-item" routerLink="diary">Dairy</a></li>
+                    <li><a class="dropdown-item" routerLink="video">Video Library</a></li>
+                    <li><a class="dropdown-item" routerLink="/payment">Payment Details</a></li>
+                    <li><a class="dropdown-item" routerLink="/ask">Ask Clayton</a></li>
+                    <hr>
+                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a></li>
+                </ul>
+            </div>
+            <!-- <div class="dropdown notification">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="23.834" height="26.001" viewBox="0 0 23.834 26.001"><g transform="translate(0.001)"><path d="M138.945,451.25a4.069,4.069,0,0,0,3.98-3.25h-7.961A4.069,4.069,0,0,0,138.945,451.25Zm0,0" transform="translate(-128.112 -425.25)" fill="#fff"/><path d="M18.43,53.5h-.013a7.593,7.593,0,0,1-7.583-7.583,7.516,7.516,0,0,1,.725-3.213c-.238-.023-.48-.037-.725-.037A7.583,7.583,0,0,0,3.25,50.251v3.02A7.264,7.264,0,0,1,.663,58.832a1.9,1.9,0,0,0-.6,1.946,1.987,1.987,0,0,0,1.948,1.39H19.646a1.986,1.986,0,0,0,1.98-1.5,1.9,1.9,0,0,0-.647-1.855A7.209,7.209,0,0,1,18.43,53.5Zm0,0" transform="translate(0 -40.501)" fill="#fff"/><path d="M266.845,5.417A5.417,5.417,0,1,1,261.429,0,5.417,5.417,0,0,1,266.845,5.417Zm0,0" transform="translate(-243.012 0)" fill="#9eca01"/></g></svg>
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Sed ut perspiciatis undeSed ut perspiciatis unde</a></li>
+                <li><a class="dropdown-item" href="#">Sed ut perspiciatis undeSed ut perspiciatis unde</a></li>
+                <li><a class="dropdown-item" href="#">Sed ut perspiciatis undeSed ut perspiciatis unde</a></li>
+                <li><a class="dropdown-item" href="#">Sed ut perspiciatis undeSed ut perspiciatis unde</a></li>
+            </ul>
+        </div> -->
+            <a href="#" (click)="logout()" class="logout">
+                <svg width="22.954" height="26.001" viewBox="0 0 22.954 26.001"><g transform="translate(-30)"><g transform="translate(30 3.734)"><path d="M45.576,73.586a1.016,1.016,0,0,0-.726,1.9,9.446,9.446,0,1,1-6.746,0,1.016,1.016,0,0,0-.726-1.9,11.477,11.477,0,1,0,8.2,0Z" transform="translate(-30 -73.519)" fill="#fff"/></g><g transform="translate(40.461)"><path d="M237.016,0A1.016,1.016,0,0,0,236,1.016v9.946a1.016,1.016,0,1,0,2.031,0V1.016A1.016,1.016,0,0,0,237.016,0Z" transform="translate(-236)" fill="#fff"/></g></g></svg>
+            </a>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+
+        <div class="ath-sidebar" *ngIf='user'>
+            <div class="current-user">
+                <a routerLink="edit">
+                    <svg width="16" viewBox="0 0 19.252 19.251"><g transform="translate(0 -0.501)" ><path d="M15.241,92.233a.8.8,0,0,0-.8.8v6.417a.8.8,0,0,1-.8.8H2.406a.8.8,0,0,1-.8-.8V88.223a.8.8,0,0,1,.8-.8H8.824a.8.8,0,0,0,0-1.6H2.406A2.409,2.409,0,0,0,0,88.223v11.23a2.409,2.409,0,0,0,2.406,2.406h11.23a2.409,2.409,0,0,0,2.406-2.406V93.036a.8.8,0,0,0-.8-.8Zm0,0" transform="translate(0 -82.107)"/><path d="M182.493,74.609a.406.406,0,0,0-.11.2l-.567,2.837a.4.4,0,0,0,.394.48.382.382,0,0,0,.079-.008l2.836-.567a.4.4,0,0,0,.205-.11l6.347-6.347-2.836-2.836Zm0,0" transform="translate(-174.972 -65.213)"/><path d="M395.391,1.088a2.007,2.007,0,0,0-2.836,0l-1.11,1.11,2.836,2.836,1.11-1.11a2.005,2.005,0,0,0,0-2.836Zm0,0" transform="translate(-376.727)"/></g></svg>
+                </a>
+
+                <img src="assets/avtar.jpg" *ngIf="!user.profile_pic">
+                <img [src]="filepath" *ngIf="user.profile_pic" class="profile_pic_update">
+                <span>
+        {{user.name}}
+        <small>{{user.contact}} <br> {{user.email}}</small>
+    </span>
+            </div>
+            <ul>
+
+                <li>
+                    <a routerLink="/account" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Account Details</a>
+                </li>
+                <li>
+                    <a routerLink="/programs" routerLinkActive="active">Programs</a>
+                </li>
+                <li>
+                    <a routerLink="/leaderboard" routerLinkActive="active">Leaderbord</a>
+                </li>
+                <li>
+                    <a routerLink="/diary" routerLinkActive="active">Diary</a>
+                </li>
+                <li>
+                    <a routerLink="/video" routerLinkActive="active">Video Library</a>
+                </li>
+                <li>
+                    <a routerLink="/payment" routerLinkActive="active">Payment Details</a>
+                </li>
+                <li>
+                    <a routerLink="/ask"  routerLinkActive="active">Ask Clayton</a>
+                </li>
+
+            </ul>
+
+
+        </div>
+        <main>
+            <!-- <span *ngIf="plan == false ">
+                <app-package></app-package>
+            </span>
+            <span *ngIf="plan == true || router.url === '/payment' || router.url === '/account'|| router.url === '/ask'|| router.url === '/account/edit'">
+                <router-outlet></router-outlet>
+            </span> -->
+            <router-outlet></router-outlet>
+        </main>
+
+    </div>
+</div>

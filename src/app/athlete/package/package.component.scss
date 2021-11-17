@@ -1,0 +1,79 @@
+//FONT FAMILY
+$popins: 'Poppins',
+sans-serif;
+$primary:#9ECA01;
+$secondry:#2B343B;
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+//PRICING
+.pricing-wrapper {
+    max-width: 100%;
+    margin: 60px auto;
+
+    .pricing {
+        display: block;
+        border-radius: 8px;
+        border: 1px solid #dadada;
+        text-align: center;
+        box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+        margin-top: 20px;
+
+        .price-header {
+            background: #3B00FF;
+            color: #fff;
+            border-radius: 8px;
+            padding: 20px 15px;
+        }
+
+        .p-name {
+            font-size: 24px;
+        }
+
+        .p-amount {
+            font-size: 32px;
+            font-weight: 700;
+
+            small {
+                font-size: 18px;
+            }
+        }
+
+        ul {
+            list-style: none;
+            margin: 20px 0;
+            padding: 0 14px;
+
+            li {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+        }
+
+        button {
+            margin-bottom: 20px;
+        }
+    }
+
+    .col-sm-4 {
+        &:nth-child(2) {
+            .price-header {
+                background: $primary;
+            }
+        }
+
+        &:nth-child(3) {
+            .price-header {
+                background: $secondry;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,32 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+
+        <h5 *ngIf="isAddMode" class="mt-2">Add Sport</h5>
+        <h5 *ngIf="!isAddMode" class="mt-2">Edit Sport</h5>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="name">Sports Name</label>
+                    <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">First Name is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button [disabled]="loading" class="secondry-btn">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Save
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="col-sm-6 pt-5">
+        <div class="tags" *ngIf="sports">
+            <span *ngFor="let sport of sports.data">{{sport.name}}</span>
+        </div>
+    </div>
+</div>

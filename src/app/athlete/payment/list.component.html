@@ -1,0 +1,89 @@
+<h6 class="page-title">Payment Details</h6>
+
+<div class="row">
+    <div class="col-sm-4">
+        <h6>Current Plan</h6>
+        <div class="saved-cards" *ngIf="currentplan">
+            <svg width="24" viewBox="0 0 512 352"><g transform="translate(0 -80)"><path d="M456,80H56A56.064,56.064,0,0,0,0,136V376a56.064,56.064,0,0,0,56,56H456a56.064,56.064,0,0,0,56-56V136A56.064,56.064,0,0,0,456,80ZM56,112H456a24.028,24.028,0,0,1,24,24v32H32V136A24.028,24.028,0,0,1,56,112ZM456,400H56a24.028,24.028,0,0,1-24-24V200H480V376A24.028,24.028,0,0,1,456,400Z"></path><path d="M112,352H96a16,16,0,0,1-16-16V320a16,16,0,0,1,16-16h16a16,16,0,0,1,16,16v16A16,16,0,0,1,112,352Z"></path></g></svg>
+            <div class="pl-3">
+                <p><b>{{currentplan.title}}</b>
+                    <br> Price: {{currentplan.price}} AUD</p>
+                
+                <ng-container *ngIf="subscription">
+                    <ng-container *ngIf="subscription.data.status !='SUSPENDED'">
+                        <hr style="border-style:dashed">
+                        <a href="javascript:void(0)" (click)="unsubscribe()" class="text-danger mr-2">Unsubscribe</a>
+                    </ng-container>
+                </ng-container>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="border" *ngIf="subscription">
+            <div class="col-sm-12">
+                <br>
+                <h6 class="flex">Subscription Details</h6>
+                <hr>
+                <p class="flex"><span>Status</span> {{subscription.data.status}}</p>
+                <p class="flex"><span>Subscription ID</span> {{subscription.data.id}}</p>
+                <p class="flex"><span>Start Date</span> {{subscription.data.start_time | date: 'dd MMM yyyy'}}</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="subscription">
+    <div class="flex-table" *ngIf="transaction">
+        <table class="">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Transaction ID</th>
+                    <th>Payee</th>
+                    <th>Gross Amount</th>
+                </tr>
+            </thead>
+            <thead>
+                <tr *ngFor="let data of transaction.data.transactions">
+                    <td>
+                        {{data.time | date: 'dd MMM yyyy'}}
+                    </td>
+                    <td>{{data.status}}</td>
+                    <td>{{data.id}}</td>
+                    <td>{{data.payer_name.given_name}} {{data.payer_name.surname}}</td>
+                    <td>
+                        {{ data.amount_with_breakdown.gross_amount.value}} {{ data.amount_with_breakdown.gross_amount.currency_code}}
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+
+
+    <style>
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .flex span {
+            font-weight: 600;
+        }
+        
+        .page-title {
+            border-bottom: 1px solid #dadada;
+            padding-bottom: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>

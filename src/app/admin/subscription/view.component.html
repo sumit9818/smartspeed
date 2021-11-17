@@ -1,0 +1,67 @@
+<div class="row" style="max-width: 900px;">
+    <div class="col-sm-6" *ngIf="user">
+        <div class="card" >
+            <div class="d-flex justify-content-between" >
+                <img src="assets/avtar.jpg" *ngIf="!user.profile_pic" class="upic thumbnail">
+                <img [src]="filepath+user.profile_pic" *ngIf="user.profile_pic" class="upic thumbnail">
+                
+                <div class="text-right">
+                    <small class="">Joined On  {{user.createdAt | date: 'dd MMM yyyy'}}</small> <br>
+                    <ng-container  *ngIf="subscription">
+                        <button *ngIf="subscription.data.status === 'ACTIVE'" class="btn btn-danger btn-sm" (click)="suspendPlan()"><small>Suspend Account</small></button>
+                        <button *ngIf="subscription.data.status === 'SUSPENDED'" class="btn btn-success btn-sm" (click)="ActivatePlan()"><small>Activate Account</small></button>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="mt-2">
+                <h6>
+                    <span>
+                    {{user.name}} 
+                    </span><br>
+                    <hr>
+                    <p class="mb-2"><small><i class="fas fa-mobile-alt mr-3 fa-lg"></i> {{user.contact}} </small> </p>
+                    <p class="mb-2"><small><i class="fas fa-sign-in-alt mr-2 fa-lg"></i> {{user.username}} </small> </p>
+                    <p class="mb-2"><small><i class="fas fa-envelope mr-2 fa-lg"></i> {{user.email}} </small> </p>
+                    <p class="mb-2"><small><i class="fas fa-user-friends mr-2 fa-lg"></i> {{user.gender}} </small> </p>
+                    <p><small><i class="fas fa-flag mr-2 fa-lg"></i> {{user.sports.name}} </small></p>
+                </h6>
+                <div *ngIf="currentplan" class="plan-details">
+                    <p class="color mb-0">Current Plan</p>
+                    <p class="flex color-text"><span>{{currentplan.title}} <br> <small>{{currentplan.price}} AUD</small></span></p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6" *ngIf="subscription">
+        <div class="card">
+            <div class="c-header d-flex justify-content-between align-items-center">
+                Subscription Details
+                <a routerLink="/admin/subscription/transaction/{{subscription.data.id}},{{subscription.data.start_time}},{{date | date: 'yyyy-MM-dd'}}" class="primary-btn">View History</a>
+            </div>
+            <p class="flex mb-1">
+                <span>Status</span> 
+                <label *ngIf="subscription.data.status === 'ACTIVE'"  class="badge badge-success">{{subscription.data.status}}</label>
+                <label *ngIf="subscription.data.status === 'SUSPENDED'"  class="badge badge-warning">{{subscription.data.status}}</label>
+            </p>
+            <p class="flex mb-1"><span>Subscription ID</span> <span class="">{{subscription.data.id}}</span></p>
+            <p class="flex"><span>Start Date</span> {{subscription.data.start_time | date: 'dd MMM yyyy'}}</p>
+            <hr>
+            <p class="mb-1"><b class="badge bg-warning">Subscriber Account</b></p>
+            <p class="flex mb-1"><span>Name: </span> {{subscription.data.subscriber.name.given_name}} {{subscription.data.subscriber.name.last_name}}</p>
+            <p class="flex mb-1"><span>Email: </span> {{subscription.data.subscriber.email_address}}</p>
+            <p class="flex mb-1"><span>Payer Id: </span> {{subscription.data.subscriber.payer_id}}</p>
+            <hr>
+            <p class="mb-1"><b class="badge badge-success">Billing Info</b></p>
+            <p class="flex mb-1"><span>Last Payment Date</span> {{subscription.data.billing_info.last_payment.time | date: 'dd MMM yyyy'}}</p>
+            <p class="flex mb-1"><span>Last Payment Amount</span> {{subscription.data.billing_info.last_payment.amount.value}} {{subscription.data.billing_info.last_payment.amount.currency_code}}
+            </p>
+            <div class="plan-details">
+                <span>Next Payment Date</span> <br>
+                <span class="color-text">{{subscription.data.billing_info.next_billing_time | date: 'dd MMM yyyy'}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+</style>

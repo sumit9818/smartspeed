@@ -1,0 +1,101 @@
+﻿<div id="contact"></div>
+
+<div class="followme">
+    <div class="follow" *ngIf="socialMedia">
+        <ng-container *ngFor="let links of socialMedia.data | keyvalue">
+            <a href="{{links.value}}"  target="_blank" *ngIf="links.key != '_id' && 
+            links.key != '__v' && links.key != 'created_at' ">
+                <img src="assets/fb.png"  *ngIf="links.key === 'facebook'">
+                <img src="assets/insta.png"  *ngIf="links.key === 'instagram'">
+                <img src="assets/twit.png"  *ngIf="links.key === 'twitter'">
+            </a>
+            
+           
+        </ng-container>
+    </div>
+    <div id="insta" class="showinsta"></div>
+</div>
+    
+<style>
+    #insta {
+        display: none;
+    }
+    
+    .showinsta {
+        display: block !important;
+    }
+</style>
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h5>Contact Us</h5>
+                <h6>Please feel free to get in touch with us!</h6>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-5">
+                    <input type="hidden" formControlName="subject">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="inputwrap">
+                                <label for="">Name</label>
+                                <input formControlName="name" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" >
+                                <div *ngIf="submitted" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="inputwrap">
+                                <label for="">Mobile</label>
+                                <input formControlName="phone" type="tel" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                                <div *ngIf="submitted" class="invalid-feedback">
+                                    <div *ngIf="f.phone.errors.required">Phone is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputwrap">
+                        <label for="">Email</label>
+                        <input type="email"formControlName="email" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <div *ngIf="submitted" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                        </div>
+                    </div>
+                    <div class="inputwrap">
+                        <label for="">Message</label>
+                        <textarea rows="4" formControlName="body" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.body.errors }"></textarea>
+                        <div *ngIf="submitted" class="invalid-feedback">
+                            <div *ngIf="f.body.errors.required">Message is required</div>
+                        </div>
+                    </div>
+                    <button [disabled]="loading" class="btn-white">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Send
+                    </button>
+                </form>
+            </div>
+
+            <!-- <div class="col-sm-3">
+                <h5>Quick Links</h5>
+                <a routerLink="/">Home</a>
+                <a href="#about">ABOUT</a>
+                <a routerLink="#coachs">COACHES</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms And Condition</a>
+            </div> -->
+            <div class="col-sm-6">
+                <!-- <h5>Find Us</h5>
+                <p>2942 Late Avenue Oklahoma City Oklahoma 73129</p>
+                <h5>Follow us</h5> -->
+                <img src="assets/diffrent.jpeg" class="img-fluid">
+                <!-- <div class="follow" *ngIf="socialMedia">
+                    <span *ngFor="let links of socialMedia.data|keyvalue">
+                        <a href="{{links.value}}"  target="_blank" *ngIf="links.key != '_id' && 
+                        links.key != '__v' && links.key != 'created_at' ">{{links.key}}</a>
+                    </span>
+                </div> -->
+            </div>
+        </div>
+
+        <p class="copy">Copyright © 2021-2022 | All rights reserved</p>
+    </div>
+</footer>

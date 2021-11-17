@@ -1,0 +1,26 @@
+<h6 class="page-title">Diary</h6>
+<form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="col-sm-8">
+        <label>Add A Note To Diary</label>
+        <div class="inputicon mb-2">
+            <input type="text" formControlName="title" class="form-control" 
+            autofill="off" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" >
+            <button class="add-tags" >
+                <img src="assets/icons/add.svg" alt="">
+            </button>
+        </div>
+    </div>
+</form>
+
+<ul class="diary" *ngIf="diary">
+    <li *ngFor="let note of diary.data">
+        
+        <span>
+            <p class="date"><small>{{note.created_at | date: 'dd MMM yyyy'}}</small> 
+            <button (click)="deleteFaq(note._id);$event.stopPropagation()" [disabled]="note.isDeleting">
+                <svg  width="15.632" height="17.569" viewBox="0 0 15.632 17.569"><g transform="translate(0.2 0.2)"><g transform="translate(0 0)"><path d="M72.6,114.908H61.461a.44.44,0,0,0-.33.11.374.374,0,0,0-.11.33l1.145,9.971a2.179,2.179,0,0,0,2.179,1.915h5.547a2.179,2.179,0,0,0,2.2-1.981l.946-9.949a.374.374,0,0,0-.11-.286A.44.44,0,0,0,72.6,114.908Zm-1.387,10.3a1.277,1.277,0,0,1-1.321,1.145H64.344a1.255,1.255,0,0,1-1.3-1.123l-1.1-9.443H72.114Z" transform="translate(-59.414 -110.065)" fill="#fc1919" stroke="red" stroke-width="0.4"/><path d="M37.784,1.981H33.25v-.7A1.233,1.233,0,0,0,32.063,0h-2.84a1.233,1.233,0,0,0-1.255,1.21q0,.033,0,.067v.7H23.433a.44.44,0,1,0,0,.88H37.784a.44.44,0,1,0,0-.88Zm-5.415-.7v.7H28.848v-.7a.352.352,0,0,1,.374-.4H32a.352.352,0,0,1,.376.326A.348.348,0,0,1,32.37,1.277Z" transform="translate(-22.993 0)" fill="#fc1919" stroke="red" stroke-width="0.4"/></g></g></svg>
+            </button></p>
+            <p>{{note.title}}</p>
+        </span>
+    </li>
+</ul>

@@ -1,0 +1,17 @@
+<div *ngIf="faq">
+<h6><small>Created </small><br>
+    <small> {{faq.data.created_at | date: 'dd MMM yyyy'}} </small>
+<div>
+      
+    <label class="badge bg-success" style="color: #fff" *ngIf="faq.data.isactive">Active</label>
+    <label class="badge badge-warning" style="color: #fff" *ngIf="!faq.data.isactive">Inactive</label>
+     
+    <hr>
+    {{faq.data.question}}
+    <br>
+     
+</div>
+</h6>
+<p>{{faq.data.answer}}</p>
+
+</div>

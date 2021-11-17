@@ -1,0 +1,15 @@
+@import '../../../../../assets/comman-style.scss';
+
+.clippath{
+    clip-path: polygon(50% 0%, 100% 24%, 100% 74%, 51% 100%, 0 74%, 0 24%);
+    height: 120px;
+    width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $primary;
+    img{
+        max-width: 80px;
+        max-height: 80px;
+    }
+}

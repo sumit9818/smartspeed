@@ -1,0 +1,31 @@
+<h5 *ngIf="isAddMode" class="mt-2">Add Assessment</h5>
+<h5 *ngIf="!isAddMode" class="mt-2">Edit Assessment</h5>
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="row">
+    <div class="col-sm-6">
+        <label for="isactive">Status</label>
+        <select formControlName="isactive" class="form-control">
+            <option value="">Select Status</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select>
+        
+        <label for="type">Assessment Type</label>
+        <select formControlName="type" class="form-control">
+            <option value="run">Run</option>
+            <option value="jump">Jump</option>
+        </select>
+
+        <label for="assessment">Assessment</label>
+        <input type="text" formControlName="assessment" class="form-control">
+    </div>
+
+    <div class="mt-2 col-sm-12">
+        <button [disabled]="loading" class="secondry-btn">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save Details
+        </button>
+    </div>
+
+</form>

@@ -1,0 +1,22 @@
+﻿<form [formGroup]="form" (ngSubmit)="onSubmitOffer2()">
+   <div>
+        <span *ngIf="offer2"  class="clippath">
+            <img [src]="filepath+picture" *ngIf="picture">
+        </span>
+        <span *ngIf="!picture"  class="clippath">
+            <img src="assets/base.jpg">
+        </span>
+        <label for="upload-img" class="upload-img" style="white-space: nowrap;">
+            <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"/><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"/><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"/></svg>
+            Change Image
+            <input type="file"  #resumeInput  accept="image/x-png,image/gif,image/jpeg" (change)="upFile($event.target.files[0])">
+        </label>
+        <input type="hidden" class="iconnew" formControlName="image" [(ngModel)]="picture">
+        <textarea class="form-control" [ngxSummernote]="config"  formControlName="title"></textarea>
+        <button [disabled]="loading" class="primary-btn mt-3">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> Save Details
+        </button>
+    </div>
+</form>
+
+

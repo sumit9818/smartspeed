@@ -1,0 +1,72 @@
+//FONT FAMILY
+// $popins: 'Poppins',
+// sans-serif;
+// $primary:#9ECA01;
+// $secondry:#2B343B;
+
+@import '../../../assets/comman-style.scss';
+
+.navbar {
+    background: $secondry;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    min-height: 49px;
+    .navbar-brand {
+        position: absolute;
+        top: 0  ;
+        @media(max-width:767px){
+            position: relative;
+        }
+        img {
+            max-height: 30px;
+        }
+    }
+    a {
+        color: #fff;
+        &:hover {
+            color: $primary;
+        }
+    }
+    button.navbar-toggler {
+        position: absolute;
+        right: 0;
+        color: #fff;
+        @media(max-width:767px){
+            top: 43px;
+        }
+    }
+    @media(max-width:991px) {
+        .navbar-collapse {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50px;
+            background: #2b343b;
+            padding: 14px 30px;
+        }
+    }
+    
+   
+    .navbar-nav{
+        margin-top: 40px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: #2b343b;
+        padding: 10px 20px;
+        border-bottom: 1px solid #9fcb00;
+    }
+}
+
+.user-login{
+    display: flex;
+}
+
+.dropdown-item{
+    font-size: 14px;
+}
+
+

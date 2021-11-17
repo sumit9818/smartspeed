@@ -1,0 +1,15 @@
+﻿<form [formGroup]="form" (ngSubmit)="onSubmitDiffrent()" class="row">
+    <div class="col-sm-12"><br>
+        <select formControlName="isactive" class="form-control">
+            <option value="">Select Status</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select><br>
+        <input type="text" formControlName="title" class="form-control" /><br>
+        <textarea formControlName="description"  class="form-control" rows="5"></textarea>
+        <button [disabled]="loading" class="primary-btn mt-3">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Save Details
+        </button>
+    </div>
+</form>

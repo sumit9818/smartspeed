@@ -1,0 +1,227 @@
+$popins: 'Poppins',
+sans-serif;
+$primary:#9ECA01;
+$secondry:#2B343B;
+
+@mixin after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+}
+
+@mixin btn-base {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px;
+    min-width: 120px;
+    justify-content: center;
+    border-radius: 4px;
+    letter-spacing: .5px;
+    text-decoration: none !important;
+    border: 1px;
+    border-style: solid;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 300ms linear;
+    &:active {
+        box-shadow: none;
+    }
+}
+
+.btn-white {
+    @include btn-base;
+    background: transparent;
+    border-color: $primary;
+    color: #fff;
+    font-weight: 400;
+    border-radius: 0px;
+    svg {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+        background: $primary;
+        color: #fff;
+        outline: 0 !important;
+    }
+}
+
+.btn-color {
+    @include btn-base;
+    background: #fff;
+    border-color: $primary;
+    color: #000;
+    box-shadow: 0 3px 6px rgba($secondry, .2);
+    border-radius: 0px;
+    svg {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+        background: $primary;
+        color: #fff;
+        svg {
+            path,
+            line {
+                fill: #fff;
+                stroke: #fff !important;
+            }
+        }
+    }
+}
+
+.btn-dark {
+    @include btn-base;
+    background: transparent;
+    border-color: $secondry;
+    color: #000;
+    border-radius: 0px;
+    svg {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+        path,
+        line {
+            fill: #222;
+            stroke: #222 !important;
+        }
+    }
+    &:hover,
+    &:focus,
+    &:active {
+        background: $secondry;
+        color: #fff;
+        svg {
+            path,
+            line {
+                fill: #fff;
+                stroke: #fff !important;
+            }
+        }
+    }
+}
+
+.btn-full {
+    @include btn-base;
+    background: $primary;
+    border-color: $primary;
+    color: #000;
+    border-radius: 0px;
+    min-width: 100%;
+    &:hover,
+    &:focus,
+    &:active {
+        background: $secondry;
+        color: #fff;
+    }
+}
+
+.container-fluid {
+    max-width: 1920px;
+    padding: 0 4%;
+}
+
+
+.color-text {
+    color: $primary;
+}
+
+
+.primary-btn {
+    @include btn-base;
+    background: $primary;
+    border-color: $primary;
+    color: #000;
+    box-shadow: 0 3px 6px rgba($primary, .2);
+    font-weight: 500;
+    &:hover,
+    &:focus,
+    &:active {
+        background: transparent;
+        color: $primary;
+        border-color: $primary;
+        outline: 0 !important
+    }
+}
+
+.secondry-btn {
+    @include btn-base;
+    background: $secondry;
+    border-color: $secondry;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba($secondry, .2);
+    &:hover,
+    &:focus,
+    &:active {
+        background: transparent;
+        color: $secondry;
+        border-color: $secondry;
+    }
+}
+
+
+
+
+//PRICING
+.pricing-wrapper {
+    max-width: 1200px;
+    margin: 60px auto;
+    .pricing {
+        display: block;
+        border-radius: 8px;
+        border: 1px solid #dadada;
+        text-align: center;
+        box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+        margin-top: 20px;
+        .price-header {
+            background: #3B00FF;
+            color: #fff;
+            border-radius: 8px;
+            padding: 20px 15px;
+        }
+        .p-name {
+            font-size: 24px;
+        }
+        .p-amount {
+            font-size: 32px;
+            font-weight: 700;
+            small {
+                font-size: 18px;
+            }
+        }
+        ul {
+            list-style: none;
+            margin: 20px 0;
+            padding: 0 14px;
+            li {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+        }
+        button {
+            margin-bottom: 20px;
+        }
+    }
+    .col-sm-4 {
+        &:nth-child(2) {
+            .price-header {
+                background: $primary;
+            }
+        }
+        &:nth-child(3) {
+            .price-header {
+                background: $secondry;
+            }
+        }
+    }
+}
+.price-header ~ div {
+    padding: 0 20px;
+}

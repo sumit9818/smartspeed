@@ -1,0 +1,26 @@
+<div class="row pr-2" *ngIf="video.data">
+    <div class="col-sm-5">
+        <h6>{{video.data.title}}</h6>
+        <video [poster]="filepath+video.data.thumbnail_image" controls="">
+            <source [src]="filepath+video.data.video_url" type="video/mp4">
+            <source src="filepath+video.data.video_url" type="video/ogg">
+        </video>
+          
+            <label class="badge bg-success" style="color:#fff">Active</label>
+         
+        <p><small>Created </small><br>
+            <small> {{video.data.created_at | date: 'dd MMM yyyy'}} </small>
+        </p>
+        <hr>
+        <p for="">Selected Athletes who has access this Video</p>
+        <div class="tags">
+            <span *ngFor="let ath of video.data.athletes">
+                {{ath.name}}
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-7 bg-primary-light">
+        <br>
+        {{video.data.description}}
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+    <label>Facebook</label>
+    <input type="text" formControlName="facebook" class="form-control">
+    <label>Twitter</label>
+    <input type="text" formControlName="twitter" class="form-control">
+    <label>Linkedin</label>
+    <input type="text" formControlName="linkedin" class="form-control">
+    <label>Instagram</label>
+    <input type="text" formControlName="instagram" class="form-control">
+
+    <div class="text-left mt-2">
+        <button [disabled]="loading" class="secondry-btn">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Update Details
+        </button>
+    </div>
+</form>

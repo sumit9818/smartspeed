@@ -1,0 +1,13 @@
+﻿<app-navbar></app-navbar>
+<div class="container-fluid mt-4">
+    <img src="assets/images/blogbanner.jpg" class="img-fluid">
+</div>
+<div class="container  mt-3" *ngIf="blogs">
+    <div class="row blogs">
+        <a routerLink='{{blog.id}}' class="col-sm-3" *ngFor="let blog of blogs.data">
+            <img [src]="filepath+blog.image">
+            <h6>{{blog.title}}</h6>
+        </a>
+    </div>
+</div>
+<app-footer></app-footer>

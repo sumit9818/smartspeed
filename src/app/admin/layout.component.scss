@@ -1,0 +1,182 @@
+@import '../../assets/comman-style.scss';
+// HEADER
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 6;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background: $primary;
+    a {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        margin-right: 30px;
+        transition: all 200ms linear;
+        svg {
+            display: block;
+            margin-right: 8px;
+            transition: all 200ms linear;
+        }
+        &:hover {
+            color: $secondry;
+            svg {
+                fill: $secondry;
+                path {
+                    fill: $secondry;
+                }
+            }
+        }
+    }
+}
+
+// SIDEBAR
+.sidebar {
+    position: fixed;
+    width: 210px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 6;
+    background: rgba($primary, .2);
+    .site-logo {
+        padding: 10px 10px 10px 16px;
+        background: $secondry;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        img {
+            max-width: 150px;
+            margin-right: 8px;
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+        }
+    }
+    ul {
+        padding: 0;
+        padding-left: 14px;
+        margin: 0;
+        li {
+            display: block;
+            margin-bottom: 14px;
+            position: relative;
+            a {
+                display: flex;
+                align-items: center;
+                color: #222222;
+                position: relative;
+                z-index: 1;
+                font-size: 14px;
+                svg {
+                    fill: #222;
+                    display: block;
+                    width: 26px;
+                }
+                span {
+                    width: 40px;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    margin-right: 10px;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    background: #fff;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    width: 40px;
+                    border-radius: 4px;
+                    box-shadow: 0 0 3px rgba(0, 0, 0, .1);
+                    transition: all 200ms linear;
+                }
+            }
+            &:hover {
+                a {
+                    color: #fff;
+                    svg {
+                        fill: #fff;
+                    }
+                    &:after {
+                        background: $primary;
+                        width: calc(100% + 8px);
+                    }
+                }
+            }
+            ul {
+                position: absolute;
+                display: none;
+                left: 97%;
+                min-width: 200px;
+                background: #fff;
+                margin: 0;
+                padding: 0;
+                top: 0;
+                z-index: 2;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+                li {
+                    margin: 0;
+                    a {
+                        white-space: nowrap;
+                        padding: 6px 12px;
+                        color: #222222 !important;
+                        &:after {
+                            display: none;
+                        }
+                        &:hover {
+                            background: #EEEEEE;
+                            color: #222222;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                ul {
+                    display: block;
+                }
+            }
+        }
+        .active {
+            color: #fff !important;
+            svg {
+                fill: #fff !important;
+            }
+            &:after {
+                background: $primary !important;
+                width: calc(100% + 8px) !important;
+            }
+        }
+    }
+}
+
+main {
+    padding-right: 15px;
+    padding-top: 50px;
+}
+
+.upic {
+    width: 42px;
+    height: 42px;
+    border-radius: 4px;
+    object-fit: cover;
+    object-position: center top;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+    margin-right: 10px;
+}
+
+main {
+    width: calc(100% - 230px);
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+

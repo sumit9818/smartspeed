@@ -1,0 +1,84 @@
+﻿<!-- <h5 *ngIf="isAddMode" class="mt-2">Add  Image</h5>
+<h5 *ngIf="!isAddMode" class="mt-2">Edit Image</h5> -->
+<div class="row">
+    <div class="col-sm-6">
+        <h6 *ngIf="item == null" >Add New</h6>
+        <h6 *ngIf="item != null" >Edit </h6>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="">
+            <select formControlName="isactive" class="form-control">
+                <option value="">Select Status</option>
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+            <div class="progress" *ngIf="progressImage">
+                <div class="progress-bar" [style.width]="progressImage + '%'">{{progressImage}}%</div>
+            </div>
+            <div style="position: relative;text-align: center;" class="col-sm-12">
+                <br>
+                <img src="assets/base.jpg"  style="height:60px;margin: auto;display: block" *ngIf="!picture">
+                <img [src]="filepath" style="height:60px;margin: auto;display: block;" *ngIf="picture">
+            </div>
+            <div class="col-sm-12">
+            <label for="upload-img" class="upload-img">
+                <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"/><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"/><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"/></svg>
+                Upload
+                <input type="file"  #resumeInput  accept="image/x-png,image/gif,image/jpeg" (change)="upFile($event.target.files[0])">
+            </label>
+            </div>
+            <input type="hidden" formControlName="image" [(ngModel)]="picture">
+            <input type="text" class="form-control" formControlName="title">
+            <div class="text-center mt-2">
+                <button [disabled]="loading" class="primary-btn">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> Save Details
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-sm-12">
+        <h6 class="text-center">
+            <br>Click any  icon to change<br>
+            <svg width="28.959" height="7.29" viewBox="0 0 28.959 7.29"><path d="M18.942,263.155l-4.463-4.177-4.463,4.177-4.458-4.173-4,3.788L0,261.122l5.55-5.257,4.467,4.182,4.463-4.177,4.463,4.177,4.467-4.182,5.55,5.257-1.56,1.647-4-3.788Z" transform="translate(0 -255.865)" fill="#9ECA01"></path></svg>
+        </h6>
+        <label class="upload-img" for="thumbnail">
+            <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"/><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"/><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"/></svg>
+                click To Upload Icon Here
+            <input type="file" id="thumbnail" 
+            accept="image/x-png,image/gif,image/jpeg"  (change)="upIconFile($event.target.files[0])">
+        </label>
+        <div *ngIf="Allicons" class="icon-wrapper">
+            <span class="icons"  *ngFor="let icon of Allicons.data">
+                <img [src]="iconPath+icon.title" (click)="geticon(icon.title)">
+                <button (click)="deleteIcon(icon._id);$event.stopPropagation()" [disabled]="icon.isDeleting">
+                    <span *ngIf="icon.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!icon.isDeleting">
+                        <svg  width="15.632" height="17.569" viewBox="0 0 15.632 17.569"><g transform="translate(0.2 0.2)"><g transform="translate(0 0)"><path d="M72.6,114.908H61.461a.44.44,0,0,0-.33.11.374.374,0,0,0-.11.33l1.145,9.971a2.179,2.179,0,0,0,2.179,1.915h5.547a2.179,2.179,0,0,0,2.2-1.981l.946-9.949a.374.374,0,0,0-.11-.286A.44.44,0,0,0,72.6,114.908Zm-1.387,10.3a1.277,1.277,0,0,1-1.321,1.145H64.344a1.255,1.255,0,0,1-1.3-1.123l-1.1-9.443H72.114Z" transform="translate(-59.414 -110.065)" fill="#fc1919" stroke="red" stroke-width="0.4"/><path d="M37.784,1.981H33.25v-.7A1.233,1.233,0,0,0,32.063,0h-2.84a1.233,1.233,0,0,0-1.255,1.21q0,.033,0,.067v.7H23.433a.44.44,0,1,0,0,.88H37.784a.44.44,0,1,0,0-.88Zm-5.415-.7v.7H28.848v-.7a.352.352,0,0,1,.374-.4H32a.352.352,0,0,1,.376.326A.348.348,0,0,1,32.37,1.277Z" transform="translate(-22.993 0)" fill="#fc1919" stroke="red" stroke-width="0.4"/></g></g></svg>
+                        Delete
+                    </span>
+                </button>
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+
+<style>
+     
+    .video-file{
+        display: inline-block;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        width: 150px;
+        border: 1px solid #dadada;
+        cursor: pointer;
+        height: 100px;
+        margin-top: 0;
+    } 
+    .video-file input {
+            visibility: hidden;
+            position: absolute;
+        }
+     </style>

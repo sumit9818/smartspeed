@@ -1,0 +1,23 @@
+@import '../../../../assets/comman-style.scss';
+
+.icon-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    span{
+        flex: 0 0 110px;
+        text-align: center;
+        padding: 6px;
+        display: block;
+        img{
+            height: 50px;
+        }
+        button{
+            display: flex;
+            background: transparent;
+            border: 0;
+            outline: 0;
+            padding: 0;
+            white-space: normal;
+        }
+    }
+}

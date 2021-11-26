@@ -33,6 +33,7 @@
                     <ng-container *ngIf="HomePageData.HomeOfferImage1">
                         <div class="hex">
                             <span class="clippath">
+                                <img src="assets/hexagon.png" class="img-bg">
                                 <img [src]="filepath+HomePageData.HomeOfferImage1.image">
                             </span>
                             <div [innerHTML]="HomePageData.HomeOfferImage1.title"></div>
@@ -41,6 +42,7 @@
                     <ng-container *ngIf="HomePageData.HomeOfferImage2">
                         <div class="hex">
                             <span class="clippath">
+                                <img src="assets/hexagon.png" class="img-bg">
                                 <img [src]="filepath+HomePageData.HomeOfferImage2.image">
                             </span>
                             <div [innerHTML]="HomePageData.HomeOfferImage2.title"></div>
@@ -49,6 +51,7 @@
                     <ng-container *ngIf="HomePageData.HomeOfferImage3">
                         <div class="hex">
                             <span class="clippath">
+                                <img src="assets/hexagon.png" class="img-bg">
                                 <img [src]="filepath+HomePageData.HomeOfferImage3.image">
                             </span>
                             <div [innerHTML]="HomePageData.HomeOfferImage3.title"></div>
@@ -57,6 +60,7 @@
                     <ng-container *ngIf="HomePageData.HomeOfferImage4">
                         <div class="hex">
                             <span class="clippath">
+                                <img src="assets/hexagon.png" class="img-bg">
                                 <img [src]="filepath+HomePageData.HomeOfferImage4.image">
                             </span>
                             <div [innerHTML]="HomePageData.HomeOfferImage4.title"></div>
@@ -65,6 +69,7 @@
                     <ng-container *ngIf="HomePageData.HomeOfferImage5">
                         <div class="hex">
                             <span class="clippath">
+                                <img src="assets/hexagon.png" class="img-bg">
                                 <img [src]="filepath+HomePageData.HomeOfferImage5.image">
                             </span>
                             <div [innerHTML]="HomePageData.HomeOfferImage5.title"></div>
@@ -73,6 +78,7 @@
                     <ng-container *ngIf="HomePageData.HomeOfferImage6">
                         <div class="hex">
                             <span class="clippath">
+                                <img src="assets/hexagon.png" class="img-bg">
                                 <img [src]="filepath+HomePageData.HomeOfferImage6.image">
                             </span>
                             <div [innerHTML]="HomePageData.HomeOfferImage6.title"></div>
@@ -122,7 +128,7 @@
                     <p>{{HomePageData.HomeMakesDifferent.description}}</p>
                     <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
                 </div>
-                <div class="col-sm-6 img-diffrence">
+                <div class="col-sm-5 img-diffrence">
                     <img [src]="filepath+HomePageData.HomeMakesDifferentImage.image" *ngIf="HomePageData.HomeMakesDifferentImage.image">
                 </div>
             </div>
@@ -245,10 +251,16 @@
                         </div>
                         <br><br>
                         <div [innerHTML]="package.description"></div>
-                        <button class="btn-white" (click)="openSignUp(SignUPModal)">Choose</button>
+                        
                     </div>
                 </div>
             </div>
+
+            <h5 class="text-center mt-5" style="font-weight: 400;">Not sure where to start? Simply click the button below for a free assessment <br>
+                <span (click)="openSignUp(SignUPModal)" style="cursor: pointer;"> 
+                    <img src="assets/logo-price.png" style="max-width: 200px;">
+                </span>
+            </h5>
         </div>
     </div>
 

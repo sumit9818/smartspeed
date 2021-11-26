@@ -44,13 +44,13 @@
                     <option *ngFor="let sport of sports" value="{{sport._id}}">{{sport.name}}</option>
                 </select>
             </div>
-            <div class="col-sm-6" *ngIf="coach">
+            <!-- <div class="col-sm-6" *ngIf="coach">
                 <label for="coach_id">Assign Coach</label>
                 <select formControlName="coach_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.coach_id.errors }">
                     <option  value="">Select Coach</option>
                     <option *ngFor="let coachs of coach.data" value="{{coachs.id}}">{{coachs.name}}</option>
                 </select>
-            </div>
+            </div> -->
 
             <div class="col-sm-6">
                 <label for="email">Email</label>

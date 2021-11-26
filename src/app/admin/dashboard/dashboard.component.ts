@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit {
     // this.getAllCoach();	
     // this.getPandingAthletes();
     var chart = Highcharts.chart("container", this.chartOptions );
+    console.clear()
 }
 
     data = [6.9,7.0,9.5,  9.6, 13.9, 14.5, 18.2, 21.5, 25.2, 23.3, 24, 22.3, 22, ];

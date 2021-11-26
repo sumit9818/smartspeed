@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { AccountService, AlertService, SettingsService } from '@app/_services';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { map, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
@@ -22,6 +22,7 @@ export class SettingComponent implements OnInit{
 	progressImage: number;
 	progressVideo: number;
     logo:any;
+    isAddMode:any;
     constructor(
         private formBuilder:FormBuilder,
         private accoutservice:AccountService,
@@ -34,21 +35,32 @@ export class SettingComponent implements OnInit{
     admin:any;
     ngOnInit() {
         this.adminID= JSON.parse(localStorage.getItem('smartuser')).id
+		this.isAddMode = !this.adminID;
 		// console.log(this.adminID)
         this.SettingsService.GetLogo().subscribe(logo => {this.logo = logo;})
         
-		// this.form = this.buildForm()
-		// this.updateFormValue()
-     }
+		this.form = this.buildForm()
+		this.updateFormValue()
 
-     get f() { return this.form.controls }
+    	// this.accoutservice.updateAdmin()
+	}
+
+    get f() { return this.form.controls; }
 
      private buildForm(): FormGroup {
+		const passwordValidators = [Validators.minLength(6)];
+        if (this.isAddMode) {
+            passwordValidators.push(Validators.required);
+        }
 		return this.formBuilder.group({
-            description: [''],
-            og_title: [''],
-            og_description: ['', Validators.required],
-            og_sitename: ['', Validators.required],
+            // profile_pic: [''],
+            name: [''],
+            // username: [''],
+            email: [''],
+            contact: [''],
+            // gender: [''],
+            password: ['', passwordValidators],
+            // age: [''],
 		});
 	}
 
@@ -56,9 +68,10 @@ export class SettingComponent implements OnInit{
 	
 	
 	private updateFormValue(): void {
-          this.accoutservice.getById(this.adminID).subscribe(admin => {
-            this.admin = admin;
-		});
+		this.f.name.setValue(JSON.parse(localStorage.getItem('smartuser')).name);
+		this.f.email.setValue(JSON.parse(localStorage.getItem('smartuser')).email);
+		this.f.contact.setValue(JSON.parse(localStorage.getItem('smartuser')).contact);
+		this.f.password.setValue(JSON.parse(localStorage.getItem('smartuser')).password);
     }
 
 
@@ -71,21 +84,24 @@ export class SettingComponent implements OnInit{
         this.alertService.clear();
         if (this.form.invalid) return;
         this.loading = true;
-    
+		console.log(this.form.value)
         this.updateUser()
       }
     
     
     
       private updateUser(){
-        return this.accoutservice.update(this.adminID, this.form.value).pipe(
-          tap((data) => {
-              this.alertService.success('Profile Update successful', {
-                keepAfterRouteChange: true,
-              });
-            })
-        );
-      }
+        return this.accoutservice.updateAdmin(this.form.value).pipe(first()).subscribe(
+			data => {
+				this.alertService.success('Pofile Updated successful', { keepAfterRouteChange: true });
+				this.loading=false;
+	
+			},
+			error => {
+				this.alertService.error(error);
+				this.loading = false;
+			});
+		}
     
 
 

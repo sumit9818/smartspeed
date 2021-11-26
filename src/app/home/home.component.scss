@@ -60,8 +60,8 @@
         }
     }
     &:nth-child(2){
-        left: 54%;
-        margin-top: -25px;
+        left: 53%;
+        margin-top: -37px;
         span{
             margin-right: 20px;
         }
@@ -73,8 +73,8 @@
     }
     &:nth-child(3){
         flex-direction: row-reverse;
-        margin-top: -116px;
-        margin-left: calc(3% + 3px);
+        margin-top: -144px;
+        margin-left: calc(3% - 5px);
         span{
             margin-left: 20px;
         }
@@ -86,8 +86,8 @@
     }
     &:nth-child(4){
         flex-direction: row-reverse;
-        width:calc(46% + -1px);
-        margin-top: -24px;
+        width:calc(45% + -1px);
+        margin-top: -31px;
         span{
             margin-left: 20px;
         }
@@ -104,8 +104,8 @@
         }
     }
     &:nth-child(5){
-        left: 47%;
-        margin-top: -121px;
+        left: calc(45% + 6px);
+        margin-top: -157px;
         span{
             margin-right: 20px;
         }
@@ -122,8 +122,8 @@
     }
     &:nth-child(6){
         flex-direction: row-reverse;
-        margin-left: 3%;
-        margin-top: -23px;
+        margin-left: 4%;
+        margin-top: -31px;
         span{
             margin-left: 20px;
         }
@@ -142,18 +142,28 @@
 }
 
 .clippath{
-    clip-path: polygon(50% 0%, 100% 24%, 100% 74%, 51% 100%, 0 74%, 0 26%);
-    height: 120px;
-    min-height: 120px;
-    width: 110px;
-    min-width: 110px;
+    // clip-path: polygon(50% 0%, 100% 24%, 100% 74%, 51% 100%, 0 74%, 0 26%);
+    // height: 120px;
+    // min-height: 120px;
+    // width: 110px;
+    // min-width: 110px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $primary;
+    // background: $primary;
+    position: relative;
     img{
+        position: absolute;
         max-width: 80px;
         max-height: 60px;
+    }
+    .img-bg{
+        position: static;
+        max-width: 100%;
+        max-height: 100%;
+        width: 130px;
+        min-width: 130px;
+        min-width: 130px;
     }
 }
 
@@ -166,6 +176,9 @@
     z-index: 2;
     padding-top: 50px;
     padding-bottom: 50px;
+    .container-fluid{
+        max-width: 1600px;
+    }
     @media(max-width: 1024px){
         .col-sm-3{
             text-align: center;
@@ -365,10 +378,14 @@
     color: #fff;
     margin: 0;
     .pricing{
-        border: 0;
         box-shadow: none;
+        border: 1px solid #fff;
+        height: 99%;
     }
     .col-sm-4 {
+        .price-header{
+            border: 1px solid #fff;
+        }
         &:nth-child(3) {
             .price-header {
                 background: #ed7d31;

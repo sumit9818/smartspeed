@@ -78,7 +78,7 @@ export class AthleteAddEditComponent implements OnInit {
       gender: ['', Validators.required],
       password: ['', passwordValidators],
       sports_id: ['', Validators.required],
-      coach_id: ['', Validators.required],
+      // coach_id: ['', Validators.required],
       age: ['', Validators.required],
     });
   }
@@ -97,7 +97,7 @@ export class AthleteAddEditComponent implements OnInit {
           this.f.password.setValue(this.athlete.password);
           this.f.age.setValue(this.athlete.age);
           this.f.sports_id.setValue(this.athlete.sports.id);
-          this.f.coach_id.setValue(this.athlete.coach.id);
+          // this.f.coach_id.setValue(this.athlete.coach.id);
         });
     }
   }

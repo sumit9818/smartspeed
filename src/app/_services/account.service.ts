@@ -71,7 +71,17 @@ export class AccountService {
       })
     );
   }
-
+  
+  updateAdmin(params) {
+    return this.http.put(`${this.accountServiceURL}/user/update-user/`, params).pipe(
+      map((x) => {
+		const user = { ...this.userValue, ...params };
+		localStorage.setItem('smartuser', JSON.stringify(user));
+		this.userSubject.next(user);
+		return x;
+      })
+    );
+  }
 
   
 

@@ -3,24 +3,32 @@
 
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="">
-    <div class="col-sm-6">
+    <div class="col-sm-8">
         <file-upload class="preview" [(picture)]="picture" [(loadingfile)]="loadingfile"></file-upload>
         <p><b>Note: </b><em>Image size shoulde be between 300*250 PX</em></p>
         <input type="hidden" formControlName="profile_pic" [(ngModel)]="picture">
         <div class="row">
+
+            <div class="col-sm-6">
+                <label for="name">First Name</label>
+                <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstname.errors.required"> Name is required</div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="name">Last Name</label>
+                <input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required"> Name is required</div>
+                </div>
+            </div>
             <div class="col-sm-6">
                 <label for="username">Username</label>
                 <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                     <div *ngIf="f.username.errors.required">Username is required</div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <label for="name">Full Name</label>
-                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                    <div *ngIf="f.name.errors.required"> Name is required</div>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -39,10 +47,18 @@
             </div>
             <div class="col-sm-6" *ngIf="sports">
                 <label for="sports_id">Sports</label>
-                <select formControlName="sports_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sports_id.errors }">
+
+                <ng-select [items]="sports" 
+                    [multiple]="true"
+                    bindLabel="name"   
+                    bindValue="_id" 
+                    [(ngModel)]="selectedSports"
+                    formControlName="sports_id">
+                </ng-select>
+                <!-- <select formControlName="sports_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sports_id.errors }">
                     <option  value="">Select Sport</option>
                     <option *ngFor="let sport of sports" value="{{sport._id}}">{{sport.name}}</option>
-                </select>
+                </select> -->
             </div>
             <!-- <div class="col-sm-6" *ngIf="coach">
                 <label for="coach_id">Assign Coach</label>
@@ -61,7 +77,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="contact">Contact</label>
-                <input type="text" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
+                <input type="number" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
                 <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
                     <div *ngIf="f.contact.errors.required">contact is required</div>
                 </div>

@@ -71,7 +71,8 @@ export class AthleteDetailsComponent implements OnInit {
 
 	getDetails(id){
 		this.atheleteService.getAthleteById(id).subscribe((athlete: Athlete) => {
-			this.athlete = { ...athlete }
+			this.athlete = { ...athlete };
+			console.log(this.athlete)
 		})
 	}
 

@@ -94,6 +94,7 @@ export class NavbarComponent implements OnInit {
 						  this.router.navigate(['/admin']);
 					  }
 					  if(this.user.roles.name === 'Athlete'){
+						  location.reload()
 						  this.router.navigate(['/account']);
 					  }
 				  },
@@ -105,12 +106,13 @@ export class NavbarComponent implements OnInit {
 	  
 	  logout() {
 		  this.accountService.logout();
-		  this.alertService.success('Logut  successfully', { keepAfterRouteChange: true });
+		  location.reload()
+		//   this.alertService.success('Logut  successfully', { keepAfterRouteChange: true });
 	  }
 	  open(LoginModal) {
 		  this.modalService.open(LoginModal, { size: 'sm' });
 	  }
 	  openSignUp(SignUPModal) {
-		  this.modalService.open(SignUPModal, { size: 'md' });
+		  this.modalService.open(SignUPModal, { size: 'lg' });
 	  }
 }

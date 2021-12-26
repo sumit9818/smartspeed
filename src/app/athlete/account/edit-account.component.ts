@@ -70,6 +70,7 @@ export class EditAccountComponent implements OnInit {
             age: ['', Validators.required],
         });
     }
+    selectedSports:any;
     private updateFormValue(): void {
         this.athleteService.getAthleteById(this.id).subscribe((athlete: Athlete) => {
             this.athlete = { ...athlete };
@@ -82,7 +83,18 @@ export class EditAccountComponent implements OnInit {
             this.f.contact.setValue(this.athlete.contact);
             this.f.password.setValue(this.athlete.password);
             this.f.age.setValue(this.athlete.age);
-            this.f.sports_id.setValue(this.athlete.sports.id);
+            
+            this.selectedSports = this.athlete.sports;
+		    let csv_selected_ids='';
+			this.selectedSports.forEach(function (elementVal) {
+				csv_selected_ids+= elementVal._id + ',';
+			});
+
+			if(csv_selected_ids != ''){
+				csv_selected_ids=csv_selected_ids.slice(0,-1);
+				this.selectedSports = csv_selected_ids.split(',');
+			}
+
         });
       
     }

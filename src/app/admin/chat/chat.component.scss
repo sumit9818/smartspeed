@@ -1,5 +1,9 @@
 @import '../../../assets/comman-style.scss';
-    
+::ng-deep{
+    .loader{
+        // display: none !important;
+    }
+}
 .query-from{
     display: flex;
     align-items: center;

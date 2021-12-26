@@ -71,7 +71,9 @@ body {
     }
 }
 
-
+.no-loader{
+    animation:  none !important;
+}
 
 .alert-wrap {
     position: fixed;
@@ -596,6 +598,7 @@ main{
             }
         }
         .collapsed{
+            color: $primary;
             .fa-minus {
                 display:  none !important;
             }

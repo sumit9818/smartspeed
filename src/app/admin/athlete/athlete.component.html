@@ -12,8 +12,8 @@
                 <th>Name</th>
                 <th>Username</th>
                 <th>Contact</th>
-                <th>Coach</th>
-                <th>Sport</th>
+                <!-- <th>Coach</th> -->
+                <!-- <th>Sport</th> -->
                 <th>Action</th>
             </tr>
         </thead>
@@ -26,9 +26,13 @@
                 </td>
                 <td>{{user.name}}</td>
                 <td>{{user.username}}</td>
-                <td>{{user.contact}}</td>
-                <td>{{user.coach?.name}}</td>
-                <td>{{user.sports?.name}}</td>
+                <td>
+                    <ng-container *ngIf="user.contact == null ">NA</ng-container>
+                    <ng-container>{{user.contact}}</ng-container>
+
+                </td>
+                <!-- <td>{{user.coach?.name}}</td> -->
+                <!-- <td>{{user.sports?.name}}</td> -->
 
 
                 <td style="white-space: nowrap">

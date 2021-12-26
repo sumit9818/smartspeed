@@ -50,6 +50,8 @@
                 <label for="email">Email</label>
                 <input type="email" class="form-control" value="{{user.email}}" disabled>
             </div>
+            
+
             <div class="col-sm-6">
                 <label for="contact">Contact</label>
                 <input type="text" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
@@ -59,6 +61,16 @@
 
             </div>
 
+            <div class="col-sm-12">
+                <label for="email">Sports</label>
+                <ng-select [items]="athlete.sports" 
+                [multiple]="true"
+                bindLabel="name"   
+                bindValue="_id" 
+                [(ngModel)]="selectedSports"
+                formControlName="sports_id">
+            </ng-select>
+            </div>
             <div class="col-sm-12">
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>

@@ -28,7 +28,7 @@ export class LayoutComponent implements OnInit {
         this.accountService.user.subscribe(x => this.user = x);
         this.accountService.getUserSubscription().pipe(first()).subscribe(subscription =>{this.subscription =subscription
             this.plan = this.subscription.data.is_active
-            console.log(this.plan)
+            // console.log(this.plan)
             if(this.subscription.data.is_active != false){
                 this.router.navigate(['account']);
             }

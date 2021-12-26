@@ -125,4 +125,21 @@ export class UserQueryComponent implements OnInit {
 		)
 	}
 
+	deleteFaq(_id): void {
+        if (confirm("Are you sure you want to delete ?")){
+           this.EmailService.EmailDelete(_id).subscribe(
+            data => {
+                this.alertService.success('Faq Deleted successfully', { keepAfterRouteChange: true });
+                // this.EmailService.getAllFaq()
+                // .pipe(first())
+                // .subscribe(faq => this.faq = faq);
+            },
+            error => {
+                this.alertService.error(error);
+            },
+            );
+            
+        }
+       
+       }
 }

@@ -70,6 +70,7 @@ export class AskComponent implements OnInit {
         return this.EmailService.SendChatMessage(this.form.value).subscribe((data) => {
             this.loading = false;
 			this.viewChat();
+			this.form = this.buildForm();
           },
 			error => {
 				this.alertService.error(error);

@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
 					this.HomePageData = HomePageData
 					console.log(this.HomePageData.HomeOfferImage1.title)
 				}
-				this.showinsta = 'showinsta'
+				// this.showinsta = 'showinsta'
 			})
 
 		this.http.get(`${env.apiUrl}/homeimageslider/all`).pipe(first()).subscribe(
@@ -154,7 +154,7 @@ export class HomeComponent implements OnInit {
 
 
 	openSignUp(SignUPModal) {
-		this.modalService.open(SignUPModal, { size: 'md' });
+		this.modalService.open(SignUPModal, { size: 'lg' });
 	}
 
 }

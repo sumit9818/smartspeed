@@ -89,36 +89,6 @@
         </div>
     </div>
 
-
-<!-- 
-    <div class="home-about mt-5 mb-5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-4" *ngIf="HomePageData.Banner">
-                    <div [innerHTML]='HomePageData.Banner.description'></div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="row">
-                        <div class="col" *ngIf="HomePageData.HomeOfferImage1">
-                            <img [src]="filepath+HomePageData.HomeOfferImage1.image" class="img-fluid">
-                            <div [innerHTML]="HomePageData.HomeOfferImage1.title"></div>
-                            
-                        </div>
-                        <div class="col" *ngIf="HomePageData.HomeOfferImage2">
-                            <img [src]="filepath+HomePageData.HomeOfferImage2.image" class="img-fluid">
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="col-sm-4" *ngIf="HomePageData.HomeAbout">
-                    <div [innerHTML]='HomePageData.HomeAbout.description'></div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
-
     <div id="diffrence"></div>
     <div class="makeusdiffrent">
         <div class="container" *ngIf="HomePageData.HomeMakesDifferent">
@@ -126,56 +96,16 @@
                 <div class="col-sm-5">
                     <h2>{{HomePageData.HomeMakesDifferent.title}}</h2>
                     <p>{{HomePageData.HomeMakesDifferent.description}}</p>
-                    <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
+                    <a (click)="openSignUp(SignUPModal)" href="javascript:void(0)"> 
+                        <img src="assets/images/speed.jpg" style="max-width: 150px;">
+                    </a>
                 </div>
                 <div class="col-sm-5 img-diffrence">
-                    <img [src]="filepath+HomePageData.HomeMakesDifferentImage.image" *ngIf="HomePageData.HomeMakesDifferentImage.image">
+                    <img [src]="filepath+HomePageData.HomeMakesDifferentImage.image" *ngIf="HomePageData.HomeMakesDifferentImage.image" style="border: 1px solid #9ECA01;">
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- <div class="container-fluid diffrent">
-        <div class="row  mb-4 justify-content-center" *ngIf="HomePageData.HomeMakesDifferent">
-            <div class="col-sm-6 text-center">
-                <h2>{{HomePageData.HomeMakesDifferent.title}}</h2>
-                <p>{{HomePageData.HomeMakesDifferent.description}}</p>
-            </div>
-        </div>
-        <div class="row justify-content-center align-items-center">
-            <div class="col-sm-3 text-right" *ngIf="HomePageData.HomeMakesDifferent1">
-                <h5><b>01</b>{{HomePageData.HomeMakesDifferent1.title}}</h5>
-                <p>{{HomePageData.HomeMakesDifferent1.description}}</p>
-            </div>
-            <div class="col-sm-4">
-                <div class="img-animation">
-
-                    <img [src]="filepath+HomePageData.HomeMakesDifferentImage.image" *ngIf="HomePageData.HomeMakesDifferentImage.image">
-                </div>
-            </div>
-            <div class="col-sm-3" *ngIf="HomePageData.HomeMakesDifferent2">
-                <h5><b>02</b>{{HomePageData.HomeMakesDifferent2.title}}</h5>
-                <p>{{HomePageData.HomeMakesDifferent2.description}}</p>
-            </div>
-        </div>
-        <div class="row justify-content-center align-items-center">
-            <div class="col-sm-3 text-right" *ngIf="HomePageData.HomeMakesDifferent3">
-                <h5><b>03</b>{{HomePageData.HomeMakesDifferent3.title}}</h5>
-                <p>{{HomePageData.HomeMakesDifferent3.description}}</p>
-            </div>
-            <div class="col-sm-3" *ngIf="HomePageData.HomeMakesDifferent4">
-                <h5><b>04</b>{{HomePageData.HomeMakesDifferent4.title}}</h5>
-                <p>{{HomePageData.HomeMakesDifferent4.description}}</p>
-            </div>
-
-            <div class="text-center col-sm-12 mt-3">
-                <button (click)="openSignUp(SignUPModal)" class="btn-dark"> Join Now</button>
-            </div>
-        </div>
-
-    </div> -->
-
-
     
     <div id="offer"></div>
 
@@ -187,7 +117,7 @@
                    
                     <h4 class="mb-4">{{HomePageData.HomeOffer.title}}</h4>
                     <p>{{HomePageData.HomeOffer.description}}</p>
-                    <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
+                    <!-- <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button> -->
                 </div>
                 <div class="col-sm-6">
                     <div class="offer-points" *ngIf="slides">
@@ -228,7 +158,7 @@
                             </ng-template>
                         </owl-carousel-o>
                         <br><br>
-                        <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
+                        <!-- <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button> -->
                     </div>
                 </div>
 
@@ -240,14 +170,14 @@
     <div id="train-with-us"></div>
     <div class=" pricing-wrapper" *ngIf="pricing">
         <div class="container">
-            <h4 class="text-center mb-0">Select Your Plan</h4>
-            <p class="text-center">We offers These subscription plan which you can avail as per your need</p>
+            <h4 class="text-center mb-0">Smartspeed Programs</h4>
+            <!-- <p class="text-center">We offers These subscription plan which you can avail as per your need</p> -->
             <div class="row">
                 <div class="col-sm-4" *ngFor="let package of pricing.data">
                     <div class="pricing">
                         <div class="price-header">
                             <h6 class="p-name">{{package.title}}</h6>
-                            <h5 class="p-amount">{{package.price}} <small>Per Month</small></h5>
+                            <!-- <h5 class="p-amount">{{package.price}} <small>Per Month</small></h5> -->
                         </div>
                         <br><br>
                         <div [innerHTML]="package.description"></div>
@@ -256,8 +186,8 @@
                 </div>
             </div>
 
-            <h5 class="text-center mt-5" style="font-weight: 400;">Not sure where to start? Simply click the button below for a free assessment <br>
-                <span (click)="openSignUp(SignUPModal)" style="cursor: pointer;"> 
+            <h5 class="text-center mt-5" style="font-weight: 400; ">Not sure where to start? Simply click the button below for a free assessment <br>
+               <br> <span (click)="openSignUp(SignUPModal)" style="cursor: pointer;"> 
                     <img src="assets/logo-price.png" style="max-width: 200px;">
                 </span>
             </h5>
@@ -265,10 +195,10 @@
     </div>
 
     <div class="faq pb-4" *ngIf="faqs">
-        <div class="container-fluid">
-            <h2>Frequently Asked Questions</h2>
+        <div class="container-fluid pt-3">
             <div class=" row" id="faq">
                 <div class="col-sm-6">
+                    <h2>Frequently Asked Questions</h2>
                     <ngb-accordion [closeOthers]="true" activeIds="faqs-0">
                         <ngb-panel id="faqs-{{i}}" *ngFor="let faq of faqs.data;let i = index;">
                             <ng-template ngbPanelTitle>
@@ -279,11 +209,15 @@
                             </ng-template>
                         </ngb-panel>
                     </ngb-accordion>
-                    <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button>
+
+                    <p><em>Not sure where to start? Simply click the button below for a free assessment</em></p>
+                    <a (click)="openSignUp(SignUPModal)" href="javascript:void(0)"> 
+                        <img src="assets/images/speed.jpg" style="max-width: 150px;">
+                    </a>
                 </div>
 
                 <div class="col-sm-6">
-                    <img src="assets/faq.png" alt="">
+                    <img src="assets/faq.png" style="border:1px solid #fff">
                     <!-- <div class="faqimage">
                         <img src="assets/images/question.svg" alt="">
                         <img src="assets/images/qcircle.svg" class="qcircle">

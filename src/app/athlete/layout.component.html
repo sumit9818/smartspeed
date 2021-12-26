@@ -91,13 +91,14 @@
 
         </div>
         <main>
-            <!-- <span *ngIf="plan == false ">
-                <app-package></app-package>
-            </span>
-            <span *ngIf="plan == true || router.url === '/payment' || router.url === '/account'|| router.url === '/ask'|| router.url === '/account/edit'">
+            <ng-container *ngIf="plan == true || router.url === '/payment' || 
+            router.url === '/account'|| router.url === '/ask'|| router.url === '/account/edit'">
                 <router-outlet></router-outlet>
-            </span> -->
-            <router-outlet></router-outlet>
+            </ng-container>
+            <ng-container  *ngIf="plan == false && router.url != '/payment' && router.url != '/account' && router.url != '/ask'">
+                <app-package></app-package>
+            </ng-container>
+            <!-- <router-outlet></router-outlet> -->
         </main>
 
     </div>

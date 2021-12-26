@@ -18,7 +18,7 @@ export class SubscriptionsComponent implements OnInit{
     ngOnInit() {
         this.PricingService.getAllSubscription().pipe(first()).subscribe(
             subscriptions => {this.subscriptions = subscriptions
-            // console.log(this.subscriptions)
+            console.log(this.subscriptions)
         }
         )
     }

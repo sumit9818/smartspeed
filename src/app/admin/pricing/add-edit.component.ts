@@ -59,7 +59,6 @@ export class PricingAddEditComponent implements OnInit {
       if (!this.isAddMode) {
         this.PricingService.getPricingByID(this._id).subscribe(
 			data => {this.blog = data
-			console.log(this.blog.data.plan_id);
 			this.f.isactive.setValue(this.blog.data.isactive);
 			this.f.plan_id.setValue(this.blog.data.plan_id);
          	this.f.price.setValue(this.blog.data.price);

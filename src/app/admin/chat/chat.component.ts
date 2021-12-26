@@ -59,7 +59,7 @@ export class ChatComponent implements OnInit {
 							console.log(this.newusers.data)
 						}else{
 							// console.log('this.newusers.data')
-							console.log('works')
+							// console.log('works')
 						}
 					}
 				)

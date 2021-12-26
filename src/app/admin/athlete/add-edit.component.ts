@@ -71,7 +71,8 @@ export class AthleteAddEditComponent implements OnInit {
 
     return this.formBuilder.group({
       profile_pic: [''],
-      name: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', Validators.required],
       contact: ['', Validators.required],
@@ -82,21 +83,34 @@ export class AthleteAddEditComponent implements OnInit {
       age: ['', Validators.required],
     });
   }
-
+  selectedSports:any;
   private updateFormValue(): void {
     if (!this.isAddMode) {
       this.atheleteService.getAthleteById(this.id).subscribe((athlete: Athlete) => {
           this.athlete = { ...athlete };
+          console.log(this.athlete)
           // this.filepath= `${environment.imgUrl}`+this.athlete.profile_pic
           this.f.profile_pic.setValue(this.athlete.profile_pic);
-          this.f.name.setValue(this.athlete.name);
+          this.f.firstname.setValue(this.athlete.firstname);
+          this.f.lastname.setValue(this.athlete.lastname);
           this.f.username.setValue(this.athlete.username);
           this.f.email.setValue(this.athlete.email);
           this.f.gender.setValue(this.athlete.gender);
           this.f.contact.setValue(this.athlete.contact);
           this.f.password.setValue(this.athlete.password);
           this.f.age.setValue(this.athlete.age);
-          this.f.sports_id.setValue(this.athlete.sports.id);
+
+		  this.selectedSports = this.athlete.sports;
+		  let csv_selected_ids='';
+			this.selectedSports.forEach(function (elementVal) {
+				csv_selected_ids+= elementVal._id + ',';
+			});
+
+			if(csv_selected_ids != ''){
+				csv_selected_ids=csv_selected_ids.slice(0,-1);
+				this.selectedSports = csv_selected_ids.split(',');
+			}
+
           // this.f.coach_id.setValue(this.athlete.coach.id);
         });
     }

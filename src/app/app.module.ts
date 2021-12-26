@@ -27,6 +27,7 @@ import { AthleteRoutingModule } from './athlete/athlete-routing.module';
 import { OwlModule } from 'ng2-owl-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SafeHtmlPipe } from './safe-html';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
     imports: [
         BrowserModule,
@@ -42,7 +43,8 @@ import { SafeHtmlPipe } from './safe-html';
         AthleteRoutingModule,
         NgxSummernoteModule,
         OwlModule,
-        CarouselModule
+        CarouselModule,
+        NgSelectModule
         
     ],
     declarations: [
@@ -55,7 +57,7 @@ import { SafeHtmlPipe } from './safe-html';
         ViewHomeBlogsComponent,
         RegisterAthleteComponent,
         FooterComponent,
-        SafeHtmlPipe
+        SafeHtmlPipe,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },

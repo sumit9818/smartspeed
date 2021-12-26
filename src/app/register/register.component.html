@@ -1,19 +1,38 @@
 ﻿<div class="modal-body">
     <div class="signup-header">
-        <h6>
+        <img src="assets/images/bg2.png">
+        <!-- <h6>
             <br><br>Train With us<br>
-        </h6>
+        </h6> -->
     </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="" style="margin:0 -10px">
         <div class="row">
             <div class="col-sm-6 form-group">
-                <label for="username">Username</label>
-                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Name is required</div>
+                <label for="">First Name</label>
+                <input type="text" formControlName="firstname"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstname.errors.required">First Name is required</div>
                 </div>
 
             </div>
+            <div class="col-sm-6 form-group">
+                <label for="">Last Name</label>
+                <input type="text" formControlName="lastname"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6 form-group">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Name is required</div>
+                </div>
+            </div>
+            
+
             <div class="col-sm-6 form-group">
                 <label for="email">Email</label>
                 <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
@@ -21,24 +40,76 @@
                     <div *ngIf="f.email.errors.required">Email is required</div>
                 </div>
             </div>
-            <div class="col-sm-12 form-group">
+
+            <div class="col-sm-6 form-group">
+                <label for="age">Age</label>
+                <input type="number" formControlName="age" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
+                <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                    <div *ngIf="f.age.errors.required">Age is required</div>
+                </div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="gender">Gender</label>
+                <select formControlName="gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                    <option  value="male">Male</option>
+                    <option  value="female">Female</option>
+                </select>
+                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                    <div *ngIf="f.gender.errors.required">Gender is required</div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-12 form-group">
                 <label for="name">Full Name</label>
                 <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
                 <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                     <div *ngIf="f.name.errors.required"> Name is required</div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-sm-12 form-group" *ngIf="sports">
-                <label for="sports_id">Sports</label>
-                <select formControlName="sports_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sports_id.errors }">
+                <label for="sports_id">Sport / Sports you are currently playing?</label>
+                <ng-select [items]="sports.data" 
+                    [multiple]="true"
+                    bindLabel="name"   
+                    bindValue="_id" 
+                    formControlName="sports_id" >
+                </ng-select>
+                
+                <!-- <select formControlName="sports_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sports_id.errors }">
                     <option  value="">Select Sport</option>
                     <option *ngFor="let sport of sports.data" value="{{sport._id}}">{{sport.name}}</option>
-                </select>
+                </select> -->
+
+
+            </div>
+
+            <div class="col-sm-6 form-group" >
+                <label for="">Current Level you are playing?</label>
+                <input type="text" formControlName="level" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.level.errors }" />
+                <div *ngIf="submitted && f.level.errors" class="invalid-feedback">
+                    <div *ngIf="f.level.errors.required">Current Level  is required</div>
+                </div>
+            </div>
+            <div class="col-sm-6 form-group" >
+                <label for="">Level you are aiming to play?</label>
+                <input type="text" formControlName="aimlevel" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.aimlevel.errors }" />
+                <div *ngIf="submitted && f.aimlevel.errors" class="invalid-feedback">
+                    <div *ngIf="f.aimlevel.errors.required">Aiming Level is required</div>
+                </div>
+            </div>
+            <div class="col-sm-12 form-group" >
+                <label for="">What suites you best?  </label> <br>
+                <label for="best_suits1"><input type="radio" formControlName="best_suits" name="best_suits" id="best_suits1" value="Learning the fundamentals of Speed & Agility techniques."> Learning the fundamentals of Speed & Agility techniques.</label>
+                <label for="best_suits2"><input type="radio" formControlName="best_suits" name="best_suits"  id="best_suits2" value="Advancing your understanding of Speed & Agility techniques."> Advancing your understanding of Speed & Agility techniques. </label>
+                <label for="best_suits3"><input type="radio" formControlName="best_suits" name="best_suits"  id="best_suits3" value="Elite level programs in Speed / Fitness / Strength & Power."> Elite level programs in Speed / Fitness / Strength & Power. </label>
+                <label for="best_suits4"><input type="radio" formControlName="best_suits" name="best_suits" id="best_suits4" value="I am currently a professional athlete and require extra work on speed & athleticism"> I am currently a professional athlete and require extra work on speed & athleticism </label>
+                <div *ngIf="submitted && f.best_suits.errors" class="invalid-feedback">
+                    <div *ngIf="f.best_suits.errors.required">Name is required</div>
+                </div>
             </div>
 
             <div class="col-sm-12">
                 <label for="">Password</label>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <input type="password"  id="confirmpassword" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
                     <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>

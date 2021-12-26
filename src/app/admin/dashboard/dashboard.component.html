@@ -56,7 +56,11 @@
         <span *ngIf="athlete">
             <!-- <div *ngIf="PandingAthlete.data.length === 0"> No New Athlete Found</div>   -->
             <div class="newathelete" *ngFor="let athlete of athlete|slice:0:2;">
-               <div class="text-right"> <span class="spt-name">{{athlete.sports.name}}</span></div>
+               <div class="text-right"> 
+                    <ng-container *ngFor="let sport of athlete.sports">
+                        <span class="badge bg-success mb-1 mr-1" style="display: inline-block;">{{sport.name}}</span>
+                    </ng-container>   
+                </div>
                 <span>
                     <img src="assets/avtar.jpg" class="upic" *ngIf="!athlete.profile_pic">
                     <img [src]="filepath+athlete.profile_pic" class="upic" *ngIf="athlete.profile_pic">

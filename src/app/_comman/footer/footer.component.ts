@@ -27,13 +27,14 @@ export class FooterComponent implements OnInit{
         ) {}
 
     ngOnInit() {
-        this.http.get(`${environment.apiUrl}/website/social`).subscribe(socialMedia=>{this.socialMedia=socialMedia;console.log(this.socialMedia.data)});
+        this.http.get(`${environment.apiUrl}/website/social`).subscribe(socialMedia=>{this.socialMedia=socialMedia;
+            });
         
         this.form = this.buildForm();
 		setTimeout(() => {
 			$('#insta').append(`<div data-mc-src="f05ffeba-5a6c-41b7-8af5-7483cdd51296#instagram"></div>
 			<script  src="https://cdn2.woxo.tech/a.js#60096cbe44647b0015c0673c"  async data-usrc></script>`)
-		}, 3000);
+		}, 1000);
      }
      get f() {
         return this.form.controls;
@@ -50,7 +51,7 @@ export class FooterComponent implements OnInit{
 
       onSubmit(): void {
         this.submitted = true;
-        console.log(this.form.value)
+        // console.log(this.form.value)
         this.alertService.clear();
         if (this.form.invalid) {
             return;
@@ -65,6 +66,9 @@ export class FooterComponent implements OnInit{
             this.alertService.success('Message Send successfull', {
               keepAfterRouteChange: true,
             });
+            setTimeout(() => {
+                location.reload()
+            }, 2000);
           },
           error => {
               this.alertService.error(error);

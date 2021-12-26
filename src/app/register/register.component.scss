@@ -1,21 +1,27 @@
 @import '../../assets/comman-style.scss';
 .signup-header {
-    color: #fff;
-    background: #222 url(../../assets/images/bg.jpg);
-    background-size: cover;
-    background-position: top left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // color: #fff;
+    // background: $secondry url(../../assets/images/bg2.png);
+    // background-size: contain;
+    // background-position: top left;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    background: transparent;
+    padding: 0;
     margin: -33px -33px 0 -33px;
-    h6 {
-        font-size: 44px;
-        margin: 0;
-        line-height: 20px;
-        font-weight: 100;
+    img{
+        width: 100%;
     }
+    // h6 {
+    //     font-size: 44px;
+    //     margin: 0;
+    //     line-height: 20px;
+    //     font-weight: 100;
+    // }
 }
 
 .form-group{
     margin: 0;
 }
+

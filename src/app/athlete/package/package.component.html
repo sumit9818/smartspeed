@@ -5,7 +5,9 @@
             <div class="pricing">
                 <div class="price-header">
                     <h6 class="p-name">{{package.title}}</h6>
-                    <h5 class="p-amount">{{package.price}} AUD <small>Per Month</small></h5>
+                    <ng-container *ngIf="package.price != 0">
+                        <h5 class="p-amount">{{package.price}} AUD <small>Per Month</small></h5>
+                    </ng-container>
                 </div>
                 <br><br>
                 <div [innerHTML]="package.description"></div>

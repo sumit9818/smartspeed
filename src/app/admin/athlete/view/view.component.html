@@ -27,17 +27,25 @@
                     {{athlete.name}} 
                     </span><br>
                     <hr>
-                    <p class="mb-2"><small><i class="fas fa-mobile-alt mr-3 fa-lg"></i> {{athlete.contact}} </small> </p>
+                    <p class="mb-2" *ngIf="athlete.contact != null"><small><i class="fas fa-mobile-alt mr-3 fa-lg"></i> {{athlete.contact}} </small> </p>
                     <p class="mb-2"><small><i class="fas fa-sign-in-alt mr-2 fa-lg"></i> {{athlete.username}} </small> </p>
-                    <p class="mb-2"><small><i class="fas fa-envelope mr-2 fa-lg"></i> {{athlete.email}} </small> </p>
+                    <p class="mb-2" ><small><i class="fas fa-envelope mr-2 fa-lg"></i> {{athlete.email}} </small> </p>
+                    <p class="mb-2" *ngIf="athlete.age != null"><small><i class=" fa-lg mr-2 fas fa-calendar-week"></i> {{athlete.age}} </small> </p>
                     <p class="mb-2"><small><i class="fas fa-user-friends mr-2 fa-lg"></i> {{athlete.gender}} </small> </p>
-                    <p><small><i class="fas fa-flag mr-2 fa-lg"></i> {{athlete.sports.name}} </small></p>
+                    <p><small><i class="fas fa-flag mr-2 fa-lg"></i> <span class="badge bg-success mr-2" style="color:#fff" *ngFor="let sport  of athlete.sports">{{sport.name}}</span> </small></p>
+                    <hr>
+                    <p><small><b>Current Level </b><br> {{athlete.level}}</small></p>
+                    <p><small><b>Aiming Level </b> <br>{{athlete.aimlevel}}</small></p>
+                    <p><small><b>Best Suits </b> <br>{{athlete.best_suits}}</small></p>
                 </h6>
                 <div *ngIf="currentplan" class="plan-details">
                     <p class="color mb-0">Current Plan</p>
                     <label *ngIf="plan.data.status === 'ACTIVE'"  class="badge badge-success">{{plan.data.status}}</label>
                     <label *ngIf="plan.data.status === 'SUSPENDED'"  class="badge badge-warning">{{plan.data.status}}</label>
                     <p class="flex"><span>{{currentplan.title}} <br> <small>{{currentplan.price}} AUD</small></span></p>
+                </div>
+                <div *ngIf="!currentplan" class="plan-details">
+                    <p class="color mb-0">Plan Is Not Active</p>
                 </div>
             </div>
         </div>

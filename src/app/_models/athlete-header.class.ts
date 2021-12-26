@@ -4,6 +4,8 @@ export class AthleteHeader {
     gender: string;
     password: string;
     name: string;
+    firstname: string;
+    lastname: string;
     contact: string;
     sports_id: string;
     coach_id: string;

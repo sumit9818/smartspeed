@@ -14,13 +14,13 @@
         <h5>Personal Info</h5>
         <hr>
         <h6><small>Name</small> {{athlete.name}}</h6>
-        <h6 *ngIf="athlete"><small>Sport Played</small> {{athlete.sports.name}}</h6>
+        <h6 *ngIf="athlete"><small>Sport Played</small> <span class="mr-2 badge bg-success" style="color:#fff" *ngFor="let sport of athlete.sports">{{sport.name}}</span></h6>
         <h6><small>Age</small> {{athlete.age}}</h6>
         <h6><small>Gender</small> {{athlete.gender}}</h6>
 
         <h5>Contact Info</h5>
         <hr>
-        <h6><small>Phone Number</small> {{athlete.contact}}</h6>
+        <h6 *ngIf="athlete.contact"><small>Phone Number</small> {{athlete.contact}}</h6>
         <h6><small>Email Address</small> {{athlete.email}}</h6>
     </div>
 </div>

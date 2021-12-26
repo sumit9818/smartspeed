@@ -23,7 +23,9 @@ export class RegisterAthleteComponent implements OnInit {
   Beginner:number;
   Intermediate:number;
   sports:any;
+  sports_name:any;
   user:any;
+  firstname:string;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -42,18 +44,25 @@ export class RegisterAthleteComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
-    return this.form.controls;
+	return this.form.controls;
   }
-  
+
+
   private buildForm(): FormGroup {
     const passwordValidators = [Validators.minLength(6)];
 	passwordValidators.push(Validators.required);
-    return this.formBuilder.group({
-      name: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', passwordValidators],
-      sports_id: [''],
+	return this.formBuilder.group({
+		firstname :[ '', Validators.required],
+		lastname :['', Validators.required ],
+		username: ['', Validators.required],
+		age: ['', Validators.required],
+		gender: ['', Validators.required],
+		email: ['', Validators.required],
+		password: ['', passwordValidators],
+		sports_id: [''],
+		level: ['', Validators.required],
+		aimlevel: ['', Validators.required],
+		best_suits: ['', Validators.required],
     });
   }
   onSubmit(): void {
@@ -63,7 +72,7 @@ export class RegisterAthleteComponent implements OnInit {
     if (this.form.invalid) {return;}
     console.log(this.form.value)
     this.loading = true; 
-	this.createUser()
+	this.createUser();
   }
 
   	private createUser() {
@@ -74,7 +83,7 @@ export class RegisterAthleteComponent implements OnInit {
 					data => {
 						this.AccountService.user.subscribe(x => this.user = x);
 						this.modalService.dismissAll();
-						this.router.navigate(['/account'])
+						this.router.navigate(['/ask'])
 					},
 					error => {
 						this.alertService.error(error);

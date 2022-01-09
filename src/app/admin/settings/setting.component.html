@@ -1,87 +1,89 @@
-﻿
-    <h5 class="mt-3 mb-4">Settings</h5>
-    <div class="row pr-2 forms">
-        <div class="col-sm-5">
-            <h6>Admin Panel Settings</h6>
-            <span *ngIf="logo">
+﻿<h5 class="mt-3 mb-4">
+    Settings</h5>
+<div class="row pr-2 forms">
+    <div class="col-sm-5">
+        <h6>Admin Panel Settings</h6>
+        <span *ngIf="logo">
                 <img [src]="filepath+logo.data.logo"  style="max-width:200px;background-color: black;"> <br>
             </span>
-            <div class="progress" *ngIf="progressImage">
-                <div class="progress-bar" [style.width]="progressImage + '%'">{{progressImage}}%</div>
-            </div>
-            <label for="upload-img" class="upload-img">
+        <div class="progress" *ngIf="progressImage">
+            <div class="progress-bar" [style.width]="progressImage + '%'">{{progressImage}}%</div>
+        </div>
+        <label for="upload-img" class="upload-img">
                 <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"></path><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"></path><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"></path></svg>
                 Upload Site Logo
                 <input type="file" id="upload-img" accept="image/x-png,image/gif,image/jpeg"  (change)="upFile($event.target.files[0])">
             </label>
 
-            <div>
-               
-               
-                <label id="file_error" class="error"></label>
-                
-        
-                <div class="mt-3">
-                    <form  [formGroup]="form" (ngSubmit)="onSubmit()" class="row">
-                        <div class="col-sm-12">
-                            <label for="">Name</label>
-                            <input type="text" class="form-control" formControlName="name" value="Smartspeed Academy" required="" autofill="off" autocomplete="off">
-                        </div>
-        
-                        <div class="col-sm-12">
-                            <label for="">Email</label>
-                            <input type="emial" class="form-control" formControlName="email" value="admin@gmail.com" required="" autofill="off"  autocomplete="off">
-                        </div>
-                        
-                        <!-- <div class="col-sm-6">
+        <div>
+
+
+            <label id="file_error" class="error"></label>
+
+
+            <div class="mt-3 p-1">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row">
+                    <div class="col-sm-12">
+                        <label for="">Name</label>
+                        <input type="text" class="form-control" formControlName="name" required="" autofill="off" autocomplete="off">
+                    </div>
+                    <div class="col-sm-12">
+                        <label for="">Username</label>
+                        <input type="text" class="form-control" formControlName="username" required="" autofill="off" autocomplete="off">
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="">Email</label>
+                        <input type="emial" class="form-control" formControlName="email" value="admin@gmail.com" required="" autofill="off" autocomplete="off">
+                    </div>
+
+                    <!-- <div class="col-sm-6">
                             <label for="">Contact</label>
                             <input type="tel" class="form-control" formControlName="contact" value="9818965876" required="" autofill="off" autocomplete="off">
                         </div> -->
-                        <div class="col-sm-12">
-                            <label for="">Change Password</label> 
-                            <em>Leave blank to keep the same password</em>
-                            <input type="password" formControlName="password" class="form-control" 
-                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" 
-                            />
-               
-                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div *ngIf="f.password.errors.required">Password is required</div>
-                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-                            </div>
-                            <br>
-                            <button [disabled]="loading" class="secondry-btn">
+                    <div class="col-sm-12">
+                        <label for="">Change Password</label>
+                        <em> Leave blank to keep the same password</em>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
+                        <br>
+                        <button [disabled]="loading" class="secondry-btn">
                                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                                 Update Profile
                             </button>
-                        </div>
-                        
-                    </form>
-                </div>
+                    </div>
+
+                </form>
             </div>
-
-
-            
         </div>
-        <div class="col-sm-7">
-            <h6>Website Setting</h6>
-            <form>
-                <!-- <div class="card card-body">
+
+
+
+    </div>
+    <div class="col-sm-7">
+        <h6>Website Setting</h6>
+        <form>
+            <!-- <div class="card card-body">
                     <p><b>Meta Tags</b></p>
                     <app-meta></app-meta>
                 </div> -->
-                
-                <div class="card card-body">
-                    <p>Social Media Links</p>
-                    <app-social></app-social>
-                </div>
-                
-                
-                
-                <p><b></b></p>
-                        
-            </form>
-        </div>
-        
 
-    
+            <div class="card card-body">
+                <p>Social Media Links</p>
+                <app-social></app-social>
+            </div>
+
+
+
+            <p><b></b></p>
+
+        </form>
     </div>
+
+
+
+</div>

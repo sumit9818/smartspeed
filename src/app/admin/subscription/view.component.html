@@ -1,13 +1,13 @@
 <div class="row" style="max-width: 900px;">
     <div class="col-sm-6" *ngIf="user">
-        <div class="card" >
-            <div class="d-flex justify-content-between" >
+        <div class="card">
+            <div class="d-flex justify-content-between">
                 <img src="assets/avtar.jpg" *ngIf="!user.profile_pic" class="upic thumbnail">
                 <img [src]="filepath+user.profile_pic" *ngIf="user.profile_pic" class="upic thumbnail">
-                
+
                 <div class="text-right">
                     <small class="">Joined On  {{user.createdAt | date: 'dd MMM yyyy'}}</small> <br>
-                    <ng-container  *ngIf="subscription">
+                    <ng-container *ngIf="subscription">
                         <button *ngIf="subscription.data.status === 'ACTIVE'" class="btn btn-danger btn-sm" (click)="suspendPlan()"><small>Suspend Account</small></button>
                         <button *ngIf="subscription.data.status === 'SUSPENDED'" class="btn btn-success btn-sm" (click)="ActivatePlan()"><small>Activate Account</small></button>
                     </ng-container>
@@ -28,7 +28,7 @@
                 <div *ngIf="currentplan" class="plan-details">
                     <p class="color mb-0">Current Plan</p>
                     <p class="flex color-text"><span>{{currentplan.title}} <br> <small>{{currentplan.price}} AUD</small></span></p>
-                    
+
                 </div>
             </div>
         </div>
@@ -40,9 +40,10 @@
                 <a routerLink="/admin/subscription/transaction/{{subscription.data.id}},{{subscription.data.start_time}},{{date | date: 'yyyy-MM-dd'}}" class="primary-btn">View History</a>
             </div>
             <p class="flex mb-1">
-                <span>Status</span> 
-                <label *ngIf="subscription.data.status === 'ACTIVE'"  class="badge badge-success">{{subscription.data.status}}</label>
-                <label *ngIf="subscription.data.status === 'SUSPENDED'"  class="badge badge-warning">{{subscription.data.status}}</label>
+                <span>Status</span>
+                <label *ngIf="subscription.data.status === 'ACTIVE'" class="badge badge-success">{{subscription.data.status}}</label>
+                <label *ngIf="subscription.data.status === 'SUSPENDED'" class="badge badge-warning">{{subscription.data.status}}</label>
+                <label *ngIf="subscription.data.status === 'EXPIRED'" class="badge badge-warning">{{subscription.data.status}}</label>
             </p>
             <p class="flex mb-1"><span>Subscription ID</span> <span class="">{{subscription.data.id}}</span></p>
             <p class="flex"><span>Start Date</span> {{subscription.data.start_time | date: 'dd MMM yyyy'}}</p>
@@ -64,4 +65,5 @@
     </div>
 </div>
 <style>
+
 </style>

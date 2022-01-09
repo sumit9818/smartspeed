@@ -14,15 +14,13 @@
         <label for="title">Video Title</label>
         <input type="text" formControlName="title" class="form-control">
 
-        <div class="filters" >
+        <div class="filters">
             <label>Athletes</label>
-            <ng-select [items]="athlete" [multiple]="true"
-             bindLabel="name" bindValue="id" 
-             [(ngModel)]="selectedAthletes" formControlName="athletes"> </ng-select>
+            <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" [(ngModel)]="selectedAthletes" formControlName="athletes"> </ng-select>
         </div>
 
-        <video-upload [(picture)]="picture"  [(loadingfile)]="loadingfile" [(VideoFile)]="VideoFile"></video-upload>
-        
+        <video-upload [(loadingfile)]="loadingfile" [(picture)]="picture" [(VideoFile)]="VideoFile"></video-upload>
+
         <input type="hidden" formControlName="thumbnail_image" [(ngModel)]="picture">
         <input type="hidden" formControlName="video_url" [(ngModel)]="VideoFile">
 

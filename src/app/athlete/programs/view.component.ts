@@ -30,28 +30,37 @@ export class ViewAthleteProgramComponent implements OnInit {
 
 		this.getProgramByID(this.id);
     }
+
+	returnZero() {return 0}
+	
     getProgramByID(id){
 		// athlete_id
 		const url = `${environment.apiUrl}/athlete/program/title/${id}`;
 		this.http.get(url).subscribe(
 		programs => {
 			this.programs = programs;
+
 			this.programs.data.map(data=>{
 				this.subtitles.push(data.title)
 				this.status.push(data.ischecked)
 			})
-			// console.log(this.programs.data)
+
+			// console.log('==',this.programs.data)
 		})
 	}
 
 	update(i , id , e){
 		const inputid = document.getElementById(id)
-		// console.log(this.subtitles)
+
+		// console.log('submit==',{"subtitles":this.subtitles,
+		// "check":this.status})
+		
 		if(e.target.checked == true){
 			this.status[i]=true;
 		}else{
 			this.status[i]=false;
 		}
+		// /*
 		// console.log(this.subtitles,this.status)
 		this.UpdateProgram({
 			"subtitles":this.subtitles,
@@ -63,12 +72,15 @@ export class ViewAthleteProgramComponent implements OnInit {
             error => {
                 this.alertService.error(error);
             });
+			// */
 
 	}
 
 
 		UpdateProgram(params) {
+			// console.log(params)
 			return this.http.put(`${environment.apiUrl}/athlete/program/update/${this.id}`, params);
+			
 		}
-
+		
 }

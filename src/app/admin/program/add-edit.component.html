@@ -3,51 +3,58 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <div class="col-sm-8">
-    <div class="">
-      <div class="row m-0">
-        <div class="col-sm-6">
-            <label for="isactive">Status</label>
-            <select formControlName="isactive" class="form-control">
+    <div class="col-sm-8">
+        <div class="">
+            <div class="row m-0">
+                <div class="col-sm-6">
+                    <label for="isactive">Status</label>
+                    <select formControlName="isactive" class="form-control">
                 <option value="">Select Status</option>
                 <option value="true">Active</option>
                 <option value="false">Inactive</option>
             </select>
-        </div>
+                </div>
 
-        <div class="col-sm-6">
-          <label>Selected Athlete</label>
-          <!-- <label *ngIf="isAddMode">Select Athlete</label> -->
-       
-         <ng-select [items]="athlete" 
-			[multiple]="true"
-			bindLabel="name"   
-			bindValue="id" 
-			[(ngModel)]="selectedAthletes"
-			formControlName="athletes">
-        </ng-select>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-12">
-      <label for="">Program Title</label>
-      <input type="text" class="form-control" formControlName="title" autofill="off" autocomplete="off"/>
-    </div>
-	<!-- *ngIf="isAddMode" -->
+                <div class="col-sm-6">
+                    <label>Selected Athlete</label>
+                    <!-- <label *ngIf="isAddMode">Select Athlete</label> -->
 
-    <div class="col-sm-12" id="instructiongroup">
-		<label for="">Instruction</label>
-	  	<div *ngFor="let subtitles of getPhonesFormControls(); let i = index" style="display:flex;margin-bottom: 10px;">
-			<ng-container>
-				<input [formControl]="subtitles" type="text" class="form-control mb-0">
-				<button (click)="removePhone(i)" type="button" class="btn btn-danger"><small>Remove</small></button>  
-			</ng-container>  
-		</div>
-	  <br>  
-	  <button (click)="addPhone()" type="button" class="primary-btn">Add Instruction</button>
+                    <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" [(ngModel)]="selectedAthletes" formControlName="athletes">
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <label for="">Program Title</label>
+            <input type="text" class="form-control" formControlName="title" autofill="off" autocomplete="off" />
+        </div>
+        <!-- *ngIf="isAddMode" -->
+
+        <div class="col-sm-12" id="instructiongroup">
+            <label for="">Instruction</label>
+            <ng-container *ngIf="isAddMode">
+                <div *ngFor="let subtitles of getPhonesFormControls(); let i = index" style="display:flex;margin-bottom: 10px;">
+                    <ng-container>
+                        <input [formControl]="subtitles" type="text" class="form-control mb-0">
+                        <button (click)="removeInst(i)" type="button" class="btn btn-danger"><small>Remove</small></button>
+                    </ng-container>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!isAddMode">
+                <ng-container *ngIf="program">
+                    <div *ngFor="let title of program.subtitles">
+                        <span class="form-control mb-2 disabled">{{title}}</span>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <br>
+            <ng-container *ngIf="isAddMode">
+                <button (click)="addInst()" type="button" class="primary-btn">Add Instruction</button>
+            </ng-container>
+        </div>
+        <div class="mt-4 pl-3">
+            <button type="submit" class="secondry-btn">Save Details</button>
+        </div>
     </div>
-  <div class="mt-4 pl-3">
-    <button type="submit" class="secondry-btn">Save Details</button>
-  </div>
-</div>
 </form>

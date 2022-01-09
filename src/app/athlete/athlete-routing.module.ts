@@ -5,6 +5,7 @@ import { AskComponent } from './ask/ask.component';
 import { DiaryComponent } from './diary/diary.component';
 import { LayoutComponent } from './layout.component';
 import { LeaderBoardComponent } from './leaderbord';
+import { PackageComponent } from './package/package.component';
 import { AthleteSubscriptionsComponent } from './payment/list.component';
 import { ProgramsComponent, ViewAthleteProgramComponent } from './programs';
 import { VideoAthletesComponent,ViewAthleteVideoComponent } from './video';
@@ -22,6 +23,7 @@ const routes: Routes = [{
 		{path:'video/:id', component: ViewAthleteVideoComponent},
 		{path:'payment', component: AthleteSubscriptionsComponent},
 
+		{path:'plan', component: PackageComponent},
 		{path:'leaderboard', component: LeaderBoardComponent},
   ]
 }];

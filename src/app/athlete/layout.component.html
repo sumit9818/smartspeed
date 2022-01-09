@@ -1,5 +1,4 @@
-﻿
-<!-- <ng-container *ngIf="subscription">
+﻿<!-- <ng-container *ngIf="subscription">
     <div *ngIf="plan== false" class="expired">
         Your Plan is no longer Active
     </div>
@@ -67,23 +66,47 @@
                 <li>
                     <a routerLink="/account" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Account Details</a>
                 </li>
-                <li>
-                    <a routerLink="/programs" routerLinkActive="active">Programs</a>
+                <li *ngIf="plan == false">
+                    <a routerLink="/plan" routerLinkActive="active">Choose Your Plan</a>
                 </li>
-                <li>
-                    <a routerLink="/leaderboard" routerLinkActive="active">Leaderbord</a>
-                </li>
-                <li>
-                    <a routerLink="/diary" routerLinkActive="active">Diary</a>
-                </li>
-                <li>
-                    <a routerLink="/video" routerLinkActive="active">Video Library</a>
-                </li>
+                <ng-container *ngIf="plan == false">
+                    <li class="nolink" (click)="BuyPlan()">
+                        <a routerLink="/plan">Programs</a>
+                    </li>
+                    <li class="nolink" (click)="BuyPlan()">
+                        <a routerLink="/plan">Leaderbord</a>
+                    </li>
+                    <li class="nolink" (click)="BuyPlan()">
+                        <a routerLink="/plan">Diary</a>
+                    </li>
+                    <li class="nolink" (click)="BuyPlan()">
+                        <a routerLink="/plan">Video Library</a>
+                    </li>
+                </ng-container>
+
+
+
+                <ng-container *ngIf="plan == true">
+                    <li>
+                        <a routerLink="/programs" routerLinkActive="active">Programs</a>
+                    </li>
+                    <li>
+                        <a routerLink="/leaderboard" routerLinkActive="active">Leaderbord</a>
+                    </li>
+                    <li>
+                        <a routerLink="/diary" routerLinkActive="active">Diary</a>
+                    </li>
+                    <li>
+                        <a routerLink="/video" routerLinkActive="active">Video Library</a>
+                    </li>
+                </ng-container>
+
+
                 <li>
                     <a routerLink="/payment" routerLinkActive="active">Payment Details</a>
                 </li>
                 <li>
-                    <a routerLink="/ask"  routerLinkActive="active">Ask Clayton</a>
+                    <a routerLink="/ask" routerLinkActive="active">Ask Clayton</a>
                 </li>
 
             </ul>
@@ -95,7 +118,7 @@
             router.url === '/account'|| router.url === '/ask'|| router.url === '/account/edit'">
                 <router-outlet></router-outlet>
             </ng-container>
-            <ng-container  *ngIf="plan == false && router.url != '/payment' && router.url != '/account' && router.url != '/ask'">
+            <ng-container *ngIf="plan == false && router.url != '/payment' && router.url != '/account' && router.url != '/ask'">
                 <app-package></app-package>
             </ng-container>
             <!-- <router-outlet></router-outlet> -->

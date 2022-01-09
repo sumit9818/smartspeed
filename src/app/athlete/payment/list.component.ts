@@ -30,15 +30,16 @@ export class AthleteSubscriptionsComponent implements OnInit{
     transaction:any;
 
 
-    starttime
-endtime
+    starttime:any;
+    endtime:any;
     ngOnInit() {
         
         const today = moment();
-        this.accountservice.getUserSubscription().pipe(first()).subscribe(plan =>{this.plan =plan
-            
+        this.accountservice.getUserSubscription().pipe(first()).subscribe((plan:any) =>{
+            this.plan =plan
+            // console.log(this.plan.data.is_active)
             this.PricingService.getSubscriptionByID(this.plan.data.subscription_id).pipe(first()).subscribe(
-                subscription => {this.subscription = subscription
+                (subscription:any) => {this.subscription = subscription
                     this.PricingService.getFullTransication(this.plan.data.subscription_id, this.subscription.data.start_time  , today.format('YYYY-MM-DD')).pipe(first()).subscribe(
                         transaction => {
                             this.transaction = transaction; })

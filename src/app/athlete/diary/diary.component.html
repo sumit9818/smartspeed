@@ -3,9 +3,8 @@
     <div class="col-sm-8">
         <label>Add A Note To Diary</label>
         <div class="inputicon mb-2">
-            <input type="text" formControlName="title" class="form-control" 
-            autofill="off" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" >
-            <button class="add-tags" >
+            <input type="text" formControlName="title" class="form-control" autofill="off" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+            <button class="add-tags">
                 <img src="assets/icons/add.svg" alt="">
             </button>
         </div>
@@ -14,7 +13,7 @@
 
 <ul class="diary" *ngIf="diary">
     <li *ngFor="let note of diary.data">
-        
+
         <span>
             <p class="date"><small>{{note.created_at | date: 'dd MMM yyyy'}}</small> 
             <button (click)="deleteFaq(note._id);$event.stopPropagation()" [disabled]="note.isDeleting">

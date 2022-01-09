@@ -36,6 +36,7 @@ export class SubscriptionsViewComponent implements OnInit{
     getsubsctiptiondetails(){
         this.PricingService.getSubscriptionByID(this.subscriptionID).pipe(first()).subscribe(
             subscription => {this.subscription = subscription
+                console.log(subscription)
                 this.http.get(`${environment.apiUrl}/website/pricing/all`).subscribe(pricing => { 
                     this.pricing = pricing; 
                     this.pricing.data.map(currentplan=>{

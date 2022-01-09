@@ -94,7 +94,6 @@ export class NavbarComponent implements OnInit {
 						  this.router.navigate(['/admin']);
 					  }
 					  if(this.user.roles.name === 'Athlete'){
-						  location.reload()
 						  this.router.navigate(['/account']);
 					  }
 				  },

@@ -11,9 +11,11 @@ html {
     width: 100vw;
     overflow-x: hidden;
 }
+
 .highcharts-label {
     pointer-events: all !important;
 }
+
 *:hover,
 * {
     text-decoration: none !important;
@@ -71,8 +73,8 @@ body {
     }
 }
 
-.no-loader{
-    animation:  none !important;
+.no-loader {
+    animation: none !important;
 }
 
 .alert-wrap {
@@ -143,7 +145,6 @@ body {
     }
 }
 
-
 a {
     cursor: pointer;
 }
@@ -153,8 +154,7 @@ a {
     right: 44px;
     top: 14px;
     display: block !important;
-    
-    @media(max-width:767px){
+    @media(max-width: 767px) {
         position: relative;
         top: 0;
         right: 0;
@@ -299,7 +299,6 @@ a {
     }
 }
 
-
 .add-btn {
     display: inline-flex;
     align-items: center;
@@ -402,8 +401,6 @@ label {
         }
     }
 }
-
-
 
 // PROGRAMS
 .programs {
@@ -510,7 +507,6 @@ dp-date-picker {
 //     display: flex;
 //     justify-content: center;
 // }
-
 .testimonial {
     .owl-stage {
         display: flex;
@@ -545,26 +541,26 @@ dp-date-picker {
     }
 }
 
-main{
+main {
     // z-index: 9;
 }
-@media (min-width: 992px){
-.collapse:not(.show) {
-    display: none !important;
-}
-.collapse.show, .navbar-collapse.collapsing {
-    display: inline-block !important;
-}
-.navbar-expand-lg .navbar-toggler{
-    display: block !important;
-    top: 10px;
-}
-.navbar-nav{
-    display: block !important;
-}
-}
 
-
+@media (min-width: 992px) {
+    .collapse:not(.show) {
+        display: none !important;
+    }
+    .collapse.show,
+    .navbar-collapse.collapsing {
+        display: inline-block !important;
+    }
+    .navbar-expand-lg .navbar-toggler {
+        display: block !important;
+        top: 10px;
+    }
+    .navbar-nav {
+        display: block !important;
+    }
+}
 
 // @media(max-width:575px){
 //     .testimonial .owl-item{
@@ -572,8 +568,7 @@ main{
 //         width: 200px !important;
 //     }
 // }
-
-.faq{
+.faq {
     .card-header {
         font-weight: 600;
         border: 0px;
@@ -581,33 +576,31 @@ main{
         background: $secondry;
         padding: 4px 0;
         color: $primary;
-        button{
+        button {
             display: flex;
             font-size: 14px;
             font-weight: 600;
             align-items: flex-start;
             color: $primary;
             text-align: left;
-            &:focus{
+            &:focus {
                 box-shadow: none;
                 outline: 0px;
             }
-        
             .fa-plus {
                 display: none;
             }
         }
-        .collapsed{
+        .collapsed {
             color: $primary;
             .fa-minus {
-                display:  none !important;
+                display: none !important;
             }
             .fa-plus {
                 display: block !important;
             }
         }
     }
-
     .card {
         margin-bottom: 20px;
         // box-shadow: 0 0 10px rgba(0, 0, 0, .1);
@@ -616,11 +609,20 @@ main{
         border: 0px;
         background: $secondry;
     }
-    .card-body{
+    .card-body {
         padding-top: 0 !important;
     }
 }
 
-.was-validated .form-control:invalid, .form-control.is-invalid {
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
     border-color: #dc3545 !important;
+}
+
+.disabled {
+    background-color: #e9ecef;
+}
+
+del {
+    text-decoration: line-through !important;
 }

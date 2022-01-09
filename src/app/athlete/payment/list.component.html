@@ -1,38 +1,48 @@
 <h6 class="page-title">Payment Details</h6>
+<ng-container *ngIf="plan">
+    <ng-container *ngIf="plan.data.is_active == false">
+        <h5 class="text-center mt-4">You dont have any plan</h5> <br>
+        <div class="text-center mt-3"> <button class="btn btn-success" routerLink="/plan">Select Plan</button></div>
+    </ng-container>
 
-<div class="row">
-    <div class="col-sm-4">
-        <h6>Current Plan</h6>
-        <div class="saved-cards" *ngIf="currentplan">
-            <svg width="24" viewBox="0 0 512 352"><g transform="translate(0 -80)"><path d="M456,80H56A56.064,56.064,0,0,0,0,136V376a56.064,56.064,0,0,0,56,56H456a56.064,56.064,0,0,0,56-56V136A56.064,56.064,0,0,0,456,80ZM56,112H456a24.028,24.028,0,0,1,24,24v32H32V136A24.028,24.028,0,0,1,56,112ZM456,400H56a24.028,24.028,0,0,1-24-24V200H480V376A24.028,24.028,0,0,1,456,400Z"></path><path d="M112,352H96a16,16,0,0,1-16-16V320a16,16,0,0,1,16-16h16a16,16,0,0,1,16,16v16A16,16,0,0,1,112,352Z"></path></g></svg>
-            <div class="pl-3">
-                <p><b>{{currentplan.title}}</b>
-                    <br> Price: {{currentplan.price}} AUD</p>
-                
-                <ng-container *ngIf="subscription">
-                    <ng-container *ngIf="subscription.data.status !='SUSPENDED'">
-                        <hr style="border-style:dashed">
-                        <a href="javascript:void(0)" (click)="unsubscribe()" class="text-danger mr-2">Unsubscribe</a>
-                    </ng-container>
-                </ng-container>
-                
+    <ng-container *ngIf="plan.data.is_active == true">
+        <div class="row">
+            <div class="col-sm-4">
+                <h6>Current Plan</h6>
+                <div class="saved-cards" *ngIf="currentplan">
+                    <svg width="24" viewBox="0 0 512 352"><g transform="translate(0 -80)"><path d="M456,80H56A56.064,56.064,0,0,0,0,136V376a56.064,56.064,0,0,0,56,56H456a56.064,56.064,0,0,0,56-56V136A56.064,56.064,0,0,0,456,80ZM56,112H456a24.028,24.028,0,0,1,24,24v32H32V136A24.028,24.028,0,0,1,56,112ZM456,400H56a24.028,24.028,0,0,1-24-24V200H480V376A24.028,24.028,0,0,1,456,400Z"></path><path d="M112,352H96a16,16,0,0,1-16-16V320a16,16,0,0,1,16-16h16a16,16,0,0,1,16,16v16A16,16,0,0,1,112,352Z"></path></g></svg>
+                    <div class="pl-3">
+                        <p><b>{{currentplan.title}}</b>
+                            <br> Price: {{currentplan.price}} AUD</p>
+
+                        <ng-container *ngIf="subscription">
+                            <ng-container *ngIf="subscription.data.status !='SUSPENDED'">
+                                <hr style="border-style:dashed">
+                                <a href="javascript:void(0)" (click)="unsubscribe()" class="text-danger mr-2">Unsubscribe</a>
+                            </ng-container>
+                        </ng-container>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="border" *ngIf="subscription">
+                    <div class="col-sm-12">
+                        <br>
+                        <h6 class="flex">Subscription Details</h6>
+                        <hr>
+                        <p class="flex"><span>Status</span> {{subscription.data.status}}</p>
+                        <p class="flex"><span>Subscription ID</span> {{subscription.data.id}}</p>
+                        <p class="flex"><span>Start Date</span> {{subscription.data.start_time | date: 'dd MMM yyyy'}}</p>
+                        <p class="flex"><span>Next Payment Date</span> {{subscription.data.billing_info.next_billing_time | date: 'dd MMM yyyy'}}</p>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-8">
-        <div class="border" *ngIf="subscription">
-            <div class="col-sm-12">
-                <br>
-                <h6 class="flex">Subscription Details</h6>
-                <hr>
-                <p class="flex"><span>Status</span> {{subscription.data.status}}</p>
-                <p class="flex"><span>Subscription ID</span> {{subscription.data.id}}</p>
-                <p class="flex"><span>Start Date</span> {{subscription.data.start_time | date: 'dd MMM yyyy'}}</p>
-            </div>
+    </ng-container>
 
-        </div>
-    </div>
-</div>
+</ng-container>
 
 <div *ngIf="subscription">
     <div class="flex-table" *ngIf="transaction">

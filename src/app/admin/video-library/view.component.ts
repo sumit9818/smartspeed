@@ -11,16 +11,17 @@ import { environment } from '@environments/environment';
 export class ViewVideoComponent implements OnInit{
     video:any;
     id: string;
-    filepath: string;
+    filepath: string = `${environment.imgUrl}`;
     constructor(private route: ActivatedRoute, private videoService: VideoService) {
         this.route.params.subscribe(params => this.video = params.id);
-        this.filepath = `${environment.imgUrl}`
     }
 
     ngOnInit() {
         this.id = this.route.snapshot.params['id'];
        this.videoService.getVideoByID(this.id).pipe(first()).subscribe(
-        video => {this.video = video}
+        video => {this.video = video;
+            console.log(this.video)
+        }
        )
     }
 

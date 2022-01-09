@@ -68,7 +68,7 @@ export class VideoFileComponent implements OnInit {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
 				this.picture = event.body.newfilename;
-				this.UpdateVideoFile(event.body.newfilename);
+				this.UpdatePicture(event.body.newfilename);
 				this.progressImage = null;
 				this.FileisUploading(false)
 			  }

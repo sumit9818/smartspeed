@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { AccountService, AlertService, PricingService } from '@app/_services';
 import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 declare var paypal;
 
 @Component({
@@ -17,14 +18,24 @@ export class PackageComponent implements OnInit {
     // secret: EC_u3z3g_wQsdKRdu6VgC6hzgXx-8IMUnqeavF3zHz7insx55isf4eoj-MFcG4SdmtnFnLsgy16kTu0c
     
     pricing: any;
+    plan: any;
     constructor(
         public http: HttpClient,
         private AccountService: AccountService,
         private AlertService: AlertService,
-        private PricingService: PricingService
+        private PricingService: PricingService,
+        private router: Router
     ) {
     }
     ngOnInit(): void {
+
+        // console.log(this.plan)
+        this.AccountService.getUserSubscription().pipe(first()).subscribe(plan =>{
+            this.plan =plan
+            if(this.plan.data.is_active == true ){
+                this.router.navigate(['account'])
+            }
+        })
         
         this.http.get(`${environment.apiUrl}/website/pricing/all`).subscribe(pricing => { 
             this.pricing = pricing; 
@@ -46,7 +57,7 @@ export class PackageComponent implements OnInit {
                           },
                           onApprove: function(data, actions) {
                             // console.log(actions, data)
-                            alert('You have successfully created subscription ');
+                            // alert('You have successfully created subscription ');
                             var plandetails = {
                                 "payment_method":"Paypal",
                                 "package_id": payme.id,
@@ -61,6 +72,7 @@ export class PackageComponent implements OnInit {
                             // xhttp.setRequestHeader("Authorization", JSON.parse(localStorage.getItem('smartuser')).accessToken);
                             xhttp.onload = function () {
                                 // do something to response
+                                alert('Your subscription created successfully   ');
                                 location.reload()
                             };
                            
@@ -85,7 +97,7 @@ export class PackageComponent implements OnInit {
    UserPlan(details){
         this.PricingService.CreateUserPlan(details).pipe(first()).subscribe(
             data => {
-                this.AlertService.success('Payment successfull');
+                this.AlertService.success('Payment successfull ');
             },
             error => {
                 this.AlertService.error(error);

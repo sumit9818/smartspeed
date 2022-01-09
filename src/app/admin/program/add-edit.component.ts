@@ -56,14 +56,14 @@ export class ProgramAddEditComponent implements OnInit {
   }
 
 
-	addPhone(): void {
+	addInst(): void {
 		(
 			this.form.get('subtitles') as FormArray).push(
 			this.formBuilder.control(null)
 		);
 	}
 
-	removePhone(index) {
+	removeInst(index) {
 		(this.form.get('subtitles') as FormArray).removeAt(index);
 	}
 
@@ -90,10 +90,10 @@ export class ProgramAddEditComponent implements OnInit {
     private updateFormValue(): void {
         if (!this.isAddMode) {
             this.programService.getProgramById(this.id).subscribe((data: any) => {
-				this.removePhone(0)
+				this.removeInst(0)
 				
 				this.program = data;
-				console.log(this.program.subtitles)
+				// console.log(this.program.subtitles)
                 this.f.isactive.setValue(this.program.isactive);
                 this.selectedAthletes = this.program.athletes;
                 this.f.title.setValue(this.program.title);

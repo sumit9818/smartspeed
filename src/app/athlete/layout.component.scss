@@ -4,7 +4,6 @@ $popins: 'Poppins',
 sans-serif;
 $primary:#9ECA01;
 $secondry:#2B343B;
-
 @mixin after {
     content: '';
     z-index: -1;
@@ -27,10 +26,8 @@ html {
     padding-left: calc(4% + 280px);
     min-height: 100vh;
     padding-top: 65px;
-
-    @media(max-width:991px) {
+    @media(max-width: 991px) {
         padding-left: 0;
-
         .logout {
             display: none;
         }
@@ -84,7 +81,6 @@ html {
     cursor: pointer;
     white-space: nowrap;
     transition: all 200ms linear;
-
     &:active {
         box-shadow: none;
     }
@@ -97,7 +93,6 @@ html {
     color: #000;
     box-shadow: 0 3px 6px rgba($primary, .2);
     font-weight: 500;
-
     &:hover,
     &:focus,
     &:active {
@@ -114,7 +109,6 @@ html {
     border-color: $secondry;
     color: #fff;
     box-shadow: 0 3px 6px rgba($secondry, .2);
-
     &:hover,
     &:focus,
     &:active {
@@ -138,11 +132,9 @@ html {
     position: absolute;
     right: 18px;
     z-index: 2;
-
     img {
         width: 40px;
     }
-
     &:hover,
     &:focus,
     &:active {
@@ -176,7 +168,6 @@ label {
     background: transparent !important;
     box-shadow: none !important;
     border: 0 !important;
-
     img {
         width: 32px;
     }
@@ -193,25 +184,21 @@ label {
         z-index: 1;
         justify-content: center;
         color: #fff;
-
         &:after {
             @include after();
             background: $secondry;
             left: -100%;
             right: 0;
         }
-
         img {
             max-width: 100%;
             display: block;
             margin-bottom: 30px;
         }
-
         h3 {
             font-size: 24px;
             font-weight: 100;
         }
-
         h5 {
             font-size: 34px;
             font-weight: 100;
@@ -231,7 +218,6 @@ header {
     align-items: center;
     background: $secondry;
     justify-content: space-between;
-
     .site-logo {
         img {
             max-width: 150px;
@@ -241,7 +227,6 @@ header {
             font-weight: 600;
         }
     }
-
     .dropdown {
         >a {
             color: #fff;
@@ -249,12 +234,10 @@ header {
             align-items: center;
             margin-right: 30px;
             transition: all 200ms linear;
-
             &:hover {
                 color: $primary
             }
         }
-
         .dropdown-menu {
             li {
                 a {
@@ -263,11 +246,9 @@ header {
             }
         }
     }
-
     .notification {
         .dropdown-menu {
             min-width: 210px;
-
             a {
                 white-space: inherit !important;
                 font-size: 13px;
@@ -291,20 +272,16 @@ header {
     background: #fff;
     border-right: 1px solid #dadada;
     padding-right: 15px;
-
-    @media(max-width:991px) {
+    @media(max-width: 991px) {
         display: none;
     }
-
     ul {
         padding: 0;
         margin: 0;
-
         li {
             display: block;
             margin-bottom: 10px;
             position: relative;
-
             a {
                 display: flex;
                 align-items: center;
@@ -313,19 +290,16 @@ header {
                 z-index: 1;
                 font-size: 14px;
             }
-
             &:hover {
                 a {
                     color: $primary;
                 }
             }
         }
-
         .active {
             color: $primary !important;
         }
     }
-
     .current-user {
         position: relative;
         display: flex;
@@ -335,13 +309,11 @@ header {
         margin-bottom: 14px;
         border-bottom: 1px dotted #dadada;
         padding-bottom: 10px;
-
         small {
             opacity: .6;
             display: block;
             line-height: 1;
         }
-
         img {
             width: 60px;
             border-radius: 4px;
@@ -350,21 +322,17 @@ header {
             margin-right: 10px;
             box-shadow: 0 0 6px rgba(0, 0, 0, .2);
         }
-
         a {
             position: absolute;
             right: 0px;
             top: 0;
-
             svg {
                 opacity: 0.4
             }
-
             &:hover {
                 svg {
                     fill: $primary;
                     opacity: 1;
-
                     path {
                         fill: $primary;
                     }
@@ -389,7 +357,6 @@ main {
     margin-right: 10px;
 }
 
-
 .thumbnail {
     width: 100px;
     height: 100px;
@@ -410,24 +377,19 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     a {
         display: flex;
         align-items: center;
         font-size: 14px;
         color: #000;
-
         svg {
             margin-right: 8px;
         }
-
         &:hover {
             color: $primary;
-
             svg {
                 fill: $primary;
                 opacity: 1;
-
                 path {
                     fill: $primary;
                 }
@@ -451,17 +413,14 @@ main {
         font-weight: 600;
         margin-bottom: 0;
     }
-
     h6 {
         margin-bottom: 22px;
         font-size: 14px;
-
         small {
             display: block;
         }
     }
 }
-
 
 .highcharts-tooltip {
     z-index: 999999 !important;
@@ -473,4 +432,13 @@ main {
     left: 350px;
     top: 20%;
     color: red;
+}
+
+.nolink {
+    opacity: .5;
+    &:hover {
+        a {
+            color: #222222 !important;
+        }
+    }
 }

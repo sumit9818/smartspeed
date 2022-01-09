@@ -61,6 +61,7 @@ export class SettingComponent implements OnInit{
 		return this.formBuilder.group({
             name: [''],
             email: [''],
+            username: [''],
             // contact: [''],
             password: ['', passwordValidators],
 		});
@@ -71,9 +72,11 @@ export class SettingComponent implements OnInit{
 	
 	private updateFormValue(): void {
         this.atheleteService.getAthleteById(this.adminID).subscribe((data:any) => {
+        // this.accoutservice.updateAdmin(this.adminID).subscribe((data:any) => {
             this.admin = data;
-            // console.log(this.admin)
+            console.log(this.admin)
             this.f.name.setValue(this.admin.name);
+            this.f.username.setValue(this.admin.username);
             this.f.email.setValue(this.admin.email);
             // this.f.contact.setValue(this.admin.contact);
             this.f.password.setValue(this.admin.password);

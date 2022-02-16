@@ -3,29 +3,29 @@
     <div class="col-sm-4 chat-user-list">
         <button class="btn btn-sm" (click)="getAllChatUser()" *ngIf="usersbtn === false ">View all Users</button>
         <button class="btn btn-sm" (click)="getChatUser()" *ngIf="usersbtn === true">View Chats</button>
-        
-        <ng-container  *ngIf="allusers && usersbtn === true">
+
+        <ng-container *ngIf="allusers && usersbtn === true">
             <div class="programs query chat-user-list" [id]="alluser.id" (click)="viewChat(alluser.id,alluser.name,alluser.contact, alluser.email)" *ngFor="let alluser of allusers.data ">
                 <h6>
-                    <img [src]="filepath+alluser.profile_pic" *ngIf="alluser.profile_pic" >
+                    <img [src]="filepath+alluser.profile_pic" *ngIf="alluser.profile_pic">
                     <img src="assets/avtar.jpg" *ngIf="!alluser.profile_pic">
                     <div>{{alluser.name}}
-                    <br> <small>{{alluser.email}}</small></div>
+                        <br> <small>{{alluser.email}}</small></div>
                 </h6>
             </div>
         </ng-container>
-        
-        <ng-container  *ngIf="users && usersbtn === false">
-            <div class="programs query chat-user-list "style="position: relative;"  [id]="user.user_id._id" data-tab="tabid-1" (click)="viewChat(user.user_id._id, user.user_id.name, user.user_id.contact, user.user_id.email)"  *ngFor="let user of users.data ">
+
+        <ng-container *ngIf="users && usersbtn === false">
+            <div class="programs query chat-user-list " style="position: relative;" [id]="user.user_id._id" data-tab="tabid-1" (click)="viewChat(user.user_id._id, user.user_id.name, user.user_id.contact, user.user_id.email)" *ngFor="let user of users.data ">
                 <h6>
                     <svg width="14" *ngIf="user.isread === false" fill="green" style="position: absolute;right: 0;top: 0;   " viewBox="0 0 512 512"><path fill="green" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg>
                     <!-- <svg  width="16" *ngIf="user.isread === true " viewBox="0 0 512 512"><path fill="currentColor" d="M494.586 164.516c-4.697-3.883-111.723-89.95-135.251-108.657C337.231 38.191 299.437 0 256 0c-43.205 0-80.636 37.717-103.335 55.859-24.463 19.45-131.07 105.195-135.15 108.549A48.004 48.004 0 0 0 0 201.485V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V201.509a48 48 0 0 0-17.414-36.993zM464 458a6 6 0 0 1-6 6H54a6 6 0 0 1-6-6V204.347c0-1.813.816-3.526 2.226-4.665 15.87-12.814 108.793-87.554 132.364-106.293C200.755 78.88 232.398 48 256 48c23.693 0 55.857 31.369 73.41 45.389 23.573 18.741 116.503 93.493 132.366 106.316a5.99 5.99 0 0 1 2.224 4.663V458zm-31.991-187.704c4.249 5.159 3.465 12.795-1.745 16.981-28.975 23.283-59.274 47.597-70.929 56.863C336.636 362.283 299.205 400 256 400c-43.452 0-81.287-38.237-103.335-55.86-11.279-8.967-41.744-33.413-70.927-56.865-5.21-4.187-5.993-11.822-1.745-16.981l15.258-18.528c4.178-5.073 11.657-5.843 16.779-1.726 28.618 23.001 58.566 47.035 70.56 56.571C200.143 320.631 232.307 352 256 352c23.602 0 55.246-30.88 73.41-45.389 11.994-9.535 41.944-33.57 70.563-56.568 5.122-4.116 12.601-3.346 16.778 1.727l15.258 18.526z"></path></svg>
                     <svg  width="16" *ngIf="user.isread === false " viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg> -->
-                    
-                    <img [src]="filepath+user.user_id.profile_pic" *ngIf="user.user_id.profile_pic" >
+
+                    <img [src]="filepath+user.user_id.profile_pic" *ngIf="user.user_id.profile_pic">
                     <img src="assets/avtar.jpg" *ngIf="!user.user_id.profile_pic">
                     <div>{{user.user_id.name}}
-                    <br> <small>{{user.user_id.email}}</small></div>
+                        <br> <small>{{user.user_id.email}}</small></div>
                 </h6>
             </div>
         </ng-container>
@@ -35,7 +35,7 @@
         <div *ngIf="loadingchats"><i class="fas fa-spinner fa-lg fa-spin"></i></div>
         <div class="tab-data active" *ngIf="chats">
             <h6 class="query-from">
-                <ng-container >
+                <ng-container>
                     <div>
 
                         {{name}}
@@ -43,7 +43,8 @@
                         <br> <small>{{email}}</small>
                     </div>
                     <div class="action-btn">
-                        <button><img src="assets/icons/delete.svg"> Remove</button>
+                        <button (click)="deleteChat(id);$event.stopPropagation()"><img src="assets/icons/delete.svg"> Remove</button>
+
                         <!-- <button (click)="open(Modal, data.from)"><img src="assets/icons/reply.svg"> Reply</button> -->
                     </div>
                 </ng-container>
@@ -67,9 +68,9 @@
             </div>
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="msgbox">
                 <div class="inputicon">
-                    <input type="hidden"  formControlName="user_id" [(ngModel)]="id">
-                    <input type="text"  formControlName="message" class="form-control" id="message">
-                    <button  [disabled]="loading">
+                    <input type="hidden" formControlName="user_id" [(ngModel)]="id">
+                    <input type="text" formControlName="message" class="form-control" id="message">
+                    <button [disabled]="loading">
                         <img src="assets/icons/send.svg" alt="">
                     </button>
                 </div>

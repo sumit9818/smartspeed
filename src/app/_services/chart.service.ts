@@ -16,7 +16,10 @@ export class ChartService {
 			},
 			title: null,
 			xAxis: { categories: xAxis },
-			yAxis: { title: null },
+			yAxis: { 
+				labels: {
+					enabled: false
+				},title: null },
 			plotOptions: {
 				series: {
 					cursor: 'pointer',
@@ -54,7 +57,10 @@ export class ChartService {
 			},
 			title: null,
 			xAxis: { categories: xAxis },
-			yAxis: { title: null },
+			yAxis: { 
+				labels: {
+					enabled: false
+				},title: null },
 			plotOptions: {
 				series: {
 					cursor: 'pointer',

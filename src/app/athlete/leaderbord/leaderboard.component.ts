@@ -63,7 +63,7 @@ export class LeaderBoardComponent implements OnInit {
                 assessmentData => {this.assessmentData = assessmentData
                 }
             )
-            this.getAssessmentData(this.FirstID)
+            this.getAssessmentData()
             
         })
        
@@ -106,9 +106,9 @@ export class LeaderBoardComponent implements OnInit {
         return selObj;
     }
 
-    getAssessmentData(id){
+    getAssessmentData(){
         this.selectedValue = parseInt((this.getDropDownText(this.changeassment, this.assessments.data)[0].assessment));
-        this.http.get(this.url+`/athlete/assessment/sprints/${id}`).subscribe(
+        this.http.get(this.url+`/athlete/assessment/sprints/${this.changeassment}`).subscribe(
             assessmentData => {this.assessmentData = assessmentData
         })
 

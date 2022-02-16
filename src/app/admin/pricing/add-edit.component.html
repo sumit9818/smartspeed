@@ -25,6 +25,7 @@
                 <input type="text" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
                 <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
                     <div *ngIf="f.price.errors.required"> price is required</div>
+                    <div *ngIf="f.price.errors.min">Please Enter a valid Amount</div>
                 </div>
             </div>
             <div class="col-sm-6" *ngIf="isAddMode">

@@ -140,7 +140,7 @@ export class ChatComponent implements OnInit {
 
       onSubmit(): void {
         this.submitted = true;
-        console.log(this.form.value)
+        // console.log(this.form.value)
         this.alertService.clear();
         if (this.form.invalid) {
             return;
@@ -152,6 +152,7 @@ export class ChatComponent implements OnInit {
 	private submitChat() {
         return this.EmailService.SendChatMessage(this.form.value).subscribe((data) => {
             this.loading = false;
+			this.form.reset();
 			this.viewChat(this.id, this.email , this.phone, this.name);
 			// $('#message').val(null)
 			// $("body").animate({ scrollTop: $("body")[0].scrollHeight}, 1000);
@@ -163,5 +164,25 @@ export class ChatComponent implements OnInit {
 		)
 	}
 
+
+	deleteChat(_id): void {
+        if (confirm("Are you sure you want to delete ?")){
+			// console.log(_id)
+           this.EmailService.ClearChat(_id).subscribe(
+            data => {
+                this.alertService.success('Deleted successfully', { keepAfterRouteChange: true });
+                // this.EmailService.getAllFaq()
+                // .pipe(first())
+                // .subscribe(faq => this.faq = faq);
+				
+            },
+            error => {
+                this.alertService.error(error);
+            },
+            );
+            
+        }
+       
+       }
 }
 

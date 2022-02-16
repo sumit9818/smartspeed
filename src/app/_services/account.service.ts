@@ -101,6 +101,9 @@ export class AccountService {
   AddPlayerData(file: any) {
     return this.http.post(`${this.accountServiceURL}/fileupload`, file);
   }
+  PaymentHistory() {
+    return this.http.get(`${environment.apiUrl}/dashboard/getallpayments`);
+  }
   
 
   // ATHLETES API

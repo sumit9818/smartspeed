@@ -10,5 +10,8 @@ export class AthleteHeader {
     sports_id: string;
     coach_id: string;
     profile_pic: string;
-    age: number
+    age: number;
+    level:string;
+    aimlevel:string;
+    best_suits:string;
 }

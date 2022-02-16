@@ -71,13 +71,15 @@ export class UserQueryComponent implements OnInit {
 			element.classList.remove('active')
 		});
 		document.getElementById(id).classList.add('active')
-		console.log(id)
+		// console.log(id)
 		this.loadingemail =true
 		  this.EmailService.getEmail(id).pipe(first()).subscribe(
 			email => {
 				this.email = email;
 				this.loadingemail =false
 				this.cdRef.detectChanges();
+				
+				// console.log(id)
 			}
 		  )
 		  this.EmailService.Read(id).pipe(first()).subscribe()
@@ -100,7 +102,7 @@ export class UserQueryComponent implements OnInit {
 
       onSubmit(): void {
         this.submitted = true;
-        console.log(this.form.value)
+        // console.log(this.form.value)
         this.alertService.clear();
         if (this.form.invalid) {
             return;
@@ -125,14 +127,16 @@ export class UserQueryComponent implements OnInit {
 		)
 	}
 
-	deleteFaq(_id): void {
+	deleteQuery(_id): void {
         if (confirm("Are you sure you want to delete ?")){
+			// console.log(_id)
            this.EmailService.EmailDelete(_id).subscribe(
             data => {
-                this.alertService.success('Faq Deleted successfully', { keepAfterRouteChange: true });
+                this.alertService.success('Deleted successfully', { keepAfterRouteChange: true });
                 // this.EmailService.getAllFaq()
                 // .pipe(first())
                 // .subscribe(faq => this.faq = faq);
+				
             },
             error => {
                 this.alertService.error(error);

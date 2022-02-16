@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit,Input } from '@angular/core';
-import { AlertService, AthleteService, DashboardService } from '@app/_services';
+import { AccountService, AlertService, AthleteService, DashboardService } from '@app/_services';
 // import { Coaches } from '@app/_models/coach.class';
 import * as Highcharts from 'highcharts';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -33,34 +33,48 @@ export class DashboardComponent implements OnInit {
         // private coachService: CoachService, 
         private alertService: AlertService,
         private modalService: NgbModal,
-        private DashboardService: DashboardService) {}
+        private DashboardService: DashboardService,
+        private accountservice: AccountService
+        ) {}
   
   ngOnInit() {
     this.filepath = `${environment.imgUrl}`
     this.getAllAthlete();
-    // this.getAllCoach();	
-    // this.getPandingAthletes();
-    var chart = Highcharts.chart("container", this.chartOptions );
-    console.clear()
+    this.getPayments();
 }
 
-    data = [6.9,7.0,9.5,  9.6, 13.9, 14.5, 18.2, 21.5, 25.2, 23.3, 24, 22.3, 22, ];
+history:any;
+month:any=[];
+amount:any=[];
+getPayments(){
+    this.accountservice.PaymentHistory().pipe(first()).subscribe(data=> {
+        this.history = data;
+        for (let x of this.history.data) {
+            this.amount.push(x.amount)
+            this.month.push(x.id)
+        }
+        var chart = Highcharts.chart("container", this.chartOptions );
+    })
+}
+
 	chartOptions: Highcharts.Options = {
         chart:{
             type: 'spline',
             backgroundColor:'#F1F8DB',
 			renderTo:'container',
         },
-		title: {
-            text: ''
-        },
+		title: null,
+        
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            categories: this.month
         },
 
         yAxis: {
+            labels: {
+                enabled: false
+            },
             title: {
-                text: ''
+                text:null
             }
         },
 
@@ -82,8 +96,8 @@ export class DashboardComponent implements OnInit {
         series: [{
             type: 'spline',
             name: 'Earning Chart',
-            data: this.data,
-            pointStart: 1,
+            data: this.amount,
+            pointStart: 0,
             marker: {
                 symbol: 'circle',
             },

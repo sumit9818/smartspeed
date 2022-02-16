@@ -24,9 +24,11 @@ export class EmailService {
   sendEmail(data) {
     return this.http.post(`${environment.apiUrl}/email/send/`, data);
   }
+  
   EmailDelete(id) {
-    return this.http.delete(`${environment.apiUrl}/email/send/${id}`, );
+    return this.http.delete(`${environment.apiUrl}/email/${id}/clearemails`, );
   }
+
   ReplyEmail(data) {
     return this.http.post(`${environment.apiUrl}/email/reply/`, data);
   }
@@ -49,6 +51,11 @@ export class EmailService {
   ChatUser() {
     return this.http.get(`${environment.apiUrl}/chat/users`);
   }
+  ClearChat(id) {
+    return this.http.delete(`${environment.apiUrl}/chat/${id}/clearchats`);
+  }
+
+  
   GetAllChatUser() {
     return this.http.get(`${environment.apiUrl}/user/get/all`);
   }

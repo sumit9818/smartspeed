@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first, tap } from 'rxjs/operators';
-import { AlertService, AthleteService, CoachService, SportsService, UploadService } from '@app/_services';
+import { AccountService, AlertService, AthleteService, CoachService, SportsService, UploadService } from '@app/_services';
 import { environment } from '@environments/environment';
 import { SportDetails } from '@app/_models/sport-header.model';
 import { Coaches } from '@app/_models/coach.class';
@@ -42,6 +42,7 @@ export class AthleteAddEditComponent implements OnInit {
     private sportsService: SportsService,
     private coachService: CoachService,
     private uploadService: UploadService,
+    private AccountService: AccountService,
     private atheleteService: AthleteService
   ) {}
 
@@ -70,17 +71,20 @@ export class AthleteAddEditComponent implements OnInit {
     }
 
     return this.formBuilder.group({
-      profile_pic: [''],
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      contact: ['', Validators.required],
-      gender: ['', Validators.required],
-      password: ['', passwordValidators],
-      sports_id: ['', Validators.required],
-      // coach_id: ['', Validators.required],
-      age: ['', Validators.required],
+		profile_pic: [''],
+		firstname: ['', Validators.required],
+		lastname: ['', Validators.required],
+		username: ['', Validators.required],
+		email: ['', Validators.required],
+		contact: ['', Validators.required],
+		gender: ['', Validators.required],
+		password: ['', passwordValidators],
+		sports_id: ['', Validators.required],
+		// coach_id: ['', Validators.required],
+		level: ['', Validators.required],
+		aimlevel: ['', Validators.required],
+		best_suits: ['', Validators.required],
+      	age: ['', Validators.required],
     });
   }
   selectedSports:any;
@@ -99,6 +103,9 @@ export class AthleteAddEditComponent implements OnInit {
           this.f.contact.setValue(this.athlete.contact);
           this.f.password.setValue(this.athlete.password);
           this.f.age.setValue(this.athlete.age);
+          this.f.level.setValue(this.athlete.level);
+          this.f.aimlevel.setValue(this.athlete.aimlevel);
+          this.f.best_suits.setValue(this.athlete.best_suits);
 
 		  this.selectedSports = this.athlete.sports;
 		  let csv_selected_ids='';
@@ -122,37 +129,50 @@ export class AthleteAddEditComponent implements OnInit {
     if (this.form.invalid) {return;}
     // console.log(this.form.value)
     this.loading = true;
-    this.submitUser().subscribe(() => {
-        this.router.navigate(['/admin/athlete']);
-      },
-      (error) => {
-        this.alertService.error(error);
-        this.loading = false;
-    });
+    this.submitUser()
   }
 
-  private submitUser(): Observable<AthleteNewServiceResponse> {
+  private submitUser() {
     return this.isAddMode ? this.createUser() : this.updateUser();
   }
 
-  private createUser(): Observable<AthleteNewServiceResponse> {
-    return this.atheleteService.addAthlete(this.form.value).pipe(
-      tap((data) => {
-        this.alertService.success('Athlete added successfully', {
-          keepAfterRouteChange: true,
-        });
-      })
-    );
+  private createUser() {
+	this.AccountService.RegisterAthlete(this.form.value).pipe(first()).subscribe(
+		data => {
+			this.router.navigate(['/admin/athlete']);
+			this.alertService.success('Athlete added successfully', {
+				keepAfterRouteChange: true,
+				
+			  });
+		},
+		error => {
+			this.alertService.error(error);
+			this.loading = false;
+		});
+
+
+    // return this.atheleteService.addAthlete(this.form.value).pipe(
+    //   tap((data:any) => {
+    //     this.alertService.success('Athlete added successfully', {
+    //       keepAfterRouteChange: true,
+    //     });
+    //   })
+    // );
   }
 
-  private updateUser(): Observable<AthleteNewServiceResponse> {
-    return this.atheleteService.updateAthlete(this.id, this.form.value).pipe(
-      tap((data) => {
-        this.alertService.success('Athlete Update successful', {
-          keepAfterRouteChange: true,
-        });
-      })
-    );
+
+  private updateUser(): any {
+    return this.atheleteService.updateAthlete(this.id, this.form.value).pipe(first()).subscribe(
+		data => {
+			this.router.navigate(['/admin/athlete']);
+			this.alertService.success('Athlete Updated successfully', {
+				keepAfterRouteChange: true,
+			  });
+		},
+		error => {
+			this.alertService.error(error);
+			this.loading = false;
+		});
   }
 
 }

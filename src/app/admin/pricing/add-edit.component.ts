@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { first, tap } from 'rxjs/operators';
 import { AlertService, PricingService } from '@app/_services';
 import { environment } from '@environments/environment';
@@ -36,19 +36,21 @@ export class PricingAddEditComponent implements OnInit {
 		this._id = this.route.snapshot.params['id'];
 		this.isAddMode = !this._id;
 		this.blogimg = `${environment.imgUrl}`
+		
 		this.form = this.buildForm();
 		this.updateFormValue();
 	}
 
 	// convenience getter for easy access to form fields
 	get f() { return this.form.controls }
-
+	minNum = 1;
   	private buildForm(): FormGroup {
-
+	const control = new FormControl(9, Validators.min(10));
+	// const passwordValidators = [Validators.min(1)];
 	return this.formBuilder.group({
 		isactive: [true],
 		title: ['', Validators.required],
-		price: ['', Validators.required],
+		price: ['', [Validators.required, Validators.min(this.minNum)]],
 		month: ['', Validators.required],
 		plan_id: [''],
 		description: ['', Validators.required],
@@ -75,13 +77,13 @@ export class PricingAddEditComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    if (this.form.invalid) {
+        return;
+    }
 	// console.log(this.form.value)
     // reset alerts on submit
     this.alertService.clear();
     // stop here if form is invalid
-    if (this.form.invalid) {
-        return;
-    }
 
     this.loading = true;
     if (this.isAddMode) {

@@ -1,73 +1,72 @@
 <h5 class="mt-2 pt-2 pl-3 pr-3 mb-4 row mr-2 ml-2 justify-content-between align-items-center">Query's</h5>
-    <div class="row pr-2">
-        <div class="col-sm-4 chat-user-list" *ngIf="users">
-            <ng-container *ngFor="let user of users.data ">
-                <div  class="programs query {{user._id}}"  [id]="user._id" data-tab="tabid-1" (click)="viewEmail(user._id)">
-                    <h6>
-                        <svg  width="16" *ngIf="user.isread === true " viewBox="0 0 512 512"><path fill="currentColor" d="M494.586 164.516c-4.697-3.883-111.723-89.95-135.251-108.657C337.231 38.191 299.437 0 256 0c-43.205 0-80.636 37.717-103.335 55.859-24.463 19.45-131.07 105.195-135.15 108.549A48.004 48.004 0 0 0 0 201.485V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V201.509a48 48 0 0 0-17.414-36.993zM464 458a6 6 0 0 1-6 6H54a6 6 0 0 1-6-6V204.347c0-1.813.816-3.526 2.226-4.665 15.87-12.814 108.793-87.554 132.364-106.293C200.755 78.88 232.398 48 256 48c23.693 0 55.857 31.369 73.41 45.389 23.573 18.741 116.503 93.493 132.366 106.316a5.99 5.99 0 0 1 2.224 4.663V458zm-31.991-187.704c4.249 5.159 3.465 12.795-1.745 16.981-28.975 23.283-59.274 47.597-70.929 56.863C336.636 362.283 299.205 400 256 400c-43.452 0-81.287-38.237-103.335-55.86-11.279-8.967-41.744-33.413-70.927-56.865-5.21-4.187-5.993-11.822-1.745-16.981l15.258-18.528c4.178-5.073 11.657-5.843 16.779-1.726 28.618 23.001 58.566 47.035 70.56 56.571C200.143 320.631 232.307 352 256 352c23.602 0 55.246-30.88 73.41-45.389 11.994-9.535 41.944-33.57 70.563-56.568 5.122-4.116 12.601-3.346 16.778 1.727l15.258 18.526z"></path></svg>
-                        <svg  width="16" *ngIf="user.isread === false " viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
-                       {{user.name}} <br>
-                       <small>{{user.user_email}}</small>
-                    </h6>
-                </div>
-            </ng-container>
-        </div>
-
-        <div class="col-sm-8 border-left">
-            <div *ngIf="loadingemail" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;display: flex;justify-content: center;align-items: center;background: rgba(0,0,0,.5);color: #fff;font-size: 44px;"><i class="fas fa-spinner fa-spin"></i></div>
-            <div class="tab-data active"  *ngIf="email">
-                <h6 class="query-from">
-                    <ng-container   *ngFor="let data of email.data|slice:0:1">
-                        <div>    
-                            {{data.name}}
-                            <br> <small>{{data.phone}}</small>
-                            <br> <small>{{data.from}}</small>
-                        </div>
-                        <div class="action-btn">
-                            <button  (click)="deleteFaq(data.id);$event.stopPropagation()" ><img src="assets/icons/delete.svg"> Remove</button>
-                            <button  (click)="open(Modal, data.from)"><img src="assets/icons/reply.svg"> Reply</button>
-                        </div>
-                    </ng-container>
+<div class="row pr-2">
+    <div class="col-sm-4 chat-user-list" *ngIf="users">
+        <ng-container *ngFor="let user of users.data ">
+            <div class="programs query {{user._id}}" [id]="user._id" data-tab="tabid-1" (click)="viewEmail(user._id)">
+                <h6>
+                    <svg width="16" *ngIf="user.isread === true " viewBox="0 0 512 512"><path fill="currentColor" d="M494.586 164.516c-4.697-3.883-111.723-89.95-135.251-108.657C337.231 38.191 299.437 0 256 0c-43.205 0-80.636 37.717-103.335 55.859-24.463 19.45-131.07 105.195-135.15 108.549A48.004 48.004 0 0 0 0 201.485V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V201.509a48 48 0 0 0-17.414-36.993zM464 458a6 6 0 0 1-6 6H54a6 6 0 0 1-6-6V204.347c0-1.813.816-3.526 2.226-4.665 15.87-12.814 108.793-87.554 132.364-106.293C200.755 78.88 232.398 48 256 48c23.693 0 55.857 31.369 73.41 45.389 23.573 18.741 116.503 93.493 132.366 106.316a5.99 5.99 0 0 1 2.224 4.663V458zm-31.991-187.704c4.249 5.159 3.465 12.795-1.745 16.981-28.975 23.283-59.274 47.597-70.929 56.863C336.636 362.283 299.205 400 256 400c-43.452 0-81.287-38.237-103.335-55.86-11.279-8.967-41.744-33.413-70.927-56.865-5.21-4.187-5.993-11.822-1.745-16.981l15.258-18.528c4.178-5.073 11.657-5.843 16.779-1.726 28.618 23.001 58.566 47.035 70.56 56.571C200.143 320.631 232.307 352 256 352c23.602 0 55.246-30.88 73.41-45.389 11.994-9.535 41.944-33.57 70.563-56.568 5.122-4.116 12.601-3.346 16.778 1.727l15.258 18.526z"></path></svg>
+                    <svg width="16" *ngIf="user.isread === false " viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>                    {{user.name}} <br>
+                    <small>{{user.user_email}}</small>
                 </h6>
-                <hr>
-                <div #scrollMe [scrollTop]="scrollMe.scrollHeight" style="max-height: 66vh;overflow-y: auto;padding-bottom: 30px;">
-                    <ng-container *ngFor="let data of email.data">
-                        <div class="chatbox" >
-                            <div *ngIf="data.is_admin === false" class="incoming-msg">
-                                <div>
-                                    <small>{{data.sent_date}}</small> <br>
-                                    <span [innerHTML]="data.body"></span>
-                                </div>
-                            </div>
-                            <div  *ngIf="data.is_admin === true"  class="outgoing-msg">
-                                <div>
-                                    <small>{{data.sent_date}}</small> <br>
-                                    <span [innerHTML]="data.body"></span>
-                                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="col-sm-8 border-left">
+        <div *ngIf="loadingemail" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;display: flex;justify-content: center;align-items: center;background: rgba(0,0,0,.5);color: #fff;font-size: 44px;"><i class="fas fa-spinner fa-spin"></i></div>
+        <div class="tab-data active" *ngIf="email">
+            <h6 class="query-from">
+                <ng-container *ngFor="let data of email.data|slice:0:1">
+                    <div>
+                        {{data.name}}
+                        <br> <small>{{data.phone}}</small>
+                        <br> <small>{{data.from}}</small>
+                    </div>
+                    <div class="action-btn">
+                        <button (click)="deleteQuery(id);$event.stopPropagation()"><img src="assets/icons/delete.svg"> Remove</button>
+                        <button (click)="open(Modal, data.from)"><img src="assets/icons/reply.svg"> Reply</button>
+                    </div>
+                </ng-container>
+            </h6>
+            <hr>
+            <div #scrollMe [scrollTop]="scrollMe.scrollHeight" style="max-height: 66vh;overflow-y: auto;padding-bottom: 30px;">
+                <ng-container *ngFor="let data of email.data">
+                    <div class="chatbox">
+                        <div *ngIf="data.is_admin === false" class="incoming-msg">
+                            <div>
+                                <small>{{data.sent_date}}</small> <br>
+                                <span [innerHTML]="data.body"></span>
                             </div>
                         </div>
-                    </ng-container>
-                </div>
+                        <div *ngIf="data.is_admin === true" class="outgoing-msg">
+                            <div>
+                                <small>{{data.sent_date}}</small> <br>
+                                <span [innerHTML]="data.body"></span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>
+</div>
 
 
-<input type="hidden" [(ngModel)]="userid" >
+<input type="hidden" [(ngModel)]="userid">
 <!-- LOGIN MODAL -->
-<ng-template #Modal let-modal >
+<ng-template #Modal let-modal>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 			<img src="assets/images/close.svg">
 		</button>
     <div class="modal-body">
         <h6 class="text-center">
+            <br> Reply
             <br>
-            Reply<br>
             <svg width="28.959" height="7.29" viewBox="0 0 28.959 7.29"><path d="M18.942,263.155l-4.463-4.177-4.463,4.177-4.458-4.173-4,3.788L0,261.122l5.55-5.257,4.467,4.182,4.463-4.177,4.463,4.177,4.467-4.182,5.55,5.257-1.56,1.647-4-3.788Z" transform="translate(0 -255.865)" fill="#9ECA01"></path></svg>
         </h6>
-        
-        
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <label>To</label>
             <input type="text" class="form-control" formControlName="to" [(ngModel)]="useremail" disabled>
             <label for="">Subject</label>
@@ -82,4 +81,3 @@
         </form>
     </div>
 </ng-template>
-

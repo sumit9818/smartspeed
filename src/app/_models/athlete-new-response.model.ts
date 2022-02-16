@@ -17,5 +17,8 @@ export interface AthleteNewResponse {
   password: string;
   name: string;
   profile_pic: string;
+  level:string;
+  aimlevel:string;
+  best_suits:string;
   __v: number;
 }

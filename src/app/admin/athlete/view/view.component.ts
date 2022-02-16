@@ -141,7 +141,7 @@ export class AthleteDetailsComponent implements OnInit {
 		this.AssessmentService.getAthletecharts(assment, id).subscribe(
             data => {
 			this.Chart = data;
-			console.log('chart' , this.Chart)
+			// console.log('chart' , this.Chart)
             this.CreateChart()
 			var markers = document.getElementsByClassName('highcharts-markers');
 
@@ -192,7 +192,10 @@ export class AthleteDetailsComponent implements OnInit {
             },
             title: null,
             xAxis: { categories: this.Chart.data.xAxis },
-            yAxis: {title: null},
+            yAxis: {
+				labels: {
+					enabled: false
+				},title: null},
             plotOptions: {
                 series: {
                     cursor: 'pointer',

@@ -10,11 +10,11 @@
 
 
 <div *ngIf="homepage">
-    <div class="banner-home-content" >
+    <div class="banner-home-content">
         <img src="assets/banner.jpg" style="width: 100%;">
         <p *ngIf="HomePageData.Banner">
-            <img [src]="filepath+logo.data.logo" alt="SpeedAcadmy" *ngIf="logo" > <br>
-            {{HomePageData.Banner.title}}</p>
+            <img [src]="filepath+logo.data.logo" alt="SpeedAcadmy" *ngIf="logo"> <br> {{HomePageData.Banner.title}}
+        </p>
     </div>
 
 
@@ -96,7 +96,7 @@
                 <div class="col-sm-5">
                     <h2>{{HomePageData.HomeMakesDifferent.title}}</h2>
                     <p>{{HomePageData.HomeMakesDifferent.description}}</p>
-                    <a (click)="openSignUp(SignUPModal)" href="javascript:void(0)"> 
+                    <a (click)="openSignUp(SignUPModal)" href="javascript:void(0)">
                         <img src="assets/images/speed.jpg" style="max-width: 150px;">
                     </a>
                 </div>
@@ -106,7 +106,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="offer"></div>
 
     <div class="offer">
@@ -114,27 +114,28 @@
             <div class="row align-items-center" *ngIf="HomePageData.HomeOffer">
                 <div class="col-sm-6">
                     <img [src]="filepath+HomePageData.HomeOffer.image" class="img-fluid">
-                   
+
                     <h4 class="mb-4">{{HomePageData.HomeOffer.title}}</h4>
                     <p>{{HomePageData.HomeOffer.description}}</p>
                     <!-- <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button> -->
                 </div>
                 <div class="col-sm-6">
                     <div class="offer-points" *ngIf="slides">
-                        <div class="offer-box"  *ngFor="let slide of slides.data">
-                            <img [src]="iconpath+slide.image" *ngIf="slide.image">
-                            {{slide.title}}
+                        <div class="offer-box" *ngFor="let slide of slides.data">
+                            <img [src]="iconpath+slide.image" *ngIf="slide.image"> {{slide.title}}
                         </div>
                     </div>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
-    
-    
+
+
     <div id="testimonial"></div>
+    <img src="assets/testimonial-bg.png" style="width: 100%;border-top: 2px solid #9ECA01;">
+    <!-- 
     <div class="testimonial" *ngIf="testimonials">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -158,15 +159,14 @@
                             </ng-template>
                         </owl-carousel-o>
                         <br><br>
-                        <!-- <button (click)="openSignUp(SignUPModal)" class="btn-white"> Join Now</button> -->
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+-->
 
-    
     <div id="train-with-us"></div>
     <div class=" pricing-wrapper" *ngIf="pricing">
         <div class="container">
@@ -181,13 +181,13 @@
                         </div>
                         <br><br>
                         <div [innerHTML]="package.description"></div>
-                        
+
                     </div>
                 </div>
             </div>
 
             <h5 class="text-center mt-5" style="font-weight: 400; ">Not sure where to start? Simply click the button below for a free assessment <br>
-               <br> <span (click)="openSignUp(SignUPModal)" style="cursor: pointer;"> 
+                <br> <span (click)="openSignUp(SignUPModal)" style="cursor: pointer;"> 
                     <img src="assets/logo-price.png" style="max-width: 200px;">
                 </span>
             </h5>
@@ -211,7 +211,7 @@
                     </ngb-accordion>
 
                     <p><em>Not sure where to start? Simply click the button below for a free assessment</em></p>
-                    <a (click)="openSignUp(SignUPModal)" href="javascript:void(0)"> 
+                    <a (click)="openSignUp(SignUPModal)" href="javascript:void(0)">
                         <img src="assets/images/speed.jpg" style="max-width: 150px;">
                     </a>
                 </div>
@@ -239,9 +239,9 @@
         <button (click)="openSignUp(SignUPModal)" class="btn-dark"> Join Now</button>
     </div> -->
 
-    
+
 
 </div>
-  
+
 
 <app-footer></app-footer>

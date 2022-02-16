@@ -2,11 +2,14 @@
 <h5 *ngIf="!isAddMode" class="mt-2">Edit Athlete</h5>
 
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="">
-    <div class="col-sm-8">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="row">
+    <div class="col-sm-12">
         <file-upload class="preview" [(picture)]="picture" [(loadingfile)]="loadingfile"></file-upload>
         <p><b>Note: </b><em>Image size shoulde be between 300*250 PX</em></p>
         <input type="hidden" formControlName="profile_pic" [(ngModel)]="picture">
+    </div>
+    <div class="col-sm-6">
+
         <div class="row">
 
             <div class="col-sm-6">
@@ -48,12 +51,7 @@
             <div class="col-sm-6" *ngIf="sports">
                 <label for="sports_id">Sports</label>
 
-                <ng-select [items]="sports" 
-                    [multiple]="true"
-                    bindLabel="name"   
-                    bindValue="_id" 
-                    [(ngModel)]="selectedSports"
-                    formControlName="sports_id">
+                <ng-select [items]="sports" [multiple]="true" bindLabel="name" bindValue="_id" [(ngModel)]="selectedSports" formControlName="sports_id">
                 </ng-select>
                 <!-- <select formControlName="sports_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sports_id.errors }">
                     <option  value="">Select Sport</option>
@@ -77,7 +75,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="contact">Contact</label>
-                <input type="number" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
+                <input type="tel" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
                 <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
                     <div *ngIf="f.contact.errors.required">contact is required</div>
                 </div>
@@ -108,5 +106,32 @@
         </div>
 
         <br>
+    </div>
+    <div class="col-sm-6 form-group">
+        <div class="form-group">
+            <label for="">Current Level you are playing?</label>
+            <input type="text" formControlName="level" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.level.errors }" />
+            <div *ngIf="submitted && f.level.errors" class="invalid-feedback">
+                <div *ngIf="f.level.errors.required">Current Level is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Level you are aiming to play?</label>
+            <input type="text" formControlName="aimlevel" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.aimlevel.errors }" />
+            <div *ngIf="submitted && f.aimlevel.errors" class="invalid-feedback">
+                <div *ngIf="f.aimlevel.errors.required">Aiming Level is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">What suites you best?  </label> <br>
+            <label for="best_suits1"><input type="radio" formControlName="best_suits" name="best_suits" id="best_suits1" value="Learning the fundamentals of Speed & Agility techniques."> Learning the fundamentals of Speed & Agility techniques.</label>
+            <label for="best_suits2"><input type="radio" formControlName="best_suits" name="best_suits"  id="best_suits2" value="Advancing your understanding of Speed & Agility techniques."> Advancing your understanding of Speed & Agility techniques. </label>
+            <label for="best_suits3"><input type="radio" formControlName="best_suits" name="best_suits"  id="best_suits3" value="Elite level programs in Speed / Fitness / Strength & Power."> Elite level programs in Speed / Fitness / Strength & Power. </label>
+            <label for="best_suits4"><input type="radio" formControlName="best_suits" name="best_suits" id="best_suits4" value="I am currently a professional athlete and require extra work on speed & athleticism"> I am currently a professional athlete and require extra work on speed & athleticism </label>
+            <div *ngIf="submitted && f.best_suits.errors" class="invalid-feedback">
+                <div *ngIf="f.best_suits.errors.required">Name is required</div>
+            </div>
+        </div>
     </div>
 </form>

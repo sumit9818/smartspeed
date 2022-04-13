@@ -53,7 +53,7 @@ export class OfferComponent implements OnInit {
 		  isactive: [''],
 		  image: [''],
 		  title: ['', Validators.required],
-		  description: ['', Validators.required],
+		  description: [''],
 		});
 	  }
 

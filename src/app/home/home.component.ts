@@ -95,7 +95,7 @@ export class HomeComponent implements OnInit {
 
 				for (let HomePageData of Object.values(this.homepage)) {
 					this.HomePageData = HomePageData
-					console.log(this.HomePageData.HomeOfferImage1.title)
+					// console.log(this.HomePageData)
 				}
 				// this.showinsta = 'showinsta'
 			})

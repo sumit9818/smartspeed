@@ -111,7 +111,7 @@
 
     <div class="offer">
         <div class="container-fluid">
-            <div class="row align-items-center" *ngIf="HomePageData.HomeOffer">
+            <div class="row align-items-center " *ngIf="HomePageData.HomeOffer">
                 <div class="col-sm-6">
                     <img [src]="filepath+HomePageData.HomeOffer.image" class="img-fluid">
 
@@ -134,7 +134,16 @@
 
 
     <div id="testimonial"></div>
-    <img src="assets/testimonial-bg.png" style="width: 100%;border-top: 2px solid #9ECA01;">
+    <div class="offer" style="border-top: 2px solid #9ECA01;">
+        <div class="container-fluid">
+            <ng-container *ngIf="HomePageData.HomeOfferImage8">
+                <h4 class="mb-4">Our Clients</h4>
+                <p>{{HomePageData.HomeOfferImage8.title}}</p>
+                <img [src]="filepath+HomePageData.HomeOfferImage8.image" style="width: 100%;">
+            </ng-container>
+        </div>
+    </div>
+    <!-- <img src="assets/testimonial-bg.png" style="width: 100%;border-top: 2px solid #9ECA01;"> -->
     <!-- 
     <div class="testimonial" *ngIf="testimonials">
         <div class="container-fluid">
@@ -172,7 +181,7 @@
         <div class="container">
             <h4 class="text-center mb-0">Smartspeed Programs</h4>
             <!-- <p class="text-center">We offers These subscription plan which you can avail as per your need</p> -->
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-sm-4" *ngFor="let package of pricing.data">
                     <div class="pricing">
                         <div class="price-header">

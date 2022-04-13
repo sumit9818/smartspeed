@@ -8,7 +8,7 @@
                 Save Details
         </button>
     </form>
-</div> 
+</div>
 
 
 <div class="offer-new mt-5 ">
@@ -25,7 +25,7 @@
                     <app-image2></app-image2>
                 </div>
             </div>
-    
+
             <div class="row mt-4">
                 <div class="col-sm-6">
                     <app-image3></app-image3>
@@ -47,7 +47,9 @@
 </div>
 
 
- <!-- <div class="home-about">
+
+
+<!-- <div class="home-about">
     <div class="container-fluid" style="padding: 50px 0;">
         <div class="about row">
             <div class="col-sm-4">
@@ -81,13 +83,11 @@
         <app-offer></app-offer>
         <div class="row align-items-center">
             <div class="row offer-points" *ngIf="icons">
-                <div *ngFor="let slide of icons.data; let i = index"  class="offer-box">
-                    <img [src]="IconPath+slide.image"  *ngIf="slide.image"  style="max-width: 80px;" >
-                    {{slide.title}}
+                <div *ngFor="let slide of icons.data; let i = index" class="offer-box">
+                    <img [src]="IconPath+slide.image" *ngIf="slide.image" style="max-width: 80px;"> {{slide.title}}
                     <div class="d-flex" style="margin:16px -15px -30px -15px">
-                        <a routerLink="javascript:void(0)" (click)="edit(Modal , slide._id)" class="col primary-btn m-0" style="margin:0;border-radius: 0;min-width: auto;" >
-                            <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#000"></path><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#000"></path><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#000"></path></svg>
-                            Edit
+                        <a routerLink="javascript:void(0)" (click)="edit(Modal , slide._id)" class="col primary-btn m-0" style="margin:0;border-radius: 0;min-width: auto;">
+                            <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#000"></path><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#000"></path><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#000"></path></svg>                            Edit
                         </a>
                         <button class="primary-btn col" style="margin:0;border-radius: 0;background: crimson;min-width: auto;" (click)="deleteSlide(slide._id);$event.stopPropagation()" [disabled]="slide.isDeleting">
                             <span *ngIf="slide.isDeleting" class="spinner-border spinner-border-sm"></span>
@@ -98,14 +98,14 @@
                         </button>
                     </div>
                 </div>
-                
+
             </div>
         </div>
-        <a class="primary-btn" (click)="open(Modal)">Add New</a> 
+        <a class="primary-btn" (click)="open(Modal)">Add New</a>
     </div>
 </div>
 
-<ng-template #Modal let-modal >
+<ng-template #Modal let-modal>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 			<img src="assets/images/close.svg">
 		</button>
@@ -114,6 +114,41 @@
     </div>
 </ng-template>
 
+
+
+<div id="testimonial">
+    <div class="container-fluid">
+        <h1>Testimonial</h1>
+        <form [formGroup]="form" (ngSubmit)="onSubmitcreatetestimonial()" class="mb-5">
+            <div>
+                <h5>Title</h5>
+                <input type="text" class="form-control" formControlName="title">
+                <br>
+                <span *ngIf="testimonials">
+                    <img [src]="filepath+testimonialImage" *ngIf="testimonialImage" style="max-width: 100%;">
+                </span>
+                <span *ngIf="!testimonialImage" class="clippath">
+                    <img src="assets/base.jpg">
+                </span>
+                <br>
+                <label for="upload-img" class="upload-img" style="white-space: nowrap;">
+                    <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"/><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"/><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"/></svg>
+                    Change Image
+                    <input type="file"  accept="image/x-png,image/gif,image/jpeg" (change)="upFile($event.target.files[0])">
+                </label>
+
+                <input type="hidden" class="iconnew" formControlName="image" [(ngModel)]="testimonialImage">
+                <button [disabled]="loading" class="primary-btn mt-3 ml-3">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Save Details
+                </button>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr>
 
 
 <div class="container-fluid diffrent">
@@ -129,7 +164,7 @@
         </div>
     </div>
     <div class="row justify-content-center align-items-center">
-        
+
         <!-- <div class="col-sm-3 text-right">
             <h5><b>01</b></h5>
             <app-diffrent1></app-diffrent1>

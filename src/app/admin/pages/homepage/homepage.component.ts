@@ -131,7 +131,6 @@ export class HomepageComponent implements OnInit {
 	iconid:any;
 	edit(Modal , id) {
         this.modalService.open(Modal, { size: 'lg' });
-		console.log(id)
 		this.iconid= id
     }
 

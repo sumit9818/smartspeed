@@ -18,7 +18,7 @@ export class FaqViewComponent implements OnInit{
         this._id = this.route.snapshot.params['id'];
        this.faqservice.getFaqByID(this._id).pipe(first()).subscribe(
            faq => {this.faq = faq
-        console.log(this.faq)}
+        }
        )
     }
 

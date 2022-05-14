@@ -56,7 +56,7 @@ export class ChatComponent implements OnInit {
 						this.newusers = newusers;
 						if (JSON.stringify(this.newusers.data) != JSON.stringify(this.users.data)) {
 							this.users = this.newusers;
-							console.log(this.newusers.data)
+							//console.log(this.newusers.data)
 						}else{
 							// console.log('this.newusers.data')
 							// console.log('works')

@@ -51,7 +51,7 @@ export class AddAssessmentComponent implements OnInit {
         if (!this.isAddMode) {
             this.assessmentService.getAthleteByAssessment(this.id).subscribe((assessment: any) => {
 				// this.selectedAthletes= assessment.athletes;
-				console.log(assessment)
+				//console.log(assessment)
                 this.f.isactive.setValue(assessment.isactive);
                 this.f.type.setValue(assessment.type);
                 this.f.assessment.setValue(assessment.assessment);
@@ -60,7 +60,7 @@ export class AddAssessmentComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log(this.form.value);
+        //console.log(this.form.value);
         this.submitted = true;
         // reset alerts on submit
         this.alertService.clear();

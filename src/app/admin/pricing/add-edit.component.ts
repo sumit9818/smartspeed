@@ -80,7 +80,6 @@ export class PricingAddEditComponent implements OnInit {
     if (this.form.invalid) {
         return;
     }
-	// console.log(this.form.value)
     // reset alerts on submit
     this.alertService.clear();
     // stop here if form is invalid

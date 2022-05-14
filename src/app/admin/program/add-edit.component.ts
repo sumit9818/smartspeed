@@ -52,7 +52,6 @@ export class ProgramAddEditComponent implements OnInit {
     }
 
     onItemSelect(item:any){
-      console.log(item.id);
   }
 
 
@@ -93,7 +92,6 @@ export class ProgramAddEditComponent implements OnInit {
 				this.removeInst(0)
 				
 				this.program = data;
-				// console.log(this.program.subtitles)
                 this.f.isactive.setValue(this.program.isactive);
                 this.selectedAthletes = this.program.athletes;
                 this.f.title.setValue(this.program.title);
@@ -120,9 +118,6 @@ export class ProgramAddEditComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log(this.form.value);
-        console.log(this.form);
-        
         this.submitted = true;
         // reset alerts on submit
         this.alertService.clear();

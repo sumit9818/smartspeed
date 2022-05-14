@@ -58,7 +58,6 @@ export class FaqAddEditComponent implements OnInit {
       if (!this.isAddMode) {
         this.faqservice.getFaqByID(this._id).subscribe(
 			data => {this.faq = data
-			// console.log(this.userdata.data.roles.id)
          	this.f.isactive.setValue(this.faq.data.isactive);
 			this.f.question.setValue(this.faq.data.question);
 			this.f.answer.setValue(this.faq.data.answer);

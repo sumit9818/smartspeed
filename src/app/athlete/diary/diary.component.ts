@@ -57,7 +57,6 @@ export class DiaryComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log(this.form.value);
         this.submitted = true;
         // reset alerts on submit
         this.alertService.clear();

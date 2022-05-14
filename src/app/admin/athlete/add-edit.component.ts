@@ -92,7 +92,7 @@ export class AthleteAddEditComponent implements OnInit {
     if (!this.isAddMode) {
       this.atheleteService.getAthleteById(this.id).subscribe((athlete: Athlete) => {
           this.athlete = { ...athlete };
-          console.log(this.athlete)
+          //console.log(this.athlete)
           // this.filepath= `${environment.imgUrl}`+this.athlete.profile_pic
           this.f.profile_pic.setValue(this.athlete.profile_pic);
           this.f.firstname.setValue(this.athlete.firstname);

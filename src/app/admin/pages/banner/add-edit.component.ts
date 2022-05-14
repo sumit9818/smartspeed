@@ -54,16 +54,12 @@ export class BannerAddEditComponent implements OnInit {
 
 	if(this.item == null){
 		this.isAddMode = true
-		console.log(this.item)
 	}else{
-		
 		this.isAddMode = false;
-		console.log(this.item)
 	}
     this.form = this.buildForm();
     this.updateFormValue();
 	this.getallicons()	
-	console.log('asdf_id')
   }
 
   getallicons(){
@@ -108,7 +104,6 @@ export class BannerAddEditComponent implements OnInit {
 			  } else if (event.type == HttpEventType.Response) {
 				this.picture = event.body.newfilename;
 				this.filepath = `${environment.IconUrl}` + this.picture;
-				console.log(event)
 				this.progressImage = null;
 				this.loading=false
 			  }
@@ -187,7 +182,6 @@ export class BannerAddEditComponent implements OnInit {
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-          		console.log(event)
 				this.picture = event.body.newfilename;
 				this.progressImage = null;
 

@@ -102,9 +102,6 @@ export class AddAthleteAssessmentComponent implements OnInit {
 	getNumber(){
 		const selectedValue = this.getDropDownText(this.assementModel, this.assessments.data)[0];
 		
-		console.log(selectedValue)
-
-		
 		this.selectedValue = parseInt((this.getDropDownText(this.assementModel, this.assessments.data)[0].assessment));
 		// console.log(this.selectedValue)
 		if (isNaN(this.selectedValue)){

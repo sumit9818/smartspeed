@@ -44,7 +44,7 @@ export class ViewAthleteProgramsComponent implements OnInit {
 		this.ProgramService.getAthleteProgram(this.programID, this.athleteID ).subscribe(
 			data => {
 				this.programDetails = data;
-				console.log('this.programDetails' , this.programDetails)
+				//console.log('this.programDetails' , this.programDetails)
 				this.programDetails.data.map(data=>{
 					this.subtitles.push(data.title)
 					this.status.push(data.ischecked)

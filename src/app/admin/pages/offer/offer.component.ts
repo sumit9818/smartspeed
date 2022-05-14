@@ -90,7 +90,6 @@ export class OfferComponent implements OnInit {
 	
 	onSubmitOffer() {
 		this.submitted = true;
-		console.log(this.form.value)
 		this.alertService.clear();
 		if (this.form.invalid) {return;}
 		this.loading = true;

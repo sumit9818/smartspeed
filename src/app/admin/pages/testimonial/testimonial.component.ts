@@ -20,7 +20,7 @@ export class TestimonialComponent implements OnInit{
     ngOnInit() {
         this.testimonialService.getAllTestimonial().pipe(first()).subscribe(
             testimonials => {this.testimonials = testimonials
-            console.log(this.testimonials)}
+            }
         )
     }
     deleteTestimonial(_id): void {

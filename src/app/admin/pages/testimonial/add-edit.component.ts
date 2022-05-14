@@ -61,8 +61,7 @@ export class TestimonialAddEditComponent implements OnInit {
       if (!this.isAddMode) {
         this.testimonialService.getTestimonialByID(this._id).subscribe(
 			data => {this.testimonial = data
-      this.filepath= `${environment.imgUrl}` +this.testimonial.data.image
-			// console.log(this.userdata.data.roles.id)
+      this.filepath= `${environment.imgUrl}` +this.testimonial.data.image;
       this.f.isactive.setValue(this.testimonial.data.isactive);
       this.f.image.setValue(this.testimonial.data.image);
 			this.f.name.setValue(this.testimonial.data.name);

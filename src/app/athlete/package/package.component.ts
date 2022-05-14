@@ -28,8 +28,6 @@ export class PackageComponent implements OnInit {
     ) {
     }
     ngOnInit(): void {
-
-        // console.log(this.plan)
         this.AccountService.getUserSubscription().pipe(first()).subscribe(plan =>{
             this.plan =plan
             if(this.plan.data.is_active == true ){
@@ -56,8 +54,6 @@ export class PackageComponent implements OnInit {
                             });
                           },
                           onApprove: function(data, actions) {
-                            // console.log(actions, data)
-                            // alert('You have successfully created subscription ');
                             var plandetails = {
                                 "payment_method":"Paypal",
                                 "package_id": payme.id,

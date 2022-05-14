@@ -24,8 +24,8 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { AthleteRoutingModule } from './athlete/athlete-routing.module';
 
-import { OwlModule } from 'ng2-owl-carousel';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+// import { OwlModule } from 'ng2-owl-carousel';
+// import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SafeHtmlPipe } from './safe-html';
 import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
@@ -42,8 +42,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
         AdminRoutingModule,
         AthleteRoutingModule,
         NgxSummernoteModule,
-        OwlModule,
-        CarouselModule,
+        // OwlModule,
+        // CarouselModule,
         NgSelectModule
         
     ],

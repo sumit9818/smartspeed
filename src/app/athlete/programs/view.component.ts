@@ -44,24 +44,17 @@ export class ViewAthleteProgramComponent implements OnInit {
 				this.subtitles.push(data.title)
 				this.status.push(data.ischecked)
 			})
-
-			// console.log('==',this.programs.data)
 		})
 	}
 
 	update(i , id , e){
-		const inputid = document.getElementById(id)
-
-		// console.log('submit==',{"subtitles":this.subtitles,
-		// "check":this.status})
-		
+		const inputid = document.getElementById(id)		
 		if(e.target.checked == true){
 			this.status[i]=true;
 		}else{
 			this.status[i]=false;
 		}
-		// /*
-		// console.log(this.subtitles,this.status)
+		
 		this.UpdateProgram({
 			"subtitles":this.subtitles,
 			"check":this.status
@@ -78,7 +71,6 @@ export class ViewAthleteProgramComponent implements OnInit {
 
 
 		UpdateProgram(params) {
-			// console.log(params)
 			return this.http.put(`${environment.apiUrl}/athlete/program/update/${this.id}`, params);
 			
 		}

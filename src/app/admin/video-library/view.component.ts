@@ -20,7 +20,7 @@ export class ViewVideoComponent implements OnInit{
         this.id = this.route.snapshot.params['id'];
        this.videoService.getVideoByID(this.id).pipe(first()).subscribe(
         video => {this.video = video;
-            console.log(this.video)
+            //console.log(this.video)
         }
        )
     }

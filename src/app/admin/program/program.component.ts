@@ -28,6 +28,7 @@ export class ProgramComponent implements OnInit {
 		this.programService.deleteProgram(id).subscribe((data: Response) => {
 			this.alertService.success('Program Deleted successfully', {keepAfterRouteChange: true});
 			this.programs = [...this.programs.filter(prg => prg.id !== id)];
+			this.getAllPrograms();
 		  },
 		  (error) => {
 			this.alertService.error(error);

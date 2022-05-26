@@ -25,8 +25,8 @@ export class ProgramViewComponent implements OnInit{
     private getProgramById(id: string): void {
         this.programService.getProgramById(id).subscribe((program: Program) => 
         {this.program = {...program}
-       // console.log(this.program)
         }
         );
     }
+    
 }

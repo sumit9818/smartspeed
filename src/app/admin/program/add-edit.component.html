@@ -1,60 +1,68 @@
 <h5 *ngIf="isAddMode" class="mt-2">Add Program</h5>
 <h5 *ngIf="!isAddMode" class="mt-2">Edit Program</h5>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form  [formGroup]="form"  (ngSubmit)="onSubmit()" >
+    <!-- X -->
 
-    <div class="col-sm-8">
-        <div class="">
-            <div class="row m-0">
-                <div class="col-sm-6">
-                    <label for="isactive">Status</label>
-                    <select formControlName="isactive" class="form-control">
+    <div>
+        
+        <!-- <button type="submit">submit</button> -->
+    </div>
+    <ul class="ptogram-wrapper">
+        <li>
+            <label for="isactive">Status</label>
+            <select formControlName="isactive" class="form-control">
                 <option value="">Select Status</option>
                 <option value="true">Active</option>
                 <option value="false">Inactive</option>
             </select>
-                </div>
 
-                <div class="col-sm-6">
-                    <label>Selected Athlete</label>
-                    <!-- <label *ngIf="isAddMode">Select Athlete</label> -->
-
-                    <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" [(ngModel)]="selectedAthletes" formControlName="athletes">
-                    </ng-select>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12">
             <label for="">Program Title</label>
-            <input type="text" class="form-control" formControlName="title" autofill="off" autocomplete="off" />
-        </div>
-        <!-- *ngIf="isAddMode" -->
+            <input type="text" class="form-control" formControlName="title" autofill="off" autocomplete="off"
+            placeholder="Program Name" />
+        </li>
 
-        <div class="col-sm-12" id="instructiongroup">
-            <label for="">Instruction</label>
-            <ng-container *ngIf="isAddMode">
-                <div *ngFor="let subtitles of getPhonesFormControls(); let i = index" style="display:flex;margin-bottom: 10px;">
-                    <ng-container>
-                        <input [formControl]="subtitles" type="text" class="form-control mb-0">
-                        <button (click)="removeInst(i)" type="button" class="btn btn-danger"><small>Remove</small></button>
-                    </ng-container>
-                </div>
-            </ng-container>
-
-            <ng-container *ngIf="!isAddMode">
-                <ng-container *ngIf="program">
-                    <div *ngFor="let title of program.subtitles">
-                        <span class="form-control mb-2 disabled">{{title}}</span>
+        <li formArrayName="data">
+            <ng-container  *ngFor="let data of form.controls.data['controls']; let i = index">
+            <ul class="mt-3"  formGroupName="{{i}}">
+                <li>
+                    <div class="v-group">
+                        <label>Instruction Title</label>
+                        <div class="d-flex">
+                            <input type="text" formControlName="instructionTitle" class="form-control">
+                            <button *ngIf="form.controls.data.controls.length > 1" type="button"
+                                (click)="deleteGroup(i)" class="btn btn-danger"><small>Delete Group</small></button>
+                        </div>
+                        <label>Video link</label>
+                        <input type="url" formControlName="videoLink" placeholder="video link" class="form-control">
                     </div>
-                </ng-container>
-            </ng-container>
-            <br>
-            <ng-container *ngIf="isAddMode">
-                <button (click)="addInst()" type="button" class="primary-btn">Add Instruction</button>
-            </ng-container>
-        </div>
-        <div class="mt-4 pl-3">
-            <button type="submit" class="secondry-btn">Save Details</button>
-        </div>
-    </div>
+
+                    <ul formArrayName="instruction">
+                        <li *ngFor="let title of data.controls.instruction.controls; let j = index"
+                        formGroupName="{{j}}">
+                            <div class="d-flex">
+                                <div  *ngIf="!isAddMode">
+                                    
+                                </div>
+                                <!-- <input type="hidden" formControlName="status" placeholder="status" class="form-control"> -->
+                                <input type="text" formControlName="title" placeholder="title" class="form-control">
+                                <button *ngIf="data.controls.instruction.controls.length > 1" type="button"
+                                        (click)="deleteInstruction(i,j)" class="btn btn-warning"><small>Delete Row</small></button>
+                            </div>
+                        </li>
+                        <div class="text-right">
+                            <button type="button" class="secondry-btn" (click)="addInstruction(i)">Add Instruction Rules</button>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+        </ng-container>
+        </li>
+    </ul>
+
+    <hr>
+   <div class="d-flex mb-5">
+    <button type="button" class="primary-btn mr-3" (click)="addGroup()">Add Program Instruction</button>
+    <button type="submit" class="primary-btn ">Save Program</button>
+   </div>
 </form>

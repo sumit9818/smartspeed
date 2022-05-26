@@ -1,1 +1,85 @@
 @import '../../../assets/comman-style.scss';
+
+.ptogram-wrapper{
+    list-style: none;
+    max-width: 70%;
+    ul{
+        position: relative;
+        padding-left: 42px;
+        
+        &::before{
+            content: '';
+            position: absolute;
+            border-left: 1px dashed $primary;
+            top: 0;
+            left: 10px;
+            bottom: -15px;
+        }
+        li{
+            position: relative;
+            list-style: none;
+            padding: 15px;
+            padding-top: 0px;
+            &::before{
+                content: '';
+                position: absolute;
+                border-bottom: 1px dashed $primary;
+                top: 26px;
+                left: -32px;
+                width: 41px;
+                height: 1px;
+            }
+            label{
+                margin: 0;
+            }
+            ul{
+                position: relative;
+            }
+        }
+        ul{
+            li:first-child{
+                padding-top: 10px;
+            }
+            li{
+                padding-right: 0;
+            }
+            &:last-child{
+                &::before{
+                    bottom: 54px !important;
+                }
+            }
+        }
+    }
+}
+
+.btn-danger, .btn-warning{
+    white-space: nowrap;
+}
+
+.v-group{
+    position: relative;
+    &:after{
+        content: '';
+        position: absolute;
+        top: 40px;
+        bottom: 20px;
+        width: 1px;
+        right: -15px;
+        border-right: 1px dashed #ccc;
+    }
+    label{
+        display: block;
+        position: relative;
+        &:after{
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 40px;
+            left: 50%;
+            bottom: 0;
+            height: 1px;
+            right: -15px;
+            border-bottom: 1px dashed #ccc;
+        }
+    }
+}

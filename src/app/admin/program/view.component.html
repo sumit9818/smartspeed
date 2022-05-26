@@ -1,6 +1,29 @@
 <h5 class="mt-2 mb-4">Program Details</h5>
 <div class="col-sm-12" *ngIf="program">
-    <h6>
+    <h6> instruction
+        <label class="badge bg-success" *ngIf="program.isactive" style="color: #fff">Active</label>
+        <label class="badge bg-warning" *ngIf="!program.isactive" style="color: #fff">Inactive</label>
+
+        <br />
+        <small>Created </small><br />
+        <small>{{ program.created_at | date: 'dd MMM yyyy' }} </small>
+        <br />
+    </h6>
+<hr>
+    <h5> {{ program.title }} </h5>
+    <ul>
+        <li *ngFor="let item of program.data" class="mb-2">
+            <a href="{{item.videoLink}}" target="_blank" *ngIf="item.videoLink != ''">{{item.videoLink}}</a>
+            <br>
+            <b>{{item.instructionTitle}}</b>
+            <ul>
+                <li  *ngFor="let instruction of item.instruction" class="mb-2">
+                    {{instruction.title}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- <h6> instruction
         <label class="badge bg-success" *ngIf="program.isactive" style="color: #fff">Active</label>
         <label class="badge bg-warning" *ngIf="!program.isactive" style="color: #fff">Inactive</label>
 
@@ -19,7 +42,7 @@
     <h5> {{ program.title }} </h5>
     <ol>
         <li *ngFor="let subtitle of program.subtitles" class="mb-2">{{subtitle}}</li>
-    </ol>
+    </ol> -->
     <!-- <div [innerHTML]="program.instruction">
 
     </div> -->

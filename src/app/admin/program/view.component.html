@@ -1,49 +1,35 @@
 <h5 class="mt-2 mb-4">Program Details</h5>
 <div class="col-sm-12" *ngIf="program">
-    <h6> instruction
+    <h6> 
         <label class="badge bg-success" *ngIf="program.isactive" style="color: #fff">Active</label>
         <label class="badge bg-warning" *ngIf="!program.isactive" style="color: #fff">Inactive</label>
-
+        <small style="font-size: 18px;"> {{ program.title }} </small>
         <br />
         <small>Created </small><br />
         <small>{{ program.created_at | date: 'dd MMM yyyy' }} </small>
         <br />
     </h6>
 <hr>
-    <h5> {{ program.title }} </h5>
-    <ul>
-        <li *ngFor="let item of program.data" class="mb-2">
-            <a href="{{item.videoLink}}" target="_blank" *ngIf="item.videoLink != ''">{{item.videoLink}}</a>
-            <br>
-            <b>{{item.instructionTitle}}</b>
-            <ul>
-                <li  *ngFor="let instruction of item.instruction" class="mb-2">
-                    {{instruction.title}}
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <!-- <h6> instruction
-        <label class="badge bg-success" *ngIf="program.isactive" style="color: #fff">Active</label>
-        <label class="badge bg-warning" *ngIf="!program.isactive" style="color: #fff">Inactive</label>
-
-        <br />
-        <small>Created </small><br />
-        <small>{{ program.created_at | date: 'dd MMM yyyy' }} </small>
-        <br />
-    </h6>
-    <p>Athletes</p>
-    <div *ngIf="program?.athletes">
-        <div class="tags">
-            <span *ngFor="let athlete of program.athletes"> {{ athlete.name }} </span>
-        </div>
+    
+    <div class="view-program-wrapper">
+        <ul>
+            <li *ngFor="let item of program.data" >
+               <div class="d-flex align-items-center ">
+                <a title="View Video" href="{{item.videoLink}}" class="mr-2" target="_blank" *ngIf="item.videoLink != ''">
+                    <svg class="mr-2" width="30.017" height="30.017" viewBox="0 0 30.017 30.017" fill="#9ECA01">
+                        <path d="M3,85.333H0v21.012a3,3,0,0,0,3,3H24.013v-3H3Z" transform="translate(0 -79.33)"></path>
+                        <path d="M106.345,0H88.335a3,3,0,0,0-3,3v18.01a3,3,0,0,0,3,3h18.01a3,3,0,0,0,3-3V3A3,3,0,0,0,106.345,0ZM94.338,18.76V5.253l9,6.754Z" transform="translate(-79.33)"></path>
+                    </svg>
+                </a>
+                
+                <b>{{item.instructionTitle}}</b>
+               </div>
+                <ul>
+                    <li  *ngFor="let instruction of item.instruction" class="mb-2">
+                        {{instruction.title}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
-    <hr />
-    <h5> {{ program.title }} </h5>
-    <ol>
-        <li *ngFor="let subtitle of program.subtitles" class="mb-2">{{subtitle}}</li>
-    </ol> -->
-    <!-- <div [innerHTML]="program.instruction">
-
-    </div> -->
 </div>

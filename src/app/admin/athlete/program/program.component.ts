@@ -32,7 +32,7 @@ export class ViewAthleteProgramsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-	this.ProgramService.getAllProgramsByID(this.athleteID).subscribe(
+	this.ProgramService.getAllPrograms().subscribe(
 		data =>{
 			this.programs = data;
 		}
@@ -41,14 +41,14 @@ export class ViewAthleteProgramsComponent implements OnInit {
 
 
 	getProgram(){
-		this.ProgramService.getAthleteProgram(this.programID, this.athleteID ).subscribe(
+		this.ProgramService.getProgramById(this.programID).subscribe(
 			data => {
 				this.programDetails = data;
 				//console.log('this.programDetails' , this.programDetails)
-				this.programDetails.data.map(data=>{
-					this.subtitles.push(data.title)
-					this.status.push(data.ischecked)
-				})
+				// this.programDetails.data.map(data=>{
+				// 	this.subtitles.push(data.title)
+				// 	this.status.push(data.ischecked)
+				// })
 			} 
 		)
 	}	

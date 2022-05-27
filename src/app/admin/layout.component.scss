@@ -41,6 +41,9 @@ header {
     bottom: 0;
     z-index: 6;
     background: rgba($primary, .2);
+    &:hover{
+        z-index: 8;
+    }
     .site-logo {
         padding: 10px 10px 10px 16px;
         background: $secondry;
@@ -158,7 +161,8 @@ header {
 
 main {
     padding-right: 15px;
-    padding-top: 50px;
+    top: 42px !important;
+    z-index: 7;
 }
 
 .upic {

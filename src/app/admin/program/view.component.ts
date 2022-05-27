@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { Program } from '../../_models/program.model';
 @Component({
     templateUrl: 'view.component.html',
-    // styleUrls: ['add-edit.component.scss'] 
+    styleUrls: ['./program.component.scss'] 
  })
 export class ProgramViewComponent implements OnInit{
     program: Program;

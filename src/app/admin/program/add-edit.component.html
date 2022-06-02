@@ -16,10 +16,16 @@
                 <option value="true">Active</option>
                 <option value="false">Inactive</option>
             </select>
+            <div *ngIf="submitted && form.controls.isactive.errors" class="error">
+                <div *ngIf="form.controls.isactive.errors.required">Please Select Status</div>
+            </div>
 
             <label for="">Program Title</label>
             <input type="text" class="form-control" formControlName="title" autofill="off" autocomplete="off"
             placeholder="Program Name" />
+            <div *ngIf="submitted && form.controls.title.errors" class="error">
+                <div *ngIf="form.controls.title.errors.required">Title is required</div>
+            </div>
         </li>
 
         <li formArrayName="data">
@@ -33,21 +39,30 @@
                             <button *ngIf="form.controls.data.controls.length > 1" type="button"
                                 (click)="deleteGroup(i)" class="btn btn-danger"><small>Delete Group</small></button>
                         </div>
-                        <label>Video link</label>
-                        <input type="url" formControlName="videoLink" placeholder="video link" class="form-control">
+                        <div *ngIf="submitted && data.controls.instructionTitle.errors" class="error">
+                            <div *ngIf="data.controls.instructionTitle.errors.required">Title is required</div>
+                        </div>
+                        <ng-container *ngIf="videos">
+                            <label>Video link</label>
+                            <select name="" class="form-control" formControlName="videoLink">
+                                <option value="">Select Video</option>
+                                <option [value]="item.id" *ngFor="let item of videos.data" >{{item.title}}</option>
+                            </select>
+                        </ng-container>
+                        <!-- <input type="url" formControlName="videoLink" placeholder="video link" class="form-control"> -->
                     </div>
 
                     <ul formArrayName="instruction">
                         <li *ngFor="let title of data.controls.instruction.controls; let j = index"
                         formGroupName="{{j}}">
                             <div class="d-flex">
-                                <div  *ngIf="!isAddMode">
-                                    
-                                </div>
-                                <!-- <input type="hidden" formControlName="status" placeholder="status" class="form-control"> -->
                                 <input type="text" formControlName="title" placeholder="title" class="form-control">
+                               
                                 <button *ngIf="data.controls.instruction.controls.length > 1" type="button"
                                         (click)="deleteInstruction(i,j)" class="btn btn-warning"><small>Delete Row</small></button>
+                            </div>
+                            <div *ngIf="submitted && title.controls.title.errors" class="error">
+                                <div *ngIf="title.controls.title.errors.required">This field can not be Empty</div>
                             </div>
                         </li>
                         <div class="text-right">

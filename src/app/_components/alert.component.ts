@@ -37,14 +37,14 @@ export class AlertComponent implements OnInit, OnDestroy {
                 if (alert.autoClose) {
                     setTimeout(() => this.removeAlert(alert), 3000);
                 }
-                // $(document).on('click' , '.alert-wrap' , function(){
-                //     $(this).hide();
-                // })
-                // $('body').keydown(function(e){
-                //     if(e.keyCode == 27){
-                //         $('.alert-wrap').hide();
-                //     }
-                // });
+                $(document).on('click' , '.alert-wrap' , function(){
+                    $(this).hide();
+                })
+                $('body').keydown(function(e){
+                    if(e.keyCode == 27){
+                        $('.alert-wrap').hide();
+                    }
+                });
            });
 
         // clear alerts on location change

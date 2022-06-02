@@ -3,9 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators,FormControl  } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Athlete } from '@app/_models/athlete.class';
-import { AlertService, AthleteService, ProgramService } from '@app/_services';
+import { AlertService, AthleteService, ProgramService, VideoService } from '@app/_services';
 import { Program } from '@app/_models/program.model';
-import { tap } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';	
 import { ProgramHeader } from '@app/_models/program-header.class';
 import { ProgramNewServiceResponse } from '@app/_models/program-new-response.model';
 
@@ -25,6 +25,7 @@ export class ProgramAddEditComponent implements OnInit {
 	program: any;
 	subtitles: [];
 	steps: any = [];
+	videos: any;
 	config = {
 		dialogsInBody: true,
 		placeholder: '',
@@ -34,6 +35,7 @@ export class ProgramAddEditComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
+		private videoservice: VideoService,
 		private route: ActivatedRoute,
 		private router: Router,
 		private athleteService: AthleteService,
@@ -43,14 +45,18 @@ export class ProgramAddEditComponent implements OnInit {
 		
 	}
 	// get all videos
+	getvideo(){
+		this.videoservice.getAllVideo().pipe(first()).subscribe(videos => {
+			this.videos = videos
+		})
+	}
 
-
-	get f() { return this.form.controls }
+	get f() { return this.form.controls; }
 	
 	private buildForm(): FormGroup {
 		return  this.fb.group({
-            isactive: ['',Validators.compose([Validators.required])],
-            title: ['',Validators.compose([Validators.required])],
+            isactive: ['',Validators.required],
+            title: ['',Validators.required],
 			data: this.fb.array([])
         });
 	}
@@ -67,6 +73,7 @@ export class ProgramAddEditComponent implements OnInit {
     }
 
 	ngOnInit() {
+		this.getvideo();
 		this.athleteService.getAllAthletes().subscribe((athlete: Athlete[]) => this.athlete = [...athlete]);
 		this.id = this.route.snapshot.params['id'];
 		this.isAddMode = !this.id;
@@ -77,12 +84,13 @@ export class ProgramAddEditComponent implements OnInit {
 
 	addInstruction(userIndex: number, data?: any) {
 		let fg = this.fb.group({
-			'title': [data ? data.title : '', Validators.compose([Validators.required])],
+			'title': [data ? data.title : '', Validators.required],
 			'status': [data ? data.status : false],
 		});
 
 		(<FormArray>(<FormGroup>(<FormArray>this.form.controls.data)
 			.controls[userIndex]).controls['instruction']).push(fg);
+		// this.getvideo();
 	}
 
 	deleteInstruction(userIndex: number, index: number) {
@@ -93,7 +101,7 @@ export class ProgramAddEditComponent implements OnInit {
 	addGroup(data?: any) {
 		if (!data) {
 			let fg = this.fb.group({
-				'instructionTitle': [data ? data.instructionTitle : '', Validators.compose([Validators.required])],
+				'instructionTitle': [data ? data.instructionTitle : '', Validators.required],
 				'videoLink': [data ? data.videoLink : ''],
 				'instruction': this.fb.array([]),
 			});
@@ -105,7 +113,7 @@ export class ProgramAddEditComponent implements OnInit {
 		else {		
 			data.data.forEach(instructions => {
 				let fg = this.fb.group({
-					'instructionTitle': [data ? instructions.instructionTitle : '', Validators.compose([Validators.required])],
+					'instructionTitle': [data ? instructions.instructionTitle : '', Validators.required],
 					'videoLink': [data ? instructions.videoLink : ''],
 					'instruction': this.fb.array([]),
 				});
@@ -171,6 +179,30 @@ export class ProgramAddEditComponent implements OnInit {
         );
       }
 
-
+	  validationMessages = {
+		Xs: {
+		  X: {
+			required: 'X is required.',
+			pattern: 'X must be 3 characters long.'
+	
+		  },
+		  Ys: {
+			Y1: {
+			  required: 'Y1 is required.',
+			  pattern: 'Y1 must be 3 characters long.'
+			},
+			Y2: {
+			  required: 'Y2 is required.',
+			  pattern: 'Y2 must be 3 characters long.'
+			},
+			Zs: {
+			  Z: {
+				required: 'Z is required.',
+				pattern: 'Z must be 3 characters long.'
+			  }
+			}
+		  }
+		}
+	  };
 
 }

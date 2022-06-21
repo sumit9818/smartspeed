@@ -8,6 +8,8 @@ import { Program } from '@app/_models/program.model';
 import { first, tap } from 'rxjs/operators';	
 import { ProgramHeader } from '@app/_models/program-header.class';
 import { ProgramNewServiceResponse } from '@app/_models/program-new-response.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from '@environments/environment';
 
 @Component({
 	templateUrl: 'add-edit.component.html',
@@ -26,6 +28,7 @@ export class ProgramAddEditComponent implements OnInit {
 	subtitles: [];
 	steps: any = [];
 	videos: any;
+	filepath = `${environment.imgUrl}`
 	config = {
 		dialogsInBody: true,
 		placeholder: '',
@@ -39,6 +42,7 @@ export class ProgramAddEditComponent implements OnInit {
 		private videoservice: VideoService,
 		private route: ActivatedRoute,
 		private router: Router,
+		private modalService: NgbModal,
 		private athleteService: AthleteService,
 		private programService: ProgramService,
 		private alertService: AlertService
@@ -92,6 +96,7 @@ export class ProgramAddEditComponent implements OnInit {
 
 		this.form = this.buildForm()
         this.updateFormValue();
+		this.addGroup()
 	}
 
 	addInstruction(userIndex: number, data?: any) {
@@ -103,9 +108,8 @@ export class ProgramAddEditComponent implements OnInit {
 
 		(<FormArray>(<FormGroup>(<FormArray>this.form.controls.data)
 			.controls[userIndex]).controls['instruction']).push(fg);
-		// this.getvideo();
 	}
-
+	
 	deleteInstruction(userIndex: number, index: number) {
 		(<FormArray>(<FormGroup>(<FormArray>this.form.controls.data)
 			.controls[userIndex]).controls['instruction']).removeAt(index);
@@ -192,4 +196,7 @@ export class ProgramAddEditComponent implements OnInit {
         );
       }
 
+	  openModal(VideoModal:any) {
+		this.modalService.open(VideoModal, { size: 'lg' });
+	}
 }

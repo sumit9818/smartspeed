@@ -27,7 +27,7 @@
                 <div *ngIf="form.controls.title.errors.required">Title is required</div>
             </div>
 
-            <label>Selected Athlete</label>
+            <label>Selecte Athlete</label>
                     <!-- <label *ngIf="isAddMode">Select Athlete</label> -->
 
                     <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" [(ngModel)]="selectedAthletes" formControlName="athletes">
@@ -35,13 +35,16 @@
         </li>
 
         <li formArrayName="data">
-            <ng-container  *ngFor="let data of form.controls.data['controls']; let i = index">
+            <ng-container  *ngFor="let data of form.controls.data['controls']; let i = index; let last = last">
             <ul class="mt-3"  formGroupName="{{i}}">
                 <li>
                     <div class="v-group">
                         <label>Instruction Title</label>
                         <div class="d-flex">
-                            <input type="text" formControlName="instructionTitle" class="form-control">
+                            <ng-container *ngIf="last">
+                                <img src="assets/icons/add.svg" (click)="addGroup()" style="cursor: pointer;margin-left: -38px;">
+                            </ng-container>
+                            <input type="text" formControlName="instructionTitle" class="form-control" placeholder="instruction">
                             <button *ngIf="form.controls.data.controls.length > 1" type="button"
                                 (click)="deleteGroup(i)" class="btn btn-danger"><small>Delete Group</small></button>
                         </div>
@@ -53,7 +56,7 @@
                     </div>
 
                     <ul formArrayName="instruction">
-                        <li *ngFor="let title of data.controls.instruction.controls; let j = index"
+                        <li *ngFor="let title of data.controls.instruction.controls; let j = index; let last = last"
                         formGroupName="{{j}}">
                             <ng-container *ngIf="videos && showvideo[j+i]">
                                 <label>Video link</label>
@@ -63,19 +66,50 @@
                                 </select>
                             </ng-container>
                             <div class="d-flex">
-                                <input type="text" formControlName="title" placeholder="title" class="form-control">
+                                <ng-container *ngIf="last">
+                                    <img src="assets/icons/add.svg" (click)="addInstruction(i)" style="cursor: pointer;margin-left: -38px;">
+                                </ng-container>
+                                <input type="text" formControlName="title" placeholder="Rule" class="form-control">
                                 
+                                <!-- <input type="text" formControlName="videoLink" placeholder="vlink" class="form-control"> -->
                                 <button *ngIf="data.controls.instruction.controls.length > 1" type="button"
-                                        (click)="deleteInstruction(i,j)" class="btn btn-warning"><small>Delete Row </small></button>
-                                <button  type="button" class="btn btn-success ml-1" ><small>Add Video</small></button>
+                                        (click)="deleteInstruction(i,j)" class="btn btn-warning"><small>Delete Rule </small></button>
+                                <button  type="button" class="btn btn-success ml-1" (click)="openModal(VideoModal)"><small>Add Video</small></button>
+
+                                <ng-template #VideoModal let-modal>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                            <img src="assets/images/close.svg">
+                                    </button>
+                                    <div class="modal-body ">
+                                        <ng-container *ngIf="videos">
+                                            <label>Select Video</label>
+                                            <label class="d-flex" style="flex-wrap: wrap;">
+                                                <div *ngFor="let item of videos.data" class="videobox">
+                                                    <p>
+                                                        <input type="radio" formControlName="videoLink" name="videoLink" [value]="item.title" id="">
+                                                        {{item.title}}</p>
+                                                    <video [poster]="filepath+item.thumbnail_image" controls="" style="width: 100%;border: 1px solid #ccc;">
+                                                        <source [src]="filepath+item.video_url" type="video/mp4">
+                                                        <source src="filepath+item.video_url" type="video/ogg">
+                                                    </video>
+                                                </div>
+                                            </label>
+                                            <!-- <select name="" class="form-control mb-1" formControlName="videoLink">
+                                                <option value="">Select Video</option>
+                                                <option [value]="item.id" *ngFor="let item of videos.data" >{{item.title}}</option>
+                                            </select> -->
+                                        </ng-container>
+                                    </div>
+                                </ng-template>
+
                             </div>
                             <div *ngIf="submitted && title.controls.title.errors" class="error">
                                 <div *ngIf="title.controls.title.errors.required">This field can not be Empty</div>
                             </div>
                         </li>
-                        <div class="text-right">
+                        <!-- <div class="text-right">
                             <button type="button" class="secondry-btn" (click)="addInstruction(i)">Add Instruction Rules</button>
-                        </div>
+                        </div> -->
                     </ul>
                 </li>
             </ul>
@@ -85,7 +119,8 @@
 
     <hr>
    <div class="d-flex mb-5">
-    <button type="button" class="primary-btn mr-3" (click)="addGroup()">Add Program Instruction</button>
+    <!-- <button type="button" class="primary-btn mr-3" (click)="addGroup()">Add Program Instruction</button> -->
     <button type="submit" class="primary-btn ">Save Program</button>
    </div>
 </form>
+

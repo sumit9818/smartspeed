@@ -16,8 +16,8 @@ export class ProgramsComponent implements OnInit {
     }
     ngOnInit(){
       this.accountService.user.subscribe(x => {this.user = x});
-      const url = `${environment.apiUrl}/new/program/all`;
-    	this.http.get(url).subscribe(programs => {this.programs = programs})
+      // const url = `${environment.apiUrl}/new/program/all`;
+    	// this.http.get(url).subscribe(programs => {this.programs = programs})
     }
     
 }

@@ -114,14 +114,14 @@
 
         </div>
         <main>
-            <ng-container *ngIf="plan == true || router.url === '/payment' || 
+            <!-- <ng-container *ngIf="plan == true || router.url === '/payment' || 
             router.url === '/account'|| router.url === '/ask'|| router.url === '/account/edit'">
                 <router-outlet></router-outlet>
             </ng-container>
             <ng-container *ngIf="plan == false && router.url != '/payment' && router.url != '/account' && router.url != '/ask'">
                 <app-package></app-package>
-            </ng-container>
-            <!-- <router-outlet></router-outlet> -->
+            </ng-container> -->
+            <router-outlet></router-outlet>
         </main>
 
     </div>

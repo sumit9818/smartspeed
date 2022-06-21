@@ -1,39 +1,43 @@
 @import '../../../assets/comman-style.scss';
 
+button{
+    white-space: nowrap;
+}
 .program-wrapper{
     list-style: none;
-    max-width: 70%;
+    max-width: 700px;
     ul{
         position: relative;
         padding-left: 42px;
         
-        &::before{
-            content: '';
-            position: absolute;
-            border-left: 1px dashed $primary;
-            top: 0;
-            left: 10px;
-            bottom: -15px;
-        }
+        // &::before{
+        //     content: '';
+        //     position: absolute;
+        //     border-left: 1px dashed $primary;
+        //     top: 0;
+        //     left: 10px;
+        //     bottom: -15px;
+        // }
         li{
             position: relative;
             list-style: none;
             padding: 15px;
             padding-top: 0px;
-            &::before{
-                content: '';
-                position: absolute;
-                border-bottom: 1px dashed $primary;
-                top: 26px;
-                left: -32px;
-                width: 41px;
-                height: 1px;
-            }
+            // &::before{
+            //     content: '';
+            //     position: absolute;
+            //     border-bottom: 1px dashed $primary;
+            //     top: 26px;
+            //     left: -32px;
+            //     width: 41px;
+            //     height: 1px;
+            // }
             label{
                 margin: 0;
             }
             ul{
                 position: relative;
+                padding-left: 0px;
             }
         }
         ul{
@@ -42,12 +46,13 @@
             }
             li{
                 padding-right: 0;
+                padding-left: 0;
             }
-            &:last-child{
-                &::before{
-                    bottom: 54px !important;
-                }
-            }
+            // &:last-child{
+            //     &::before{
+            //         bottom: 54px !important;
+            //     }
+            // }
         }
     }
 }

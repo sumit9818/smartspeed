@@ -32,7 +32,8 @@ export class ViewAthleteProgramsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-	this.ProgramService.getAllPrograms().subscribe(
+	  this.id = this.route.snapshot.params['id']
+	this.ProgramService.getAthleteProgramAll(this.athleteID).subscribe(
 		data =>{
 			this.programs = data;
 		}
@@ -41,14 +42,14 @@ export class ViewAthleteProgramsComponent implements OnInit {
 
 
 	getProgram(){
-		this.ProgramService.getProgramById(this.programID).subscribe(
+		this.ProgramService.getAthleteProgramAll(this.id).subscribe(
 			data => {
-				this.programDetails = data;
-				//console.log('this.programDetails' , this.programDetails)
-				// this.programDetails.data.map(data=>{
-				// 	this.subtitles.push(data.title)
-				// 	this.status.push(data.ischecked)
-				// })
+				
+				for(let x of data){
+					if(x.id === this.programID){
+						this.programDetails = x
+					}
+				}
 			} 
 		)
 	}	

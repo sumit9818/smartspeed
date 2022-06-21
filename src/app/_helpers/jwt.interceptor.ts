@@ -18,7 +18,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (isLoggedIn && isApiUrl) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: this.accountService.userValue.accessToken
+                    Authorization: this.accountService.userValue.accessToken,
                 }
             });
         }

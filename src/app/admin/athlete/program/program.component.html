@@ -7,12 +7,11 @@
     </select>
 </ng-template> -->
 
-<div>
 
     <select class="form-control" (change)="getProgram()" [(ngModel)]="programID">
         <option value="undefiend">Select program</option>
         <ng-container *ngIf="programs">
-            <option *ngFor="let program of programs" [value]="program._id">{{program.title}}</option>
+            <option *ngFor="let program of programs" [value]="program.id">{{program.title}}</option>
         </ng-container>
     </select>
 
@@ -23,25 +22,24 @@
         <div class="view-program-wrapper">
             <ul>
                 <li *ngFor="let item of programDetails.data" >
-                    <div class="d-flex align-items-center ">
-                    <a title="View Video" href="{{item.videoLink}}" class="mr-2" target="_blank" *ngIf="item.videoLink != ''">
-                        <svg class="mr-2" width="30.017" height="30.017" viewBox="0 0 30.017 30.017" fill="#9ECA01">
-                            <path d="M3,85.333H0v21.012a3,3,0,0,0,3,3H24.013v-3H3Z" transform="translate(0 -79.33)"></path>
-                            <path d="M106.345,0H88.335a3,3,0,0,0-3,3v18.01a3,3,0,0,0,3,3h18.01a3,3,0,0,0,3-3V3A3,3,0,0,0,106.345,0ZM94.338,18.76V5.253l9,6.754Z" transform="translate(-79.33)"></path>
-                        </svg>
-                    </a>
-                    
+                   <div class="d-flex align-items-center ">
                     <b>{{item.instructionTitle}}</b>
-                    </div>
+                   </div>
                     <ul>
                         <li  *ngFor="let instruction of item.instruction" class="mb-2">
-                            {{instruction.title}}
+                            <div class="d-flex align-items-center ">
+                                <a title="View Video" href="/admin/video-library/view/{{instruction.videoLink}}" class="mr-2" target="_blank" *ngIf="item.videoLink != ''">
+                                    <svg class="mr-2" width="30.017" height="30.017" viewBox="0 0 30.017 30.017" fill="#9ECA01">
+                                        <path d="M3,85.333H0v21.012a3,3,0,0,0,3,3H24.013v-3H3Z" transform="translate(0 -79.33)"></path>
+                                        <path d="M106.345,0H88.335a3,3,0,0,0-3,3v18.01a3,3,0,0,0,3,3h18.01a3,3,0,0,0,3-3V3A3,3,0,0,0,106.345,0ZM94.338,18.76V5.253l9,6.754Z" transform="translate(-79.33)"></path>
+                                    </svg>
+                                </a>
+                                <div>{{instruction.title}}</div>
+                                </div>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>  
-        
-</div>
    

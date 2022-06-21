@@ -21,8 +21,10 @@ export class AccountComponent implements OnInit {
     ngOnInit(){
         this.accountService.user.subscribe(x => this.user = x);
         this.filepath= `${environment.imgUrl}`
-        this.AthleteService.getAthleteById(this.user.id).subscribe(athlete=> {this.athlete = athlete;
-		    this.filepath= `${environment.imgUrl}`+this.athlete.profile_pic})
+        this.AthleteService.getAthleteById(this.user.id).subscribe(
+          athlete=> {
+            this.athlete = athlete;
+		      this.filepath= `${environment.imgUrl}`+this.athlete.profile_pic})
           
     }
     

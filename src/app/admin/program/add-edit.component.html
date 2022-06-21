@@ -26,6 +26,12 @@
             <div *ngIf="submitted && form.controls.title.errors" class="error">
                 <div *ngIf="form.controls.title.errors.required">Title is required</div>
             </div>
+
+            <label>Selected Athlete</label>
+                    <!-- <label *ngIf="isAddMode">Select Athlete</label> -->
+
+                    <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" [(ngModel)]="selectedAthletes" formControlName="athletes">
+                    </ng-select>
         </li>
 
         <li formArrayName="data">
@@ -42,24 +48,26 @@
                         <div *ngIf="submitted && data.controls.instructionTitle.errors" class="error">
                             <div *ngIf="data.controls.instructionTitle.errors.required">Title is required</div>
                         </div>
-                        <ng-container *ngIf="videos">
-                            <label>Video link</label>
-                            <select name="" class="form-control" formControlName="videoLink">
-                                <option value="">Select Video</option>
-                                <option [value]="item.id" *ngFor="let item of videos.data" >{{item.title}}</option>
-                            </select>
-                        </ng-container>
+                      
                         <!-- <input type="url" formControlName="videoLink" placeholder="video link" class="form-control"> -->
                     </div>
 
                     <ul formArrayName="instruction">
                         <li *ngFor="let title of data.controls.instruction.controls; let j = index"
                         formGroupName="{{j}}">
+                            <ng-container *ngIf="videos && showvideo[j+i]">
+                                <label>Video link</label>
+                                <select name="" class="form-control mb-1" formControlName="videoLink">
+                                    <option value="">Select Video</option>
+                                    <option [value]="item.id" *ngFor="let item of videos.data" >{{item.title}}</option>
+                                </select>
+                            </ng-container>
                             <div class="d-flex">
                                 <input type="text" formControlName="title" placeholder="title" class="form-control">
-                               
+                                
                                 <button *ngIf="data.controls.instruction.controls.length > 1" type="button"
-                                        (click)="deleteInstruction(i,j)" class="btn btn-warning"><small>Delete Row</small></button>
+                                        (click)="deleteInstruction(i,j)" class="btn btn-warning"><small>Delete Row </small></button>
+                                <button  type="button" class="btn btn-success ml-1" ><small>Add Video</small></button>
                             </div>
                             <div *ngIf="submitted && title.controls.title.errors" class="error">
                                 <div *ngIf="title.controls.title.errors.required">This field can not be Empty</div>

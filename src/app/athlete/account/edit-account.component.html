@@ -23,10 +23,17 @@
                 <input type="text" class="form-control" value="{{user.username}}" disabled>
             </div>
             <div class="col-sm-6">
-                <label for="name">Full Name</label>
-                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                    <div *ngIf="f.name.errors.required"> Name is required</div>
+                <label for="name">First Name</label>
+                <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstname.errors.required"> Name is required</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="name">Last Name</label>
+                <input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required">Last Name is required</div>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -63,12 +70,16 @@
 
             <div class="col-sm-12">
                 <label for="email">Sports</label>
-                <ng-select [items]="athlete.sports" 
+                <!-- <ng-select [items]="athlete.sports" 
                 [multiple]="true"
                 bindLabel="name"   
                 bindValue="_id" 
                 [(ngModel)]="selectedSports"
                 formControlName="sports_id">
+            </ng-select> -->
+            <ng-select [items]="sports" [multiple]="true" 
+            bindLabel="name" 
+            bindValue="_id" [(ngModel)]="selectedSports" formControlName="sports_id">
             </ng-select>
             </div>
             <div class="col-sm-12">

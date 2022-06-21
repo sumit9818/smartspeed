@@ -33,6 +33,7 @@ export class ProgramAddEditComponent implements OnInit {
 		height: '350px',
 	};
 
+	showvideo:any=[];
 	constructor(
 		private fb: FormBuilder,
 		private videoservice: VideoService,
@@ -56,6 +57,7 @@ export class ProgramAddEditComponent implements OnInit {
 	private buildForm(): FormGroup {
 		return  this.fb.group({
             isactive: ['',Validators.required],
+			athletes: [this.selectedAthletes],
             title: ['',Validators.required],
 			data: this.fb.array([])
         });
@@ -64,10 +66,20 @@ export class ProgramAddEditComponent implements OnInit {
         if (!this.isAddMode) {
             this.programService.getProgramById(this.id).subscribe((data: any) => {
 				this.program = data;
-				console.log(this.program)
 				this.f.isactive.setValue(this.program.isactive);
 				this.f.title.setValue(this.program.title);
+				this.selectedAthletes = this.program.athletes;
 				this.addGroup(data);
+
+				let csv_selected_ids='';
+				this.selectedAthletes.forEach(function (elementVal) {
+					csv_selected_ids+= elementVal._id + ',';
+				});
+				console.log(this.selectedAthletes)
+				if(csv_selected_ids != ''){
+					csv_selected_ids=csv_selected_ids.slice(0,-1);
+					this.selectedAthletes = csv_selected_ids.split(',');
+				}
             });
         }
     }
@@ -85,6 +97,7 @@ export class ProgramAddEditComponent implements OnInit {
 	addInstruction(userIndex: number, data?: any) {
 		let fg = this.fb.group({
 			'title': [data ? data.title : '', Validators.required],
+			'videoLink': [data ? data.videoLink : ''],
 			'status': [data ? data.status : false],
 		});
 
@@ -102,7 +115,7 @@ export class ProgramAddEditComponent implements OnInit {
 		if (!data) {
 			let fg = this.fb.group({
 				'instructionTitle': [data ? data.instructionTitle : '', Validators.required],
-				'videoLink': [data ? data.videoLink : ''],
+				// 'videoLink': [data ? data.videoLink : ''],
 				'instruction': this.fb.array([]),
 			});
 			(<FormArray>this.form.get('data')).push(fg);
@@ -114,7 +127,7 @@ export class ProgramAddEditComponent implements OnInit {
 			data.data.forEach(instructions => {
 				let fg = this.fb.group({
 					'instructionTitle': [data ? instructions.instructionTitle : '', Validators.required],
-					'videoLink': [data ? instructions.videoLink : ''],
+					// 'videoLink': [data ? instructions.videoLink : ''],
 					'instruction': this.fb.array([]),
 				});
 				(<FormArray>this.form.get('data')).push(fg);
@@ -178,31 +191,5 @@ export class ProgramAddEditComponent implements OnInit {
             })
         );
       }
-
-	  validationMessages = {
-		Xs: {
-		  X: {
-			required: 'X is required.',
-			pattern: 'X must be 3 characters long.'
-	
-		  },
-		  Ys: {
-			Y1: {
-			  required: 'Y1 is required.',
-			  pattern: 'Y1 must be 3 characters long.'
-			},
-			Y2: {
-			  required: 'Y2 is required.',
-			  pattern: 'Y2 must be 3 characters long.'
-			},
-			Zs: {
-			  Z: {
-				required: 'Z is required.',
-				pattern: 'Z must be 3 characters long.'
-			  }
-			}
-		  }
-		}
-	  };
 
 }

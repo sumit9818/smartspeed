@@ -27,7 +27,7 @@ export class EditAccountComponent implements OnInit {
     pic:any;
     picture:any;
     filepath:any;
-
+    sports:any;
     imageUrl: string;
 	progressImage: number;
 
@@ -47,6 +47,7 @@ export class EditAccountComponent implements OnInit {
         this.filepath= `${env.imgUrl}`+this.user.profile_pic;
         this.id = this.user.id;
         this.isAddMode = !this.id;
+        this.sportsService.getAllSports().subscribe((sports) => (this.sports = [...sports]));
         this.form = this.buildForm();
         this.updateFormValue();
     }
@@ -60,7 +61,8 @@ export class EditAccountComponent implements OnInit {
         }
 		return this.formBuilder.group({
             profile_pic: [''],
-            name: ['', Validators.required],
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required],
             username: ['', Validators.required],
             email: ['', Validators.required],
             contact: ['', Validators.required],
@@ -77,7 +79,8 @@ export class EditAccountComponent implements OnInit {
             this.filepath= `${env.imgUrl}`+this.athlete.profile_pic
             this.f.profile_pic.setValue(this.athlete.profile_pic);
             this.f.username.setValue(this.athlete.username);
-            this.f.name.setValue(this.athlete.name);
+            this.f.firstname.setValue(this.athlete.firstname);
+            this.f.lastname.setValue(this.athlete.lastname);
             this.f.email.setValue(this.athlete.email);
             this.f.gender.setValue(this.athlete.gender);
             this.f.contact.setValue(this.athlete.contact);
@@ -85,16 +88,16 @@ export class EditAccountComponent implements OnInit {
             this.f.age.setValue(this.athlete.age);
             
             this.selectedSports = this.athlete.sports;
-		    let csv_selected_ids='';
-			this.selectedSports.forEach(function (elementVal) {
-				csv_selected_ids+= elementVal._id + ',';
-			});
-
-			if(csv_selected_ids != ''){
-				csv_selected_ids=csv_selected_ids.slice(0,-1);
-				this.selectedSports = csv_selected_ids.split(',');
-			}
-
+		   
+            let csv_selected_ids='';
+            this.selectedSports.forEach(function (elementVal) {
+              csv_selected_ids+= elementVal._id + ',';
+            });
+  
+            if(csv_selected_ids != ''){
+              csv_selected_ids=csv_selected_ids.slice(0,-1);
+              this.selectedSports = csv_selected_ids.split(',');
+            }
         });
       
     }

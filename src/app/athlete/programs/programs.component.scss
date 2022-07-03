@@ -58,3 +58,39 @@ a.programs:hover {
     align-items: center;
     justify-content: space-between;
 }
+
+
+.view-program-wrapper{
+    margin-top: 30px;
+    ul{
+        list-style: none;
+        position: relative;
+        padding-left: 42px;
+        li{
+            position: relative;
+            list-style: none;
+            padding: 15px;
+            padding-top: 0px;
+            label{
+                margin: 0;
+            }
+            ul{
+                position: relative;
+            }
+        }
+        ul{
+            li:first-child{
+                padding-top: 10px;
+            }
+            li{
+                padding-right: 0;
+            }
+            &:last-child{
+                &::before{
+                    bottom: 0px !important;
+                }
+            }
+        }
+    }
+}
+

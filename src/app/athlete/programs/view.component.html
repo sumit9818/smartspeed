@@ -1,16 +1,54 @@
-<div *ngIf="progratitle">
-    <span *ngFor="let program of progratitle.data">
-        <span *ngIf="id === program.id">
-            <h6 class="page-title">{{program.title}}</h6>
-        </span>
-    </span>
-</div>
+<div *ngIf="programDetails" class="mt-3">
+    <h6> {{ programDetails.title }} </h6>
 
-<div *ngIf="programs">
-    <!-- <p *ngFor="let program of programs.data | keyvalue : returnZero ; let i = index"> -->
-    <p *ngFor="let program of programs.data ; let i = index">
-        <input type="checkbox" [id]="program.id" [checked]="program.ischecked" (change)="update(i , program.id , $event)">
-        <span *ngIf="program.ischecked == false">{{program.title}}</span>
-        <del *ngIf="program.ischecked == true">{{program.title}}</del>
-    </p>
+    <div class="view-program-wrapper">
+        <ul>
+            <li *ngFor="let item of programDetails.data.data" >
+            <div class="d-flex align-items-center ">
+                <b>{{item.instructionTitle}}</b>
+            </div>
+                <ul>
+                    <li  *ngFor="let instruction of item.instruction" class="d-flex mb-2" style="align-items:flex-start">
+                        
+                        <input type="checkbox" [checked]="instruction.status" (change)="update(item._id ,instruction._id, $event )" style="margin-left: -32px;margin-right:20px;cursor: pointer;">
+                        
+                        <ng-container  *ngIf="instruction.videoLink != ''">
+                        <svg class="mr-2" width="18" style="z-index:2;position:relative;cursor:pointer" (click)="openModal(VideoModal)"
+                        viewBox="0 0 30.017 30.017" fill="#9ECA01" >
+                            <path d="M3,85.333H0v21.012a3,3,0,0,0,3,3H24.013v-3H3Z" transform="translate(0 -79.33)"></path>
+                            <path d="M106.345,0H88.335a3,3,0,0,0-3,3v18.01a3,3,0,0,0,3,3h18.01a3,3,0,0,0,3-3V3A3,3,0,0,0,106.345,0ZM94.338,18.76V5.253l9,6.754Z" transform="translate(-79.33)"></path>
+                        </svg> </ng-container>
+                        
+                        {{instruction.title}} <br>
+
+                        <ng-template #VideoModal let-modal>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <img src="assets/images/close.svg">
+                            </button>
+                            <div class="modal-body ">
+                                <ng-container *ngIf="videos" >
+                                    <ng-container  *ngFor="let video of videos.data">
+                                        <div *ngIf="video.id === instruction.videoLink">
+                                            <div class="videobox">
+                                                <p>{{video.title}}</p>
+                                                <video [poster]="filepath+video.thumbnail_image" controls="" style="width: 100%;border: 1px solid #ccc;">
+                                                    <source [src]="filepath+video.video_url" type="video/mp4">
+                                                    <source src="filepath+video.video_url" type="video/ogg">
+                                                </video>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                {{video.description}}
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </ng-template>
+
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>

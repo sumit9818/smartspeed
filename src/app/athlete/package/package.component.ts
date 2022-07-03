@@ -28,7 +28,7 @@ export class PackageComponent implements OnInit {
     ) {
     }
     ngOnInit(): void {
-        this.AccountService.getUserSubscription().pipe(first()).subscribe(plan =>{
+        this.AccountService.getUserSubscription().subscribe(plan =>{
             this.plan =plan
             if(this.plan.data.is_active == true ){
                 this.router.navigate(['account'])

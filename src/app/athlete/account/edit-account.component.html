@@ -77,7 +77,9 @@
                 [(ngModel)]="selectedSports"
                 formControlName="sports_id">
             </ng-select> -->
-            <ng-select [items]="sports" [multiple]="true" 
+            <ng-select [items]="sports" 
+            autofill="false"
+            [multiple]="true" 
             bindLabel="name" 
             bindValue="_id" [(ngModel)]="selectedSports" formControlName="sports_id">
             </ng-select>

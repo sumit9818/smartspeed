@@ -7,29 +7,11 @@
         list-style: none;
         position: relative;
         padding-left: 42px;
-        
-        &::before{
-            content: '';
-            position: absolute;
-            border-left: 1px dashed $primary;
-            top: 0;
-            left: 10px;
-            bottom: -15px;
-        }
         li{
             position: relative;
             list-style: none;
             padding: 15px;
             padding-top: 0px;
-            &::before{
-                content: '';
-                position: absolute;
-                border-bottom: 1px dashed $primary;
-                top: 18px;
-                left: -32px;
-                width: 41px;
-                height: 1px;
-            }
             label{
                 margin: 0;
             }
@@ -38,15 +20,6 @@
             }
         }
         ul{
-            &::after{
-                content: '';
-                position: absolute;
-                border-bottom: 1px dashed $primary;
-                bottom: 0px;
-                left: -42px;
-                width: 54px;
-                height: 1px;
-            }
             li:first-child{
                 padding-top: 10px;
             }
@@ -61,3 +34,4 @@
         }
     }
 }
+

@@ -46,5 +46,9 @@ export class ProgramService {
     const deleteProgramUrl = `${env.apiUrl}/program/${id}`;
     return this.http.delete<Response>(deleteProgramUrl);
   }
+
+  updateAthProByAdmin(id:any , data:any){
+    return this.http.post(`${env.apiUrl}/athlete/program/update/${id}`, data)
+  }
   
 }

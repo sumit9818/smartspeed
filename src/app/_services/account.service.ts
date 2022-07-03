@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -17,7 +17,6 @@ export class AccountService {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('smartuser')));
     this.user = this.userSubject.asObservable();
   }
-    // return this.http.get(`${environment.apiUrl}/user/get/subscription`)
   public get userValue(): User {
     return this.userSubject.value;
   }
@@ -145,7 +144,18 @@ export class AccountService {
 
   
   getUserSubscription(){
-    return this.http.get(`${environment.apiUrl}/user/get/subscription`)
+    
+    let headers = new HttpHeaders();  
+        headers.append('Access-Control-Allow-Origin', '*');  
+        headers.append('Access-Control-Request-Method', 'GET');  
+        headers.append('Access-Control-Allow-Methods', 'POST, HEAD, GET');  
+        headers.append('Access-Control-Max-Age', '86400');  
+        headers.append('Content-Type', 'text/plain');  
+        const httpOptions = {  
+            headers: headers  
+        };  
+
+    return this.http.get(`${environment.apiUrl}/user/get/subscription`, httpOptions)
   }
 
 }

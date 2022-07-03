@@ -86,7 +86,7 @@
                                             <label class="d-flex" style="flex-wrap: wrap;">
                                                 <div *ngFor="let item of videos.data" class="videobox">
                                                     <p>
-                                                        <input type="radio" formControlName="videoLink" name="videoLink" [value]="item.title" id="">
+                                                        <input type="radio" formControlName="videoLink" name="videoLink" [value]="item.id" id="">
                                                         {{item.title}}</p>
                                                     <video [poster]="filepath+item.thumbnail_image" controls="" style="width: 100%;border: 1px solid #ccc;">
                                                         <source [src]="filepath+item.video_url" type="video/mp4">

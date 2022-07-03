@@ -96,7 +96,7 @@ export class ProgramAddEditComponent implements OnInit {
 
 		this.form = this.buildForm()
         this.updateFormValue();
-		this.addGroup()
+		if(this.isAddMode){this.addGroup()}
 	}
 
 	addInstruction(userIndex: number, data?: any) {

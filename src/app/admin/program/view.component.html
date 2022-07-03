@@ -9,27 +9,65 @@
         <small>{{ program.created_at | date: 'dd MMM yyyy' }} </small>
         <br />
     </h6>
-<hr>
+    <p><b>Selected Athlete</b></p>
+    <div class="tags">
+        <span *ngFor="let ath of program.athletes">
+            {{ath.name}}
+        </span>
+    </div>
+    <hr>
     
     <div class="view-program-wrapper">
         <ul>
             <li *ngFor="let item of program.data" >
                <div class="d-flex align-items-center ">
-                <a title="View Video" href="{{item.videoLink}}" class="mr-2" target="_blank" *ngIf="item.videoLink != ''">
-                    <svg class="mr-2" width="30.017" height="30.017" viewBox="0 0 30.017 30.017" fill="#9ECA01">
-                        <path d="M3,85.333H0v21.012a3,3,0,0,0,3,3H24.013v-3H3Z" transform="translate(0 -79.33)"></path>
-                        <path d="M106.345,0H88.335a3,3,0,0,0-3,3v18.01a3,3,0,0,0,3,3h18.01a3,3,0,0,0,3-3V3A3,3,0,0,0,106.345,0ZM94.338,18.76V5.253l9,6.754Z" transform="translate(-79.33)"></path>
-                    </svg>
-                </a>
+                <!-- <a title="View Video" href="{{item.videoLink}}" class="mr-2" target="_blank" *ngIf="item.videoLink != ''">
+                   
+                </a> -->
                 
                 <b>{{item.instructionTitle}}</b>
                </div>
                 <ul>
-                    <li  *ngFor="let instruction of item.instruction" class="mb-2">
-                        {{instruction.title}}
+                    <li  *ngFor="let instruction of item.instruction" class="d-flex mb-2" style="align-items:flex-start">
+                        <ng-container  *ngIf="instruction.videoLink != ''">
+                        <svg class="mr-2" width="18" style="margin-left: -32px;z-index:2;position:relative;cursor:pointer" (click)="openModal(VideoModal)"
+                         viewBox="0 0 30.017 30.017" fill="#9ECA01" >
+                            <path d="M3,85.333H0v21.012a3,3,0,0,0,3,3H24.013v-3H3Z" transform="translate(0 -79.33)"></path>
+                            <path d="M106.345,0H88.335a3,3,0,0,0-3,3v18.01a3,3,0,0,0,3,3h18.01a3,3,0,0,0,3-3V3A3,3,0,0,0,106.345,0ZM94.338,18.76V5.253l9,6.754Z" transform="translate(-79.33)"></path>
+                        </svg> </ng-container>
+                        
+                        {{instruction.title}} <br>
+
+                        <ng-template #VideoModal let-modal>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <img src="assets/images/close.svg">
+                            </button>
+                            <div class="modal-body ">
+                                <ng-container *ngIf="videos" >
+                                    <ng-container  *ngFor="let video of videos.data">
+                                        <div *ngIf="video.id === instruction.videoLink">
+                                            <div class="videobox">
+                                                <p>{{video.title}}</p>
+                                                <video [poster]="filepath+video.thumbnail_image" controls="" style="width: 100%;border: 1px solid #ccc;">
+                                                    <source [src]="filepath+video.video_url" type="video/mp4">
+                                                    <source src="filepath+video.video_url" type="video/ogg">
+                                                </video>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                {{video.description}}
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </ng-template>
+
                     </li>
+
                 </ul>
             </li>
         </ul>
     </div>
 </div>
+
+<!--  -->

@@ -9,6 +9,11 @@ import { Chart } from 'highcharts';
 import { first } from 'rxjs/operators';
 import * as Highcharts from 'highcharts';
 import { ViewAthleteProgramsComponent } from '../program/program.component';
+
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import * as _ from 'lodash';
+import * as $ from 'jquery'; 
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -72,7 +77,6 @@ export class AthleteDetailsComponent implements OnInit {
 	getDetails(id){
 		this.atheleteService.getAthleteById(id).subscribe((athlete: Athlete) => {
 			this.athlete = { ...athlete };
-			//console.log(this.athlete)
 		})
 	}
 
@@ -141,7 +145,6 @@ export class AthleteDetailsComponent implements OnInit {
 		this.AssessmentService.getAthletecharts(assment, id).subscribe(
             data => {
 			this.Chart = data;
-			// console.log('chart' , this.Chart)
             this.CreateChart()
 			var markers = document.getElementsByClassName('highcharts-markers');
 
@@ -168,13 +171,21 @@ export class AthleteDetailsComponent implements OnInit {
 	}
 
 	ChangeAssessmentData(){
+        this.selectedValue = parseInt((this.getDropDownText(this.changeassment, this.assessments.data)[0].assessment));
 		this.AssessmentService.getAthleteAssesment(this.changeassment,this.id).subscribe(
-            data => {this.assessmentData = data
+            data => {this.assessmentData = data;
 		})
 		this.getChart(this.changeassment,this.id)
 	}
 
 
+	selectedValue:any;
+    getDropDownText(id, object) {
+        const selObj = _.filter(object, function (o) {
+            return (_.includes(id, o.id));
+        });
+        return selObj;
+    }
 
 	getDays(days){
         this.AssessmentService.getAthleteAssesmentDays(this.changeassment,this.id, days).subscribe(
@@ -184,6 +195,26 @@ export class AthleteDetailsComponent implements OnInit {
     }
 	
     CreateChart(){
+		var newdata = [];
+		var tt;
+		if (isNaN(this.selectedValue)) {
+			for(let x of this.Chart.data.data){
+				newdata.push({
+					"y": parseInt(x.jump.match(/\d+/g)),
+					"marker": x.marker,
+					"date": x.date,
+					"jump": x.jump,
+					"video": x.video,
+					"thumbnail": x.thumbnail
+				})
+			}
+			tt = '<p style="margin-bottom: 8px;font-weight: 600;"><span class="date">Date: {point.date}</span></br><span class="speed">Distance: {point.jump}</span> <span class="vid" style="display:none;">{point.video}</span><span class="poster" style="display:none;">{point.thumbnail}</span></p><p class="w-vid"  style="color:#9ECA01;margin-bottom: 0px">View</p>'
+			
+		}else{
+			newdata = this.Chart.data.data;
+			tt =  '<p style="margin-bottom: 8px;font-weight: 600;"><span class="index hide">{point.index}</span><span class="date">Date: {point.date}</span></br><span class="speed">Speed: {point.speed}</span> In <span class="time">{point.time}</span><span class="vid" style="display:none;">{point.video}</span><span class="poster" style="display:none;">{point.thumbnail}</span></p><p class="w-vid"  style="color:#9ECA01;margin-bottom: 0px">View</p>'
+		}
+		
         Highcharts.chart('chart', {
             chart:{
                 type: 'spline',
@@ -209,12 +240,12 @@ export class AthleteDetailsComponent implements OnInit {
             tooltip: {
 				useHTML: true,
 				headerFormat: '',
-				pointFormat: '<p style="margin-bottom: 8px;font-weight: 600;"><span class="index hide">{point.index}</span><span class="date">Date: {point.date}</span></br><span class="speed">Speed: {point.speed}</span> In <span class="time">{point.time}</span><span class="vid" style="display:none;">{point.video}</span><span class="poster" style="display:none;">{point.thumbnail}</span></p><p class="w-vid"  style="color:#9ECA01;margin-bottom: 0px">View</p>',
+				pointFormat: tt,
 			},
             series: [{
                 type: 'spline',
                 name: 'Stats Chart',
-                data: this.Chart.data.data,
+                data: newdata,
                 pointStart: 0,
                 marker: {
                     symbol: 'circle',

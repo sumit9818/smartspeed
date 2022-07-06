@@ -36,7 +36,7 @@ export class ViewAthleteProgramComponent implements OnInit {
         this.accountService.user.subscribe(x => this.user = x);
 		this.id = this.route.snapshot.params['id'];
 		const url = `${environment.apiUrl}/new/program/all`;
-    	this.http.get(url).subscribe(progratitle => {this.progratitle = progratitle;console.log('dd',this.progratitle )})
+    	this.http.get(url).subscribe(progratitle => {this.progratitle = progratitle;})
 		this.getProgramByID();
 		this.getvideo();
     }
@@ -48,11 +48,9 @@ export class ViewAthleteProgramComponent implements OnInit {
 		this.http.get(url).subscribe(
 		programs => {
 			this.program = programs;
-			console.log(this.program.data)
 			for(let x of this.program.data){
 					if(`${x.id}` === `${this.id}`){
 					this.programDetails = x;
-					console.log(x.id, this.id, x)
 				}
 			}
 		})

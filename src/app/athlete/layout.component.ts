@@ -30,31 +30,14 @@ export class LayoutComponent implements OnInit {
         this.accountService.user.subscribe(x => this.user = x);
         this.filepath= `${environment.imgUrl}`+this.user.profile_pic;
         this.http.get(`${environment.apiUrl}/website/logo`).subscribe(logo=>this.logo=logo);
-
-    this.plan = true
-        fetch(`${environment.apiUrl}/user/get/subscription`, { 
-            headers: new Headers({
-              'Authorization': this.user.accessToken, 
-              "Access-Control-Allow-Methods": "GET",
-              "Access-Control-Allow-Origin": "*",
-            }), 
-          }).then(response => response.json())
-          .then(data => {
-                console.log(data)
-                // this.plan = data.data.is_active
-                // // if(data.data.is_active != false){
-                // //     this.router.navigate(['account']);
-                // // }
-            });;
-      
         
-        // this.accountService.getUserSubscription().pipe(first()).subscribe(subscription =>{this.subscription =subscription
-        //     this.plan = this.subscription.data.is_active
-        //     // console.log(this.plan)
-        //     // if(this.subscription.data.is_active != false){
-        //     //     this.router.navigate(['account']);
-        //     // }
-        // })
+        this.accountService.getUserSubscription().pipe(first()).subscribe(subscription =>{this.subscription =subscription
+            this.plan = this.subscription.data.is_active
+            // console.log(this.plan)
+            // if(this.subscription.data.is_active != false){
+            //     this.router.navigate(['account']);
+            // }
+        })
         
     }
 

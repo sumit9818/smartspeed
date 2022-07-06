@@ -49,6 +49,17 @@ export class ChartService {
 	}
 	
 	JumpChart(xAxis, data ) {
+		var newdata = []
+		for(let x of data){
+			newdata.push({
+				"y": parseInt(x.jump.match(/\d+/g)),
+				"marker": x.marker,
+				"date": x.date,
+				"jump": x.jump,
+				"video": x.video,
+				"thumbnail": x.thumbnail
+			})
+		}
 		Highcharts.chart('athlete-chart', {
 			chart: {
 				type: 'spline',
@@ -78,7 +89,7 @@ export class ChartService {
 			series: [{
 				type: 'spline',
 				name: 'Stats Chart',
-				data: data,
+				data: newdata,
 				pointStart: 0,
 				marker: {
 					symbol: 'circle',

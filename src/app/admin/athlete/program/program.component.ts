@@ -37,7 +37,6 @@ export class ViewAthleteProgramsComponent implements OnInit {
 
   	ngOnInit(): void {
 	  	this.id = this.route.snapshot.params['id']
-		console.log(this.athleteID)
 		this.ProgramService.getAthleteProgramAll(this.id).subscribe(
 			data =>{
 				this.programs = data;

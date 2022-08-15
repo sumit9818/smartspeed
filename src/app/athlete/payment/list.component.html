@@ -45,7 +45,7 @@
 </ng-container>
 
 <div *ngIf="subscription">
-    <div class="flex-table" *ngIf="transaction">
+    <div class="flex-table" *ngIf="transaction && transaction.data.transactions ">
         <table class="">
             <thead>
                 <tr>

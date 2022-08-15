@@ -4,7 +4,7 @@
         <div *ngIf="id === video.id" class="row">
             <div class="col-sm-5">
                 <h6>{{video.title}}</h6>
-                <video [poster]="filepath+video.thumbnail_image" controls="">
+                <video poster="{{video.thumbnail_image ? filepath+video.thumbnail_image : ''}}"  controls="">
                     <source [src]="filepath+video.video_url" type="video/mp4">
                     <source src="filepath+video.video_url" type="video/ogg">
                 </video>
@@ -22,11 +22,10 @@
         <div *ngIf="id === video.id" class="row">
             <div class="col-sm-5">
                 <h6>{{video.title}}</h6>
-                <video [poster]="filepath+video.thumbnail_image" controls="">
+                <video poster="{{video.video_url ? filepath+video.video_url : ''}}" controls="">
                     <source [src]="filepath+video.video_url" type="video/mp4">
                     <source src="filepath+video.video_url" type="video/ogg">
                 </video>
-    
             </div>
             <div class="col-sm-7 bg-primary-after">
                 <br><br>

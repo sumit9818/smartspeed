@@ -88,7 +88,7 @@
                                                     <p>
                                                         <input type="radio" formControlName="videoLink" name="videoLink" [value]="item.id" id="">
                                                         {{item.title}}</p>
-                                                    <video [poster]="filepath+item.thumbnail_image" controls="" style="width: 100%;border: 1px solid #ccc;">
+                                                    <video  poster="{{item.thumbnail_image ? filepath+item.thumbnail_image : ''}}"  controls="" style="width: 100%;border: 1px solid #ccc;">
                                                         <source [src]="filepath+item.video_url" type="video/mp4">
                                                         <source src="filepath+item.video_url" type="video/ogg">
                                                     </video>

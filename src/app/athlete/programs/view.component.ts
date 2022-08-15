@@ -18,7 +18,7 @@ export class ViewAthleteProgramComponent implements OnInit {
 
 	subtitles:any=[];
 	status:any=[];
-
+	filepath =`${environment.imgUrl}` 
     constructor(
       private accountService: AccountService,
       private http: HttpClient,

@@ -6,11 +6,11 @@ import { environment } from '@environments/environment';
 import { first } from 'rxjs/operators';
 
 @Component({
-	selector: 'app-diffrent-image',
+	selector: 'app-image9',
   	templateUrl: 'image.component.html',
-	  styleUrls: ['diffrent.component.scss'] 
+	  styleUrls: ['image.component.scss'] 
 })
-export class DiffrentImageComponent implements OnInit {
+export class ImageNineComponent implements OnInit {
 	@ViewChild('resumeInput', { static: true }) resumeInput;
 	form: FormGroup;
 	_id: string;
@@ -35,7 +35,7 @@ export class DiffrentImageComponent implements OnInit {
 
 	
   	ngOnInit() {
-	  	this.HomePageService.getDiffrentImage().pipe(first()).subscribe(diffrent => {this.diffrent = diffrent})
+	  	this.HomePageService.getTimeline2().pipe(first()).subscribe(diffrent => {this.diffrent = diffrent})
 		// functions
 		this.form = this.buildBannerForm()
 		this.updateAboutValue()
@@ -46,16 +46,16 @@ export class DiffrentImageComponent implements OnInit {
 	private buildBannerForm(): FormGroup {
 		return this.formBuilder.group({
 		  isactive: [''],
-		  image: [''],
+		  title: [''],
 		});
 	  }
 
 	private updateAboutValue(): void {
-		this.HomePageService.getDiffrentImage().subscribe(
+		this.HomePageService.getTimeline2().subscribe(
 			data => {this.diffrent = data;
-			this.filepath = `${environment.imgUrl}`+this.diffrent.data.image;
+			this.filepath = `${environment.imgUrl}`+this.diffrent.data.title;
 			this.f.isactive.setValue(this.diffrent.data.isactive);
-			this.f.image.setValue(this.diffrent.data.image);
+			this.f.title.setValue(this.diffrent.data.title);
 			}
 		)
 	}
@@ -86,12 +86,13 @@ export class DiffrentImageComponent implements OnInit {
 	}
 
 	private updateDiffrent() {
-		this.HomePageService.AddDiffrentImage(this.form.value).pipe(first()).subscribe(
+		this.HomePageService.AddTimeline2(this.form.value).pipe(first()).subscribe(
 			data => {this.alertService.success('Update successfull');
 				this.loading = false;
 			},
 			error => {
 				this.alertService.error(error);
+				this.loading = false;
 			});
 	}
 }

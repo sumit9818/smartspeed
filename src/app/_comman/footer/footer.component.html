@@ -1,4 +1,4 @@
-﻿<div id="contact"></div>
+﻿
 
 <div class="followme">
     <div class="follow" *ngIf="socialMedia">
@@ -25,12 +25,13 @@
         display: block !important;
     }
 </style>
+<div id="contact"></div>
 <footer>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
                 <h5>Contact Us</h5>
-                <h6>Please feel free to get in touch with us!</h6>
+                <h6>{{footerdata.description}}</h6>
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-5">
                     <input type="hidden" formControlName="subject">
                     <div class="row">
@@ -86,7 +87,7 @@
                 <!-- <h5>Find Us</h5>
                 <p>2942 Late Avenue Oklahoma City Oklahoma 73129</p>
                 <h5>Follow us</h5> -->
-                <img src="assets/diffrent.jpeg" class="img-fluid">
+                <img [src]="filepath+footerdata.title" class="img-fluid">
                 <!-- <div class="follow" *ngIf="socialMedia">
                     <span *ngFor="let links of socialMedia.data|keyvalue">
                         <a href="{{links.value}}"  target="_blank" *ngIf="links.key != '_id' && 

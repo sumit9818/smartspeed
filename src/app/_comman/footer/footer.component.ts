@@ -1,5 +1,5 @@
 ﻿import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray  } from '@angular/forms';
 import { AlertService, EmailService } from '@app/_services';
 import { environment } from '@environments/environment';
@@ -11,8 +11,8 @@ import { tap } from 'rxjs/operators';
      styleUrls: ['footer.component.scss']
     })
 export class FooterComponent implements OnInit{
-    
-    
+    @Input() footerdata:any
+    filepath = `${environment.imgUrl}`;
     socialMedia:any;
     sendquery:any;
     loading = false;

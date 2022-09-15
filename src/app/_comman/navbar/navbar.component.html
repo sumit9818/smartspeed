@@ -49,16 +49,15 @@
         <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
 			&#9776;
 		</button>
-        <div>
+        <div (mouseleave)="isMenuCollapsed = true;">
             <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+                <div class="navbar-nav" (click)="isMenuCollapsed = !isMenuCollapsed" >
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                     <a class="nav-link" href="#train-with-us">PROGRAMS</a>
                     <a class="nav-link" href="#offer">WHAT WE OFFER</a>
                     <a class="nav-link" href="#diffrence">OUR DIFFERENCE</a>
                     <a class="nav-link" href="#testimonial">TESTIMONIALS</a>
                     <a class="nav-link" href="#faq">FAQ</a>
-                    <a class="nav-link" routerLink="/news">NEWS</a>
                     <a class="nav-link" href="#contact">CONTACT</a>
                     <a class="nav-link" *ngIf="!user" href="javascript:void(0)" (click)="open(LoginModal)">LOGIN</a>
                     <a class="nav-link" *ngIf="!user" href="javascript:void(0)" (click)="openSignUp(SignUPModal)">SIGNUP</a>

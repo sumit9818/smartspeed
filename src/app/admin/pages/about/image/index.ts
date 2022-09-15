@@ -5,3 +5,4 @@ export * from './image4.component';
 export * from './image5.component';
 export * from './image6.component';
 export * from './image7.component';
+export * from './image.component';

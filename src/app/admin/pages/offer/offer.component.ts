@@ -77,7 +77,7 @@ export class OfferComponent implements OnInit {
 		formData.append('file', this.offerInPut.nativeElement.files[0]);
 		this.uploadService.addFileDetails(formData).subscribe(
 		  (result: any) => {
-			this.OfferImage = result.newfilename;
+			this.OfferImage = result.data.newfilename;
 			this.filepath = `${environment.imgUrl}` + this.OfferImage;
 			this.loading = false;
 		  },

@@ -1,3 +1,9 @@
+
+<div *ngIf="!homepage" style="width: 100%;height:100vh;background: url(assets/banner-loader.jpg);position: relative;z-index: 9999;">
+
+</div>
+
+<ng-container></ng-container>
 <app-navbar></app-navbar>
 <ng-template #SignUPModal let-modal>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -143,39 +149,7 @@
             </ng-container>
         </div>
     </div>
-    <!-- <img src="assets/testimonial-bg.png" style="width: 100%;border-top: 2px solid #9ECA01;"> -->
-    <!-- 
-    <div class="testimonial" *ngIf="testimonials">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-sm-5">
-                    <div class="t-txt">
-                        <img src="assets/images/testimonialbg.svg">
-                        <span>What People Thinks About Us</span>
-                    </div>
-                </div>
-
-                <div class="col-sm-7">
-                    <div class="">
-                        <owl-carousel-o [options]="customOptions" [carouselClasses]="['owl-theme testi-monial']">
-                            <ng-template carouselSlide *ngFor="let slide of testimonials.data;let i = index" class="testimonials">
-                            <div class="testimonials">
-                                <img src="assets/avtar.jpg" *ngIf="!slide.image">
-                                <img [src]="filepath+slide.image" *ngIf="slide.image">
-                                <p>{{slide.testimonial}}</p>
-                                <h5>{{slide.name}}</h5>
-                            </div>
-                            </ng-template>
-                        </owl-carousel-o>
-                        <br><br>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
--->
-
+    
     <div id="train-with-us"></div>
     <div class=" pricing-wrapper" *ngIf="pricing">
         <div class="container">
@@ -236,21 +210,9 @@
         </div>
     </div>
 
-    <!-- <div class="container-fluid blogs" *ngIf="blogs">
-        <h5>News Space</h5>
-        <div class="row ">
-            <a routerLink='news/{{blog.id}}' class="col-sm-3" *ngFor="let blog of blogs.data">
-                <img [src]="filepath+blog.image">
-                <h6>{{blog.title}}</h6>
-            </a>
-        </div>
-        <br>
-        <button (click)="openSignUp(SignUPModal)" class="btn-dark"> Join Now</button>
-    </div> -->
-
-
+    
 
 </div>
-
-
-<app-footer></app-footer>
+<ng-container *ngIf="homepage" >
+<app-footer [footerdata]="HomePageData.HomeMakesDifferent4"></app-footer>
+</ng-container>

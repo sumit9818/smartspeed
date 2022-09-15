@@ -75,7 +75,7 @@ export class ImageSevenComponent implements OnInit {
 	onSubmitOffer2() {
 		this.submitted = true;
 		this.alertService.clear();
-		// console.log(this.form.value)
+		console.log(this.form.value)
 		if (this.form.invalid) {return;}
 		this.loading = true;
 
@@ -107,8 +107,8 @@ export class ImageSevenComponent implements OnInit {
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-				this.picture = event.body.newfilename;
-				// console.log(event)
+				this.picture = event.body.data.newfilename;
+				console.log(event)
 				this.progressImage = null;
 				this.loading=false
 			  }

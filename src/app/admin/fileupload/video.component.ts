@@ -67,8 +67,8 @@ export class VideoFileComponent implements OnInit {
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-				this.picture = event.body.newfilename;
-				this.UpdatePicture(event.body.newfilename);
+				this.picture = event.body.data.newfilename;
+				this.UpdatePicture(event.body.data.newfilename);
 				this.progressImage = null;
 				this.FileisUploading(false)
 			  }
@@ -96,8 +96,8 @@ export class VideoFileComponent implements OnInit {
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressVideo = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-				this.VideoFile = event.body.newfilename;
-				this.UpdateVideoFile(event.body.newfilename);
+				this.VideoFile = event.body.data.newfilename;
+				this.UpdateVideoFile(event.body.data.newfilename);
 				this.progressVideo = null;
 				this.FileisUploading(false)
 			  }

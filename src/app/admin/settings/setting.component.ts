@@ -114,7 +114,7 @@ export class SettingComponent implements OnInit{
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-				this.picture = event.body.newfilename;
+				this.picture = event.body.data.newfilename;
 				this.progressImage = null;
                 var newlogo = {isactive:true,logo:this.picture}
                 this.SettingsService.AddLogo(newlogo).subscribe(

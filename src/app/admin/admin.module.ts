@@ -27,7 +27,7 @@ import { OfferComponent } from './pages/offer/offer.component';
 import { FAQComponent,FaqAddEditComponent,FaqViewComponent } from './pages/faq';
 import { TestimonialAddEditComponent,TestimonialComponent } from './pages/testimonial';
 import { BlogAddEditComponent,BlogComponent,BlogViewComponent } from './pages/news';
-import { ImageOneComponent,ImageTwoComponent,ImageThreeComponent,ImageFourComponent,ImageFiveComponent,ImageSixComponent,ImageSevenComponent } from './pages/about/image';
+import { ImageOneComponent,ImageTwoComponent,ImageThreeComponent,ImageFourComponent,ImageFiveComponent,ImageSixComponent,ImageSevenComponent, ImageNineComponent } from './pages/about/image';
 import { DiffrentComponent,DiffrentFourComponent,DiffrentImageComponent,DiffrentOneComponent,DiffrentThreeComponent,DiffrentTwoComponent } from './pages/diffrent';
 
 
@@ -51,7 +51,7 @@ import { DiffrentComponent,DiffrentFourComponent,DiffrentImageComponent,Diffrent
     OfferComponent,
     FAQComponent,FaqAddEditComponent,FaqViewComponent,
     BlogAddEditComponent,BlogComponent,BlogViewComponent,
-    ImageOneComponent,ImageTwoComponent,ImageThreeComponent,ImageFourComponent,ImageFiveComponent,ImageSixComponent,ImageSevenComponent,
+    ImageOneComponent,ImageTwoComponent,ImageThreeComponent,ImageFourComponent,ImageFiveComponent,ImageSixComponent,ImageSevenComponent,ImageNineComponent,
     DiffrentComponent,DiffrentFourComponent,DiffrentImageComponent,DiffrentOneComponent,DiffrentThreeComponent,DiffrentTwoComponent,
     TestimonialAddEditComponent,TestimonialComponent
     

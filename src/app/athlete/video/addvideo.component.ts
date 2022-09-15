@@ -70,7 +70,7 @@ export class AddAthleteVideoComponent implements OnInit {
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-				this.picture = event.body.newfilename;
+				this.picture = event.body.data.newfilename;
 				this.filepath = `${environment.imgUrl}` + this.picture;
 				// console.log(event)
 				this.progressImage = null;
@@ -105,7 +105,7 @@ export class AddAthleteVideoComponent implements OnInit {
         }
         // console.log(this.progressVideo)
 			  } else if (event.type == HttpEventType.Response) {
-				this.VideoFile = event.body.newfilename;
+				this.VideoFile = event.body.data.newfilename;
 				this.Videofilepath = `${environment.imgUrl}` + this.VideoFile;
 				this.progressVideo = null;
 				this.loading=false

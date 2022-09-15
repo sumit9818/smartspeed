@@ -24,33 +24,6 @@ export class HomeComponent implements OnInit {
 	showinsta: any;
 	testimonials: any;
 	blogs: any;
-	// customOptions: OwlOptions =  {
-	// 	loop: true,
-	// 	mouseDrag: true,
-	// 	touchDrag: true,
-	// 	startPosition:0,
-	// 	pullDrag: false,
-	// 	margin:10,
-	// 	dots: false,
-	// 	navSpeed: 700,
-	// 	navText: ['', ''],
-	// 	responsive: {
-	// 	  0: {
-	// 		items: 1
-	// 	  },
-	// 	  400: {
-	// 		items: 1
-	// 	  },
-	// 	  740: {
-	// 		items: 2
-	// 	  },
-	// 	  940: {
-	// 		items: 3
-	// 	  }
-	// 	},
-	// 	nav: true
-	  
-	//   }	;
 	  
 	  faqs:any;
 	  pricing:any;
@@ -94,8 +67,7 @@ export class HomeComponent implements OnInit {
 				this.getLogo();
 
 				for (let HomePageData of Object.values(this.homepage)) {
-					this.HomePageData = HomePageData
-					// console.log(this.HomePageData)
+					this.HomePageData = HomePageData;
 				}
 				// this.showinsta = 'showinsta'
 			})

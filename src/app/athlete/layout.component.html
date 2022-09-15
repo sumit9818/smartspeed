@@ -17,13 +17,23 @@
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" routerLink="account">Account details</a></li>
-                    <li><a class="dropdown-item" routerLink="programs">Programs</a></li>
-                    <li><a class="dropdown-item" routerLink="leaderboard">Leaderbord</a></li>
-                    <li><a class="dropdown-item" routerLink="diary">Dairy</a></li>
-                    <li><a class="dropdown-item" routerLink="video">Video Library</a></li>
-                    <li><a class="dropdown-item" routerLink="/payment">Payment Details</a></li>
-                    <li><a class="dropdown-item" routerLink="/ask">Ask Clayton</a></li>
+                    <ng-container *ngIf="plan != true">
+                        <li><a class="dropdown-item" routerLink="account">Account details</a></li>
+                        <li><a class="dropdown-item" routerLink="/payment">Payment Details</a></li>
+                        <li><a class="dropdown-item" routerLink="/ask">Ask Clayton</a></li>
+                        <li class="nolink" (click)="BuyPlan()" class="dropdown-item" >
+                            <a routerLink="/plan">Activate Your Plan</a>
+                        </li>
+                    </ng-container>
+                    <ng-container *ngIf="plan == true">
+                        <li><a class="dropdown-item" routerLink="account">Account details</a></li>
+                        <li><a class="dropdown-item" routerLink="programs">Programs</a></li>
+                        <li><a class="dropdown-item" routerLink="leaderboard">Leaderbord</a></li>
+                        <li><a class="dropdown-item" routerLink="diary">Dairy</a></li>
+                        <li><a class="dropdown-item" routerLink="video">Video Library</a></li>
+                        <li><a class="dropdown-item" routerLink="/payment">Payment Details</a></li>
+                        <li><a class="dropdown-item" routerLink="/ask">Ask Clayton</a></li>
+                    </ng-container>
                     <hr>
                     <li><a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a></li>
                 </ul>
@@ -54,10 +64,10 @@
                 <li>
                     <a routerLink="/account" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Account Details</a>
                 </li>
-                <li *ngIf="plan == false">
+                <li *ngIf="plan != true">
                     <a routerLink="/plan" routerLinkActive="active">Choose Your Plan</a>
                 </li>
-                <ng-container *ngIf="plan == false">
+                <ng-container *ngIf="plan != true">
                     <li class="nolink" (click)="BuyPlan()">
                         <a routerLink="/plan">Programs</a>
                     </li>
@@ -102,14 +112,13 @@
 
         </div>
         <main>
-            <!-- <ng-container *ngIf="plan == true || router.url === '/payment' || 
+            <ng-container *ngIf="plan == true || router.url === '/payment' || 
             router.url === '/account'|| router.url === '/ask'|| router.url === '/account/edit'">
                 <router-outlet></router-outlet>
             </ng-container>
-            <ng-container *ngIf="plan == false && router.url != '/payment' && router.url != '/account' && router.url != '/ask'">
+            <ng-container *ngIf="plan != true && router.url != '/payment' && router.url != '/account' && router.url != '/ask'">
                 <app-package></app-package>
-            </ng-container> -->
-            <router-outlet></router-outlet>
+            </ng-container>
         </main>
 
     </div>

@@ -27,6 +27,7 @@ export class AthleteAddEditComponent implements OnInit {
   loadingfile:boolean;
 	onpictureChange(picture: string) {
 		this.picture = picture;
+    console.log(picture)
 	}
 	onloadingfileChange(loadingfile: boolean) {
 		this.loadingfile = loadingfile;

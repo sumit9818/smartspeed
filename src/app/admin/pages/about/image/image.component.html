@@ -1,16 +1,13 @@
 ﻿
-<form [formGroup]="form" (ngSubmit)="onSubmitDiffrent4()" class="row align-items-center">
-    <select formControlName="isactive" class="form-control" style="width: 320px;">
-        <option value="">Select Status</option>
-        <option value="true">Active</option>
-        <option value="false">Inactive</option>
-    </select><br>
-    <input type="text" formControlName="description" class="form-control" style="width: 320px;">
-    <br><br><br>
+<form [formGroup]="form" (ngSubmit)="onSubmitImage()" class="row align-items-center">
     <img src="assets/images/diffrent.svg"  *ngIf="!picture">
     <img [src]="filepath" *ngIf="picture" style="max-width: 400px;">
     <div style="position: absolute;left: 0;right: 0;text-align: center;">
-       
+        <select formControlName="isactive" class="form-control" style="width: 200px;margin: auto;">
+            <option value="">Select Status</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select><br>
         <input type="hidden" formControlName="title" [(ngModel)]="picture">
         <label for="upload-img" class="upload-img">
             <svg width="17.17" height="17.169" viewBox="0 0 17.17 17.169"><path d="M13.593,91.539a.715.715,0,0,0-.715.715v5.723a.716.716,0,0,1-.715.715H2.146a.716.716,0,0,1-.715-.715V87.962a.716.716,0,0,1,.715-.715H7.87a.715.715,0,0,0,0-1.431H2.146A2.149,2.149,0,0,0,0,87.962V97.978a2.149,2.149,0,0,0,2.146,2.146H12.162a2.149,2.149,0,0,0,2.146-2.146V92.255a.715.715,0,0,0-.716-.715Zm0,0" transform="translate(0 -82.955)" fill="#9eca01"/><path d="M182.419,73.922a.362.362,0,0,0-.1.182l-.506,2.53a.357.357,0,0,0,.351.428.34.34,0,0,0,.07-.007l2.529-.506a.356.356,0,0,0,.183-.1l5.66-5.66-2.529-2.529Zm0,0" transform="translate(-175.712 -65.99)" fill="#9eca01"/><path d="M394.965,1.024a1.79,1.79,0,0,0-2.529,0l-.99.99,2.529,2.529.99-.99a1.788,1.788,0,0,0,0-2.529Zm0,0" transform="translate(-378.318 -0.501)" fill="#9eca01"/></svg>

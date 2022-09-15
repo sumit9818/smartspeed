@@ -28,6 +28,7 @@ import { AthleteRoutingModule } from './athlete/athlete-routing.module';
 // import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SafeHtmlPipe } from './safe-html';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
     imports: [
         BrowserModule,
@@ -60,6 +61,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
         SafeHtmlPipe,
     ],
     providers: [
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
         { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

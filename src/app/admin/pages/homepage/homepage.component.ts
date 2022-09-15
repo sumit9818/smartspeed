@@ -191,7 +191,7 @@ export class HomepageComponent implements OnInit {
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-				this.testimonialImage = event.body.newfilename;
+				this.testimonialImage = event.body.data.newfilename;
 				this.progressImage = null;
 				this.loading=false
 			  }

@@ -23,7 +23,7 @@ export class AthleteDetailsComponent implements OnInit {
 	@ViewChild(ViewAthleteProgramsComponent) childReference;
 	athlete:any;
 	id:string;
-	filepath= `${env.imgUrl}/`
+	filepath= `${env.imgUrl}`
 	subscriptions:any;
 	plan:any;
 	subscriptionID:any;

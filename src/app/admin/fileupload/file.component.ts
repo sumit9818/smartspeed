@@ -43,9 +43,9 @@ export class FileComponent implements OnInit {
 		formData.append('file', this.resumeInput.nativeElement.files[0]);
 		this.uploadService.addFileDetails(formData).subscribe(
 		  (result: any) => {
-			if(result.error === false){
-				this.picture = result.newfilename;
-				this.UpdatePicture(result.newfilename)
+			if(result){
+				this.picture = result.data.newfilename;
+				this.UpdatePicture(result.data.newfilename)
 				this.filepath = `${environment.imgUrl}`;
 				this.FileisUploading(false)
 			}else{

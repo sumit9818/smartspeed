@@ -89,7 +89,9 @@ export class HomePageService {
 
   getOffer8() {return this.http.get(`${this.accountServiceURL}/home/offer/image8/get`)}
   AddOffer8(offer8) {return this.http.post(`${this.accountServiceURL}/home/offer/image8/`, offer8)}
- 
+
+  getOffer9() {return this.http.get(`${this.accountServiceURL}/home/offer/image9/get`)}
+  AddOffer9(offer9) {return this.http.post(`${this.accountServiceURL}/home/offer/image9/`, offer9)}
  
   getDiffrentImage() {return this.http.get(`${this.accountServiceURL}/home/makesdifferent/image/get`)}
   AddDiffrentImage(updateDiffrentImage) {return this.http.post(`${this.accountServiceURL}/home/makesdifferent/image`, updateDiffrentImage)}

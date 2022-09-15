@@ -102,7 +102,7 @@ export class BannerAddEditComponent implements OnInit {
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-				this.picture = event.body.newfilename;
+				this.picture = event.body.data.newfilename;
 				this.filepath = `${environment.IconUrl}` + this.picture;
 				this.progressImage = null;
 				this.loading=false
@@ -182,7 +182,7 @@ export class BannerAddEditComponent implements OnInit {
 			  if (event.type == HttpEventType.UploadProgress) {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
-				this.picture = event.body.newfilename;
+				this.picture = event.body.data.newfilename;
 				this.progressImage = null;
 
 				var form = {

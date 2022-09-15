@@ -116,7 +116,7 @@ export class EditAccountComponent implements OnInit {
 				this.progressImage = Math.round((100 / event.total) * event.loaded);
 			  } else if (event.type == HttpEventType.Response) {
 				this.progressImage = null;
-                this.picture= event.body.newfilename
+                this.picture= event.body.data.newfilename
                 this.filepath= `${env.imgUrl}`+this.picture
                 this.loading = false;
 			  }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService, AlertService } from '@app/_services';
 import { environment } from '@environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,12 +18,19 @@ export class VideoAthletesComponent implements OnInit {
       private accountService: AccountService,
       private http: HttpClient,
       private modalService: NgbModal,
-	  private alertService: AlertService
+	  private alertService: AlertService,
+	  private router: Router
       ){
     }
     ngOnInit(){
       this.filepath =`${environment.imgUrl}` 
       const url = `${environment.apiUrl}/athlete/videolibrary/all`;
+      this.accountService.getUserSubscription().subscribe((subs:any) =>{
+        if(subs.is_active == false){
+          this.router.navigate(['plan']);
+        }
+      })
+      
     	this.http.get(url).subscribe(videos => {this.videos = videos})
     }
 

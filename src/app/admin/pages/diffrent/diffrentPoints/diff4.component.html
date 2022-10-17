@@ -9,7 +9,7 @@
     <br><br><br>
     <img src="assets/images/diffrent.svg"  *ngIf="!picture">
     <img [src]="filepath" *ngIf="picture" style="max-width: 400px;">
-    <div style="position: absolute;left: 0;right: 0;text-align: center;">
+    <div >
        
         <input type="hidden" formControlName="title" [(ngModel)]="picture">
         <label for="upload-img" class="upload-img">

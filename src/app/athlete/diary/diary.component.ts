@@ -9,6 +9,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 import * as $ from 'jquery'; 
 import { first, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './diary.component.html',
@@ -30,10 +31,17 @@ export class DiaryComponent implements OnInit {
         private modalService: NgbModal,
         private http: HttpClient,
         private alertService: AlertService,
+        private router: Router,
       ){}
+      plan:any
     ngOnInit(): void {
     	this.Diary()
-
+      this.accountService.getUserSubscription().subscribe((subs:any) =>{
+        this.plan = subs.data.is_active
+        if(subs.is_active == false){
+            this.router.navigate(['plan']);
+        }
+    })
         this.form = this.buildForm();
 	}
     returnZero() {

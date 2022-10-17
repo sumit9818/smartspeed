@@ -15,9 +15,16 @@ export class PricingComponent implements OnInit{
     }
 
     pricing:any;
+    onetimepricing:any;
     ngOnInit() {
         this.PricingService.getAllPricing().pipe(first()).subscribe(
             pricing => {this.pricing = pricing}
+        )
+
+        this.PricingService.getAllOneTimePricing().pipe(first()).subscribe(
+            pricing => {
+                this.onetimepricing = pricing;
+            }
         )
     }
 

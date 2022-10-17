@@ -12,9 +12,18 @@
             <option value="false">Inactive</option>
         </select>
 
+        <!-- <input type="text" formControlName="plan_type" class="form-control" /> -->
+        
+        <label for="">Select Package Type</label>
+        <select (change)="plantype($event.target.value)" class="form-control">
+            <option value="">Montlhy Package</option>
+            <option value="onetime">One Time Package</option>
+        </select>
+        
         <label for="title">Package Name</label>
-        <input type="hidden" formControlName="plan_id" />
+        <input type="hidden" formControlName="plan_id" *ngIf="typeOfPlan != 'onetime'"/>
         <input type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+        
         <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
             <div *ngIf="f.title.errors.required"> Title is required</div>
         </div>
@@ -28,7 +37,7 @@
                     <div *ngIf="f.price.errors.min">Please Enter a valid Amount</div>
                 </div>
             </div>
-            <div class="col-sm-6" *ngIf="isAddMode">
+            <div class="col-sm-6" *ngIf="isAddMode && typeOfPlan != 'onetime'">
                 <label for="title">Duration </label>
                 <select formControlName="month" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.month.errors }">
                     <option value="1">1 Month</option>
@@ -45,7 +54,7 @@
                     <option value="12">12 Month</option>
                 </select>
 
-                <div *ngIf="submitted && f.month.errors" class="invalid-feedback">
+                <div *ngIf="submitted && f.month.errors && typeOfPlan != 'onetime'" class="invalid-feedback">
                     <div *ngIf="f.month.errors.required"> Duration is required</div>
                 </div>
             </div>
@@ -54,6 +63,7 @@
     <div class="col-sm-6">
         <p><b>Description</b></p>
         <textarea [ngxSummernote]="config" formControlName="description"></textarea>
+        
     </div>
     <br>
 
@@ -65,3 +75,53 @@
     </div>
 
 </form>
+
+<!-- 
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="row" *ngIf="typeOfPlan === 'onetime'">
+    <div class="col-sm-6">
+        <label for="isactive">Status</label>
+        <select formControlName="isactive" class="form-control">
+            <option value="">Select Status</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select>
+
+        <label for="">Select Package Type</label>
+        <select (change)="plantype($event.target.value)" class="form-control">
+            <option value="">Montlhy Package</option>
+            <option value="onetime">One Time Package</option>
+        </select>
+        
+        <label for="title">Package Name</label>
+        <input type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+        
+        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+            <div *ngIf="f.title.errors.required"> Title is required</div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="title">Price </label>
+                <input type="text" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                    <div *ngIf="f.price.errors.required"> price is required</div>
+                    <div *ngIf="f.price.errors.min">Please Enter a valid Amount</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <p><b>Description</b></p>
+        <textarea [ngxSummernote]="config" formControlName="description"></textarea>
+        
+    </div>
+    <br>
+
+    <div class="pl-4 mt-2">
+        <button [disabled]="loading" class="secondry-btn">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Save Details
+        </button>
+    </div>
+
+</form> -->

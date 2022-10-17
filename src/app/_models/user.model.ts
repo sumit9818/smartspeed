@@ -8,6 +8,9 @@ export class User {
     username: string;
     email: string;
     password: string;
+    membership: any;
+    transactions: any;
+    package_id: any;
     roles:{
         id: string;
         name:Roles,

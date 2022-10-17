@@ -12,6 +12,7 @@ import * as _ from 'lodash';
 import { map, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { NumberFormatStyle } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-addassessment',
@@ -62,7 +63,6 @@ export class AddAthleteAssessmentComponent implements OnInit {
 	KM:any;
 	secs:any;
     
-      
     constructor(
 		private formBuilder: FormBuilder,
 		private accountService: AccountService,
@@ -70,7 +70,13 @@ export class AddAthleteAssessmentComponent implements OnInit {
 		private modalService: NgbModal,
 		private alertService: AlertService,
         private uploadService: UploadService,
+        private router: Router,
       ){
+		this.accountService.getUserSubscription().subscribe((subs:any) =>{
+			if(subs.is_active == false){
+				this.router.navigate(['plan']);
+			}
+		})
     }
 
     date=new Date();

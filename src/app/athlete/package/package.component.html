@@ -1,5 +1,5 @@
-<ng-container *ngIf="plan">
-    <ng-container *ngIf="plan.data.is_active == false">
+<ng-container  >
+    <ng-container >
         <div class="container  pricing-wrapper" *ngIf="pricing">
             <h6 class="text-center">Select Your Plan to avail our services</h6>
             <div class="row">
@@ -25,3 +25,26 @@
 
     </ng-container>
 </ng-container>
+
+    <div class="container  pricing-wrapper" *ngIf="onetimepricing">
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let package of onetimepricing.data">
+                <div class="pricing">
+                    <div class="price-header">  
+                        <h6 class="p-name">{{package.title}}</h6>
+                        <ng-container *ngIf="package.price != 0">
+                            <h5 class="p-amount">{{package.price}} AUD </h5>
+                        </ng-container>
+                    </div>
+                    <br><br>
+                    <div [innerHTML]="package.description"></div>
+                    <div style="text-align: center; width: 100%;padding:0 15px; position: relative;">
+                        <div [id]="package._id"></div>
+                        <button routerLink="ask" class="btn-full" *ngIf="package.price === 0">Ask Clayton</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+

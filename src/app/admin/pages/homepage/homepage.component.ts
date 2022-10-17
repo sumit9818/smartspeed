@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService, CoachService, HomePageService } from '@app/_services';
 import { catchError, first, map } from 'rxjs/operators';
@@ -13,7 +13,32 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
+	openImageModal(openImage, i) {
+		
+		for (let index = 0; index < 5; index++) {
+			this.img[index] =false
+			if(index == i){
+				this.img[i] = true
+			}else{
+			}
+		}
+		this.modalService.open(openImage, { size: 'lg' });
+	}
 	
+	img:any=[1]
+	
+	config = {
+		dialogsInBody: true,
+		placeholder: '',
+		tabsize: 2,
+		height: '100px', 
+		focus: true,
+		name:'config',
+		toolbar: [
+			['color', ['forecolor']],
+		  ]
+	};
+
 	filepath = `${env.imgUrl}`;
 	IconPath = `${env.IconUrl}`;
 	form: FormGroup;
@@ -25,13 +50,7 @@ export class HomepageComponent implements OnInit {
 	loading = false;
 	submitted = false;
 	banner:any;
-	config = {
-		dialogsInBody: true,
-		placeholder: '',
-		tabsize: 2,
-		height: '350px',
-	};
-
+	
 	icons:any;
 
 	testimonials:any;
@@ -44,9 +63,20 @@ export class HomepageComponent implements OnInit {
 		private http: HttpClient,
         private modalService: NgbModal,
 	  ) { }
-
+	offer1:any;
+	offer2:any;
+	offer3:any;
+	offer4:any;
+	offer5:any;
+	offer6:any;
 	ngOnInit(){
 		this.form = this.buildBannerForm()
+		this.HomePageService.getOffer1().pipe(first()).subscribe(offer1 => {this.offer1 = offer1;})
+		this.HomePageService.getOffer1().pipe(first()).subscribe(offer2 => {this.offer2 = offer2;})
+		this.HomePageService.getOffer1().pipe(first()).subscribe(offer3 => {this.offer3 = offer3;})
+		this.HomePageService.getOffer1().pipe(first()).subscribe(offer4 => {this.offer4 = offer4;})
+		this.HomePageService.getOffer1().pipe(first()).subscribe(offer5 => {this.offer5 = offer5;})
+		this.HomePageService.getOffer1().pipe(first()).subscribe(offer6 => {this.offer6 = offer6;})
 		this.TestimonialForm = this.buildTestimonialForm()
 		this.updateBannerValue()
 		this.updateTestimonialForm()

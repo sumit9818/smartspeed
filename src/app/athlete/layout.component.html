@@ -48,7 +48,7 @@
 
         <div class="ath-sidebar" *ngIf='user'>
             <div class="current-user">
-                <a routerLink="edit">
+                <a routerLink="account/edit">
                     <svg width="16" viewBox="0 0 19.252 19.251"><g transform="translate(0 -0.501)" ><path d="M15.241,92.233a.8.8,0,0,0-.8.8v6.417a.8.8,0,0,1-.8.8H2.406a.8.8,0,0,1-.8-.8V88.223a.8.8,0,0,1,.8-.8H8.824a.8.8,0,0,0,0-1.6H2.406A2.409,2.409,0,0,0,0,88.223v11.23a2.409,2.409,0,0,0,2.406,2.406h11.23a2.409,2.409,0,0,0,2.406-2.406V93.036a.8.8,0,0,0-.8-.8Zm0,0" transform="translate(0 -82.107)"/><path d="M182.493,74.609a.406.406,0,0,0-.11.2l-.567,2.837a.4.4,0,0,0,.394.48.382.382,0,0,0,.079-.008l2.836-.567a.4.4,0,0,0,.205-.11l6.347-6.347-2.836-2.836Zm0,0" transform="translate(-174.972 -65.213)"/><path d="M395.391,1.088a2.007,2.007,0,0,0-2.836,0l-1.11,1.11,2.836,2.836,1.11-1.11a2.005,2.005,0,0,0,0-2.836Zm0,0" transform="translate(-376.727)"/></g></svg>
                 </a>
 
@@ -112,13 +112,14 @@
 
         </div>
         <main>
-            <ng-container *ngIf="plan == true || router.url === '/payment' || 
+            <router-outlet></router-outlet>
+            <!-- <ng-container *ngIf="plan == true || router.url === '/payment' || 
             router.url === '/account'|| router.url === '/ask'|| router.url === '/account/edit'">
                 <router-outlet></router-outlet>
             </ng-container>
             <ng-container *ngIf="plan != true && router.url != '/payment' && router.url != '/account' && router.url != '/ask'">
-                <app-package></app-package>
-            </ng-container>
+                <router-outlet></router-outlet>
+            </ng-container> -->
         </main>
 
     </div>

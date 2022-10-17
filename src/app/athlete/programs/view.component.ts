@@ -26,6 +26,7 @@ export class ViewAthleteProgramComponent implements OnInit {
       private alertService: AlertService,
 	  private modalService: NgbModal,
 	  private videoservice: VideoService,
+	  private router: Router,
       ){}
 	  getvideo(){
 		this.videoservice.getAllVideo().subscribe(videos => {
@@ -36,6 +37,12 @@ export class ViewAthleteProgramComponent implements OnInit {
         this.accountService.user.subscribe(x => this.user = x);
 		this.id = this.route.snapshot.params['id'];
 		const url = `${environment.apiUrl}/new/program/all`;
+		this.accountService.getUserSubscription().subscribe((subs:any) =>{
+			if(subs.is_active == false){
+				this.router.navigate(['plan']);
+			}
+		})
+
     	this.http.get(url).subscribe(progratitle => {this.progratitle = progratitle;})
 		this.getProgramByID();
 		this.getvideo();

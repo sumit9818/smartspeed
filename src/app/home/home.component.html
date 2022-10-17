@@ -156,6 +156,17 @@
             <h4 class="text-center mb-0">Smartspeed Programs</h4>
             <!-- <p class="text-center">We offers These subscription plan which you can avail as per your need</p> -->
             <div class="row justify-content-center">
+                <div class="col-sm-4" *ngFor="let package of pricing2.data">
+                    <div class="pricing">
+                        <div class="price-header">
+                            <h6 class="p-name">{{package.title}}</h6>
+                            <!-- <h5 class="p-amount">{{package.price}} <small>Per Month</small></h5> -->
+                        </div>
+                        <br><br>
+                        <div [innerHTML]="package.description"></div>
+
+                    </div>
+                </div>
                 <div class="col-sm-4" *ngFor="let package of pricing.data">
                     <div class="pricing">
                         <div class="price-header">
@@ -199,8 +210,9 @@
                     </a>
                 </div>
 
-                <div class="col-sm-6">
-                    <img src="assets/faq.png" style="border:1px solid #fff">
+                <div class="col-sm-6" *ngIf="HomePageData.HomeMakesDifferent3">
+                    <img [src]="filepath+HomePageData.HomeMakesDifferent3.title"  style="border:1px solid #fff">
+                    <!-- <img src="assets/faq.png" style="border:1px solid #fff"> -->
                     <!-- <div class="faqimage">
                         <img src="assets/images/question.svg" alt="">
                         <img src="assets/images/qcircle.svg" class="qcircle">

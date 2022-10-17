@@ -22,7 +22,27 @@ export class PricingService {
   public get userValue(): User {
     return this.userSubject.value;
   }
+  // ONE TIME PLAN
+  getAllOneTimePricing() {
+    return this.http.get(`${this.accountServiceURL}/pricing2/all`);
+  }
+  getOneTimePricingByID(_id:string) {
+    return this.http.get(`${this.accountServiceURL}/pricing2/${_id}`);
+  }
+  AddOneTimePricing(testimonial) {
+    return this.http.post(`${this.accountServiceURL}/pricing2/`, testimonial);
+  }
 
+  updateOneTimePricing(_id, params) {
+    return this.http.put(`${this.accountServiceURL}/pricing2/${_id}`, params)
+  }
+
+  deleteOneTimePricing(_id: string) {
+    return this.http.delete(`${this.accountServiceURL}/pricing2/${_id}`)
+  }
+
+
+  
   // API not available
   getAllPricing() {
     return this.http.get(`${this.accountServiceURL}/package/all`);
@@ -43,6 +63,9 @@ export class PricingService {
   }
   getAllSubscription() {
     return this.http.get(`${environment.apiUrl}/subscription/all`);
+  }
+  getAllSubscription2() {
+    return this.http.get(`${environment.apiUrl}/subscription2/all`);
   }
   getSubscriptionByID(id) {
     return this.http.get(`${environment.apiUrl}/subscription/transaction/detail/${id}`);

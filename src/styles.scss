@@ -626,3 +626,7 @@ main {
 del {
     text-decoration: line-through !important;
 }
+
+.note-btn-group.open .note-dropdown-menu, .note-dropdown-item{
+    display: flex !important;
+}

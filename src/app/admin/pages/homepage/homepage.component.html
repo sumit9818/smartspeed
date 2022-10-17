@@ -12,6 +12,21 @@
 </div>
 
 
+
+<ng-template #openImage let-modal>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<img src="assets/images/close.svg">
+    </button>
+    <div class="modal-body">
+        <ng-container *ngIf="img[0]"><app-image1 [config]="config"></app-image1></ng-container>
+        <ng-container *ngIf="img[1]"><app-image2 [config]="config"></app-image2></ng-container>
+        <ng-container *ngIf="img[2]"><app-image3 [config]="config"></app-image3></ng-container>
+        <ng-container *ngIf="img[3]"><app-image4 [config]="config"></app-image4></ng-container>
+        <ng-container *ngIf="img[4]"><app-image5 [config]="config"></app-image5></ng-container>
+        <ng-container *ngIf="img[5]"><app-image6 [config]="config"></app-image6></ng-container>
+    </div>
+</ng-template>
+
 <div class="offer-new mt-5 ">
     <div class="row">
         <div class="col-sm-3">
@@ -20,27 +35,81 @@
         <div class="col-sm-9">
             <div class="row">
                 <div class="col-sm-6">
-                    <app-image1></app-image1>
+                    <div *ngIf="offer1" > 
+                        <span  class="clippath">
+                            <img [src]="filepath+offer1.data.image">
+                        </span>
+                        <div [innerHTML]="offer1.data.title"></div>
+                        <button (click)="openImageModal(openImage , 0)" class="primary-btn mt-3">
+                                Edit Details
+                        </button>   
+                        <br>
+                    </div>
                 </div>
                 <div class="col-sm-6">
-                    <app-image2></app-image2>
+                    <div *ngIf="offer2" > 
+                        <span  class="clippath">
+                            <img [src]="filepath+offer2.data.image">
+                        </span>
+                        <div [innerHTML]="offer2.data.title"></div>
+                        <button (click)="openImageModal(openImage , 1)" class="primary-btn mt-3">
+                                Edit Details
+                        </button>   
+                        <br>
+                    </div>
                 </div>
             </div>
 
             <div class="row mt-4">
                 <div class="col-sm-6">
-                    <app-image3></app-image3>
+                    <div *ngIf="offer3" > 
+                        <span  class="clippath">
+                            <img [src]="filepath+offer3.data.image">
+                        </span>
+                        <div [innerHTML]="offer3.data.title"></div>
+                        <button (click)="openImageModal(openImage , 2)" class="primary-btn mt-3">
+                                Edit Details
+                        </button>   
+                        <br>
+                    </div>
                 </div>
                 <div class="col-sm-6">
-                    <app-image4></app-image4>
+                    <div *ngIf="offer4" > 
+                        <span  class="clippath">
+                            <img [src]="filepath+offer4.data.image">
+                        </span>
+                        <div [innerHTML]="offer4.data.title"></div>
+                        <button (click)="openImageModal(openImage , 3)" class="primary-btn mt-3">
+                                Edit Details
+                        </button>   
+                        <br>
+                    </div>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-sm-6">
-                    <app-image5></app-image5>
+                    <div *ngIf="offer5" > 
+                        <span  class="clippath">
+                            <img [src]="filepath+offer5.data.image">
+                        </span>
+                        <div [innerHTML]="offer5.data.title"></div>
+                        <button (click)="openImageModal(openImage , 4)" class="primary-btn mt-3">
+                                Edit Details
+                        </button>   
+                        <br>
+                    </div>
                 </div>
                 <div class="col-sm-6">
-                    <app-image6></app-image6>
+                    <div *ngIf="offer6" > 
+                        <span  class="clippath">
+                            <img [src]="filepath+offer6.data.image">
+                        </span>
+                        <div [innerHTML]="offer6.data.title"></div>
+                        <button (click)="openImageModal(openImage , 5)" class="primary-btn mt-3">
+                                Edit Details
+                        </button>   
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>
@@ -157,7 +226,6 @@
         <div class="col-sm-6">
             <div class="img-animation">
                 <app-diffrent-image></app-diffrent-image>
-                <!-- <img src="assets/images/diffrent.svg"> -->
             </div>
         </div>
         <div class="col-sm-6 text-center">
@@ -165,9 +233,12 @@
         </div>
     </div>
 
-<div class="container-fluid diffrent" style="background: #2B343B;margin: 0;padding: 20px;">
+<div class="container-fluid diffrent" >
     <div class="row  mb-4 mt-4 justify-content-center">
         <div class="col-sm-6">
+            <app-diffrent3></app-diffrent3>
+        </div>
+        <div class="col-sm-6" style="background: #2B343B;margin: 0;padding: 20px;">
             <app-diffrent4></app-diffrent4>
         </div>
     </div>

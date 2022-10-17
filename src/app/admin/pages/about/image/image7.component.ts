@@ -25,15 +25,6 @@ export class ImageSevenComponent implements OnInit {
 	isAddMode:boolean;
 
 	
-	config = {
-		dialogsInBody: true,
-		placeholder: '',
-		tabsize: 2,
-		height: '100px', 
-		toolbar: [
-			['color', ['forecolor']],
-		  ]
-	};
 	constructor(
 		private formBuilder: FormBuilder,
 		private alertService: AlertService,

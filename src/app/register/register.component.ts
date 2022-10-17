@@ -79,16 +79,21 @@ export class RegisterAthleteComponent implements OnInit {
     	this.AccountService.RegisterAthlete(this.form.value).pipe(first()).subscribe(
             data => {
                 this.alertService.success('Account Created Successfully', { keepAfterRouteChange: true });
-				this.AccountService.login(this.form.value.username, this.form.value.password).pipe(first()).subscribe(
-					data => {
-						this.AccountService.user.subscribe(x => this.user = x);
-						this.modalService.dismissAll();
-						this.router.navigate(['/ask'])
-					},
-					error => {
-						this.alertService.error(error);
-						this.loading = false;
-					});
+                setTimeout(()=>{
+                  window.location.reload()
+                  // this.modalService.dismissAll();
+                  // this.AccountService.login(this.form.value.username, this.form.value.password).pipe(first()).subscribe(
+                  //   data => {
+                  //     this.AccountService.user.subscribe(x => this.user = x);
+                  //     this.modalService.dismissAll();
+                  //     this.router.navigate(['/ask'])
+                  //   },
+                  //   error => {
+                  //     this.alertService.error(error);
+                  //     this.loading = false;
+                  //   });
+                },1500)
+				     
             },
             error => {
                 this.alertService.error(error);

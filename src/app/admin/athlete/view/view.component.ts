@@ -74,9 +74,20 @@ export class AthleteDetailsComponent implements OnInit {
 
 	}
 
+	fixedplan:any;
+	package:any;
 	getDetails(id){
 		this.atheleteService.getAthleteById(id).subscribe((athlete: Athlete) => {
 			this.athlete = { ...athlete };
+			if(this.athlete.membership === 'lifetime'){
+				this.fixedplan = JSON.parse(this.athlete.transactions) 
+				this.PricingService.getAllOneTimePricing().subscribe((x:any)=>{
+					let d:any = x
+					this.package = d.data.filter((i:any)=>i._id === this.athlete.package_id)
+				})
+				
+				
+			}
 		})
 	}
 
@@ -84,9 +95,10 @@ export class AthleteDetailsComponent implements OnInit {
 		this.PricingService.getAllSubscription().pipe(first()).subscribe(
             subscriptions => {
 				this.subscriptions = subscriptions;
+				
 				for (let X of this.subscriptions.data) {
 					if(this.id === X.user_id._id){
-						this.getsubsctiptiondetails(X.subscription_id)
+						this.getsubsctiptiondetails(X.subscription_id);
 						this.status = X.status
 					}
 					

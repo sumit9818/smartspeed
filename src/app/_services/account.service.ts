@@ -157,5 +157,4 @@ export class AccountService {
 
     return this.http.get(`${environment.apiUrl}/user/get/subscription`, httpOptions)
   }
-
 }

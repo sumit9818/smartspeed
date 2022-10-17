@@ -1,8 +1,9 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertService, HomePageService } from '@app/_services';
+import { AlertService, HomePageService, UploadService } from '@app/_services';
 import { first } from 'rxjs/operators';
+import { environment } from '@environments/environment';
 
 @Component({
 	selector: 'app-diffrent3',
@@ -11,6 +12,7 @@ import { first } from 'rxjs/operators';
 })
 
 export class DiffrentThreeComponent implements OnInit {
+	@ViewChild('resumeInput', { static: true }) resumeInput;
 	form: FormGroup;
 	_id: string;
 	isAddMode: boolean;
@@ -18,18 +20,24 @@ export class DiffrentThreeComponent implements OnInit {
 	submitted = false;
 	diffrent3:any;
 
+	imageUrl: string;
+	fileToUpload: File = null;
+	picture: string;
+	filepath: string;
+
+
 	constructor(
 		private formBuilder: FormBuilder,
 		private route: ActivatedRoute,
 		private router: Router,
 		private alertService: AlertService,
+		private uploadService:UploadService,
 		private HomePageService: HomePageService,
 	) { }
 
 	
   	ngOnInit() {
 	  	this.HomePageService.getDiffrent3().pipe(first()).subscribe(diffrent3 => {this.diffrent3 = diffrent3})
-		// functions
 		this.form = this.buildBannerForm()
 		this.updateAboutValue()
   }
@@ -40,20 +48,37 @@ export class DiffrentThreeComponent implements OnInit {
 		return this.formBuilder.group({
 		  isactive: [''],
 		  title: ['', Validators.required],
-		  description: ['', Validators.required],
+		  description: [' '],
 		});
 	  }
 
 	private updateAboutValue(): void {
 		this.HomePageService.getDiffrent3().subscribe(
 			data => {this.diffrent3 = data
+			this.filepath = `${environment.imgUrl}`+this.diffrent3.data.title;
 			this.f.isactive.setValue(this.diffrent3.data.isactive);
 			this.f.title.setValue(this.diffrent3.data.title);
-			this.f.description.setValue(this.diffrent3.data.description);
 			}
 		)
 	}
 
+	
+	upFile(): void {
+		this.loading = true;
+		let formData = new FormData();
+		formData.append('file', this.resumeInput.nativeElement.files[0]);
+		this.uploadService.addFileDetails(formData).subscribe(
+		  (result: any) => {
+			this.picture = result.data.newfilename;
+			this.filepath = `${environment.imgUrl}` + this.picture;
+			this.loading = false;
+		  },
+		  (error) => {
+			this.alertService.error(error);
+			this.loading = false;
+		  }
+		);
+	  }
 	
 	onSubmitDiffrent3() {
 		this.submitted = true;

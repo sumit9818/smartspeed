@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
 	  
 	  faqs:any;
 	  pricing:any;
+	  pricing2:any;
 	  faqID:string;
 
 	constructor(
@@ -105,6 +106,11 @@ export class HomeComponent implements OnInit {
         this.http.get(`${env.apiUrl}/website/pricing/all`).subscribe(
 			pricing=>{
 				this.pricing = pricing;
+			}
+		)
+        this.http.get(`${env.apiUrl}/website/pricing2/all`).subscribe(
+			pricing=>{
+				this.pricing2 = pricing;
 			}
 		)
 	}

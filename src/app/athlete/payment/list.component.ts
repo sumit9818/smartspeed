@@ -32,16 +32,29 @@ export class AthleteSubscriptionsComponent implements OnInit{
 
     starttime:any;
     endtime:any;
+    transactions:any;
+    package:any;
     ngOnInit() {
         
         const today = moment();
         this.accountservice.getUserSubscription().pipe(first()).subscribe((plan:any) =>{
-            this.plan =plan
+            this.plan =plan;
+            if(plan.data.plan_id === 'lifetime'){
+                this.transactions = JSON.parse(plan.data.transactions)
+                this.http.get(`${environment.apiUrl}/website/pricing2/all`).subscribe(
+                    pricing=>{
+                        let p:any = pricing;
+                        this.package = p.data.filter((x:any)=> x.id === this.plan.data.package_id)
+                    }
+                )
+            }
+            if(plan.data.plan_id != 'lifetime'){
             this.PricingService.getSubscriptionByID(this.plan.data.subscription_id).pipe(first()).subscribe(
                 (subscription:any) => {this.subscription = subscription
                     this.PricingService.getFullTransication(this.plan.data.subscription_id, this.subscription.data.start_time  , today.format('YYYY-MM-DD')).pipe(first()).subscribe(
                         transaction => {
-                            this.transaction = transaction;})
+                            this.transaction = transaction;
+                        })
                            
                     this.http.get(`${environment.apiUrl}/website/pricing/all`).subscribe(pricing => { 
                         this.pricing = pricing; 
@@ -54,6 +67,7 @@ export class AthleteSubscriptionsComponent implements OnInit{
 
                 }
                )
+            }
         })
              
     }

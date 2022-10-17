@@ -17,12 +17,17 @@ export class ViewAthleteVideoComponent implements OnInit {
       private accountService: AccountService,
       private http: HttpClient,
       private route: ActivatedRoute,
+      private router: Router,
       ){}
     
 	ngOnInit(){
 		this.id = this.route.snapshot.params['id'];
     this.filepath =`${environment.imgUrl}` 
-    
+    this.accountService.getUserSubscription().subscribe((subs:any) =>{
+      if(subs.is_active == false){
+        this.router.navigate(['plan']);
+      }
+    })
 		const url = `${environment.apiUrl}/athlete/videolibrary/all`;
     	this.http.get(url).subscribe(videos => {this.videos = videos})
     }

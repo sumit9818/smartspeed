@@ -1,5 +1,5 @@
 ﻿import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService, HomePageService,  } from '@app/_services';
 import { environment } from '@environments/environment';
@@ -13,6 +13,7 @@ import { catchError, first, map } from 'rxjs/operators';
   	styleUrls: ['image.component.scss']
 })
 export class ImageFiveComponent implements OnInit {
+	@Input() config:any;
 	fileToUpload: File = null;
 	filepath= `${environment.imgUrl}`;
 	picture: any;
@@ -25,15 +26,6 @@ export class ImageFiveComponent implements OnInit {
 	isAddMode:boolean;
 
 	
-	config = {
-		dialogsInBody: true,
-		placeholder: '',
-		tabsize: 2,
-		height: '100px', 
-		toolbar: [
-			['color', ['forecolor']],
-		  ]
-	};
 	constructor(
 		private formBuilder: FormBuilder,
 		private alertService: AlertService,
@@ -87,6 +79,7 @@ export class ImageFiveComponent implements OnInit {
 		data => {
 			this.alertService.success('Updated successfully', { keepAfterRouteChange: true });
 			this.loading = false;
+			window.location.reload()
 		},
 		error => {
 			this.alertService.error(error);

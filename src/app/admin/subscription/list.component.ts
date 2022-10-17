@@ -4,7 +4,7 @@ import { AlertService, FaqService, PricingService } from '@app/_services';
 import { first } from 'rxjs/operators';
 @Component({
     templateUrl: 'list.component.html',
-    // styleUrls: ['add-edit.component.scss'] 
+    styleUrls: ['list.component.scss'] 
  })
 export class SubscriptionsComponent implements OnInit{
 
@@ -15,11 +15,31 @@ export class SubscriptionsComponent implements OnInit{
     }
 
     subscriptions:any;
+    subscriptions2:any;
+    pricing:any;
+    tabs:boolean= true;
     ngOnInit() {
         this.PricingService.getAllSubscription().pipe(first()).subscribe(
             subscriptions => {this.subscriptions = subscriptions
         }
         )
+       
+        this.PricingService.getAllSubscription2().pipe(first()).subscribe(
+            subscriptions => {this.subscriptions2 = subscriptions
+        }
+        )
+
+        this.PricingService.getAllOneTimePricing().subscribe(
+            res=> this.pricing = res
+        )
+    }
+
+    tab(status:any){
+        if(status == true){
+            this.tabs = true
+        }else{
+            this.tabs = false
+        }
     }
 
     // deleteFaq(_id): void {

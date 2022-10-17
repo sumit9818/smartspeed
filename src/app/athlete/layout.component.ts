@@ -20,20 +20,19 @@ export class LayoutComponent implements OnInit {
     plan:any;
 
     constructor(
-        private accountService: AccountService,
+        private as: AccountService,
         private http: HttpClient, 
         private AthleteService: AthleteService,
         private alertService: AlertService,
         private router: Router, ){
     }
     ngOnInit(){
-        this.accountService.user.subscribe(x => this.user = x);
+        this.as.user.subscribe(x => this.user = x);
         this.filepath= `${environment.imgUrl}`+this.user.profile_pic;
         this.http.get(`${environment.apiUrl}/website/logo`).subscribe(logo=>this.logo=logo);
         
-        this.accountService.getUserSubscription().pipe(first()).subscribe(subscription =>{this.subscription =subscription
+        this.as.getUserSubscription().subscribe(subscription =>{this.subscription =subscription
             this.plan = this.subscription.data.is_active
-            // console.log(this.plan)
             if(this.subscription.data.is_active == false){
                 this.router.navigate(['plan']);
             }
@@ -46,6 +45,6 @@ export class LayoutComponent implements OnInit {
     }
 L
     logout() {
-        this.accountService.logout();
+        this.as.logout();
     }
 }

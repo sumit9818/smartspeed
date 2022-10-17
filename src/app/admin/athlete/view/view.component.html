@@ -38,13 +38,22 @@
                     <p><small><b>Aiming Level </b> <br>{{athlete.aimlevel}}</small></p>
                     <p><small><b>Best Suits </b> <br>{{athlete.best_suits}}</small></p>
                 </h6>
-                <div *ngIf="currentplan" class="plan-details">
+
+                <div *ngIf="currentplan && athlete.membership != 'lifetime'" class="plan-details">
                     <p class="color mb-0">Current Plan</p>
                     <label *ngIf="plan.data.status === 'ACTIVE'" class="badge badge-success">{{plan.data.status}}</label>
                     <label *ngIf="plan.data.status === 'SUSPENDED'" class="badge badge-warning">{{plan.data.status}}</label>
                     <p class="flex"><span>{{currentplan.title}} <br> <small>{{currentplan.price}} AUD</small></span></p>
                 </div>
-                <div *ngIf="!currentplan" class="plan-details">
+                <div *ngIf="athlete.membership === 'lifetime'" class="plan-details">
+                    <p class="color mb-0">Current Plan</p>
+                    <label class="badge badge-success">Active</label>
+                    <p class="flex" *ngIf="package"><span>{{package[0].title}} <br> <small>
+                        {{fixedplan.purchase_units[0].amount.value}} {{fixedplan.purchase_units[0].amount.currency_code}}
+                        </small></span></p>
+                </div>
+
+                <div *ngIf="!currentplan && !package" class="plan-details">
                     <p class="color mb-0">Plan Is Not Active</p>
                 </div>
             </div>

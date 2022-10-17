@@ -9,6 +9,7 @@ import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { map, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-addvideo',
@@ -51,11 +52,17 @@ export class AddAthleteVideoComponent implements OnInit {
 		private modalService: NgbModal,
 		private alertService: AlertService,
         private uploadService: UploadService,
+        private router: Router,
         
       ){
     }
     ngOnInit():void{
         this.form = this.buildForm();
+        this.accountService.getUserSubscription().subscribe((subs:any) =>{
+          if(subs.is_active == false){
+            this.router.navigate(['plan']);
+          }
+        })
 	}
 
    upImageFile(file): void {

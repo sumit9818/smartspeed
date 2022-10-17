@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from '@app/_services';
 import { environment } from '@environments/environment';
 @Component({
@@ -11,13 +12,19 @@ export class ProgramsComponent implements OnInit {
   user:any;
     constructor(
       private accountService: AccountService,
-      private http: HttpClient
+      private http: HttpClient,
+      private router: Router
       ){
     }
     ngOnInit(){
       this.accountService.user.subscribe(x => {this.user = x});
       const url = `${environment.apiUrl}/athlete/program/all/`;
     	this.http.get(url).subscribe(programs => {this.programs = programs})
+      this.accountService.getUserSubscription().subscribe((subs:any) =>{
+        if(subs.is_active == false){
+          this.router.navigate(['plan']);
+        }
+      })
     }
     
 }

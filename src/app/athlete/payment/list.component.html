@@ -5,7 +5,23 @@
         <div class="text-center mt-3"> <button class="btn btn-success" routerLink="/plan">Select Plan</button></div>
     </ng-container>
 
-    <ng-container *ngIf="plan.data.is_active == true">
+    <div class="col-sm-8">
+        <div class="border" *ngIf="plan.data.is_active == true">
+            <div class="col-sm-12" *ngIf="plan.data.plan_id === 'lifetime'">
+                <br>
+                <h6 class="flex">One Time Membership</h6>
+                <hr>
+                <p class="flex"><span>Status</span> Active</p>
+                <p class="flex"><span>Subscription ID</span> {{transactions.id}}</p>
+                <p class="flex"><span>Buy On</span> {{transactions.create_time | date: 'dd MMM yyyy'}}</p>
+                <p class="flex"><span>Amount</span> {{transactions.purchase_units[0].amount.value}} {{transactions.purchase_units[0].amount.currency_code}}</p>
+                <p class="flex" *ngIf="package"><span>Package </span> {{package[0].title}} </p>
+            </div>
+
+        </div>
+    </div>
+
+    <ng-container *ngIf="plan.data.is_active == true && subscription  && plan.data.plan_id != 'lifetime'">
         <div class="row">
             <div class="col-sm-4">
                 <h6>Current Plan</h6>

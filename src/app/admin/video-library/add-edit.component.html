@@ -14,9 +14,10 @@
         <label for="title">Video Title</label>
         <input type="text" formControlName="title" class="form-control">
 
-        <div class="filters">
+        <div class="filters" *ngIf="athlete.length">
             <label>Athletes</label>
-            <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" [(ngModel)]="selectedAthletes" formControlName="athletes"> </ng-select>
+            <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" 
+            [(ngModel)]="selectedAthletes" formControlName="athletes" (change)="getathlete()"> </ng-select>
         </div>
 
         <video-upload [(loadingfile)]="loadingfile" [(picture)]="picture" [(VideoFile)]="VideoFile"></video-upload>

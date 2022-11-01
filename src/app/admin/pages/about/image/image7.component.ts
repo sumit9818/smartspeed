@@ -66,7 +66,7 @@ export class ImageSevenComponent implements OnInit {
 	onSubmitOffer2() {
 		this.submitted = true;
 		this.alertService.clear();
-		console.log(this.form.value)
+		//console.log(this.form.value)
 		if (this.form.invalid) {return;}
 		this.loading = true;
 

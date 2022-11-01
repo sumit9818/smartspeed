@@ -27,11 +27,12 @@
                 <div *ngIf="form.controls.title.errors.required">Title is required</div>
             </div>
 
-            <label>Selecte Athlete</label>
-                    <!-- <label *ngIf="isAddMode">Select Athlete</label> -->
-
-                    <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" [(ngModel)]="selectedAthletes" formControlName="athletes">
-                    </ng-select>
+            <ng-container *ngIf="athlete.length">
+            <label>Select Athlete</label>
+                <ng-select [items]="athlete" [multiple]="true" bindLabel="name" bindValue="id" 
+                [(ngModel)]="selectedAthletes" formControlName="athletes" (change)="getathlete()">
+                </ng-select>
+            </ng-container>
         </li>
 
         <li formArrayName="data">

@@ -24,7 +24,7 @@ const routes: Routes = [{
 		{path:'payment', component: AthleteSubscriptionsComponent},
 
 		{path:'plan', component: PackageComponent},
-		{path:'leaderboard', component: LeaderBoardComponent},
+		{path:'assessment', component: LeaderBoardComponent},
   ]
 }];
 

@@ -70,7 +70,7 @@ export class RegisterAthleteComponent implements OnInit {
 	// console.log(this.form.value)
     this.alertService.clear();
     if (this.form.invalid) {return;}
-    console.log(this.form.value)
+    ///console.log(this.form.value)
     this.loading = true; 
 	this.createUser();
   }

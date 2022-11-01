@@ -16,6 +16,7 @@ export const environment = {
 
     
     imgUpload: 'http://speedacademyapi-env.eba-mt6mb8ac.us-west-1.elasticbeanstalk.com/api/fileupload/images/',
+    // imgUpload: 'http://localhost:8000/api/fileupload/images/',
 };
 
 /*

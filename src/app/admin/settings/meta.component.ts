@@ -48,7 +48,7 @@ export class MetaTagsComponent implements OnInit{
     }
 
     onSubmit(): void {
-        console.log(this.form.value)
+        //console.log(this.form.value)
         this.submitted = true;
         this.alertService.clear();
         if (this.form.invalid) return;

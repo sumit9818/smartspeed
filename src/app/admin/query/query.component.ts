@@ -51,7 +51,7 @@ export class UserQueryComponent implements OnInit {
 						this.newusers = newusers;
 						if (JSON.stringify(this.newusers.data) != JSON.stringify(this.users.data)) {
 							this.users = this.newusers;
-							console.log(this.newusers)
+							//console.log(this.newusers)
 						}else{
 						}
 					}

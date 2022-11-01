@@ -1,10 +1,13 @@
+<video poster="" controls="">
+    <source type="video/mp4" src="assets/1.mp4">
+</video>
 <div class="row pr-2" *ngIf="video.data">
     <div class="col-sm-5">
         <h6>{{video.data.title}}</h6>
         <video poster="{{video.data.thumbnail_image ? filepath+video.data.thumbnail_image : ''}}" controls="">
             <source [src]="filepath+video.data.video_url" type="video/mp4">
-            <source src="filepath+video.data.video_url" type="video/ogg">
-            <source src="filepath+video.data.video_url" type="video/wmv">
+            <source [src]="filepath+video.data.video_url" type="video/ogg">
+            <source [src]="filepath+video.data.video_url" type="video/wmv">
         </video>
           
             <label class="badge bg-success" style="color:#fff">Active</label>

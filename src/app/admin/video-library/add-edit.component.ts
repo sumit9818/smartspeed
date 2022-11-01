@@ -32,7 +32,7 @@ export class AddVideoComponent implements OnInit {
     isAddMode: boolean;
     loading = false;
     submitted = false;
-    athlete:any;
+    athlete:any=[];
     selectedAthletes = [];
     settings: {};
 	  video:any;
@@ -56,20 +56,42 @@ export class AddVideoComponent implements OnInit {
     ) {}
 
     ngOnInit(){
-        this.athleteService.getAllAthletes().pipe(first()).subscribe(athlete => {
-			this.athlete = athlete
-		this.VideoService.getVideoByID(this.id).pipe(first()).subscribe(
-			video=> {
-				this.video = video;
-				this.selectedAthletes= this.video.data.athletes;
-				this.updateFormValue();
-			})
-		})
-		
-        this.id = this.route.snapshot.params['id'];
+      this.id = this.route.snapshot.params['id'];
         this.isAddMode = !this.id;
 
+        this.athleteService.getAllAthletes().pipe(first()).subscribe(athlete => {
+        let ath = athlete;
+        this.athlete.push({
+          "id": "allathele",
+          "name": "All Athletes",})
+        ath.map(data=>{
+          this.athlete.push(data) 
+      })
+      if(!this.isAddMode){
+        this.VideoService.getVideoByID(this.id).pipe(first()).subscribe(
+          video=> {
+            this.video = video;
+            this.selectedAthletes = this.video.data.athletes;
+            this.updateFormValue();
+          })
+        }
+		})
+		
+        
         this.form = this.buildForm();
+    }
+
+    getathlete(){
+      this.selectedAthletes.forEach(x=>{
+        if(x ==='allathele'){
+          this.selectedAthletes =[];
+          this.athlete.forEach(a=>{
+            if(a.id != 'allathele'){
+              this.selectedAthletes.push(a.id)
+            }
+          })
+        }
+      })
     }
 	
     get f() { return this.form.controls }

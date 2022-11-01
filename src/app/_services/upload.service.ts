@@ -33,6 +33,11 @@ export class UploadService {
 
     addFileDetails(data: FormData) {  
         let headers = new HttpHeaders();  
+        headers.append('Access-Control-Allow-Origin', '*');  
+        headers.append('Access-Control-Request-Method', 'GET');  
+        headers.append('Access-Control-Allow-Methods', 'POST, HEAD, GET');  
+        headers.append('Access-Control-Max-Age', '86400');  
+        headers.append('Content-Type', 'text/plain')
         headers.append('Content-Type', 'application/json');  
         const httpOptions = {  
             headers: headers  

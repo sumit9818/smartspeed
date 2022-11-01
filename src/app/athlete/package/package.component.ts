@@ -126,7 +126,7 @@ export class PackageComponent implements OnInit {
                             });
                           },
                           onApprove: function(data, actions) {
-                            console.log('Capture result', data, JSON.stringify(data, null, 2))
+                            //console.log('Capture result', data, JSON.stringify(data, null, 2))
                             var plandetails = {
                                 "payment_method":"Paypal",
                                 "package_id": payme.id,

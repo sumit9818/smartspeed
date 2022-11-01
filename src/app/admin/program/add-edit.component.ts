@@ -21,7 +21,7 @@ export class ProgramAddEditComponent implements OnInit {
 	isAddMode: boolean;
 	loading = false;
 	submitted = false;
-	athlete: Athlete[] = [];
+	athlete: any = [];
 	selectedAthletes: any = [];
 	settings: {};
 	program: any;
@@ -56,6 +56,19 @@ export class ProgramAddEditComponent implements OnInit {
 		})
 	}
 
+	getathlete(){
+		this.selectedAthletes.forEach(x=>{
+		  if(x ==='allathele'){
+			this.selectedAthletes =[];
+			this.athlete.forEach(a=>{
+			  if(a.id != 'allathele'){
+				this.selectedAthletes.push(a.id)
+			  }
+			})
+		  }
+		})
+	  }
+
 	get f() { return this.form.controls; }
 	
 	private buildForm(): FormGroup {
@@ -79,7 +92,7 @@ export class ProgramAddEditComponent implements OnInit {
 				this.selectedAthletes.forEach(function (elementVal) {
 					csv_selected_ids+= elementVal._id + ',';
 				});
-				console.log(this.selectedAthletes)
+				//console.log(this.selectedAthletes)
 				if(csv_selected_ids != ''){
 					csv_selected_ids=csv_selected_ids.slice(0,-1);
 					this.selectedAthletes = csv_selected_ids.split(',');
@@ -90,7 +103,15 @@ export class ProgramAddEditComponent implements OnInit {
 
 	ngOnInit() {
 		this.getvideo();
-		this.athleteService.getAllAthletes().subscribe((athlete: Athlete[]) => this.athlete = [...athlete]);
+		this.athleteService.getAllAthletes().pipe(first()).subscribe(athlete => {
+			let ath = athlete;
+			this.athlete.push({
+			  "id": "allathele",
+			  "name": "All Athletes",})
+			ath.map(data=>{
+			  this.athlete.push(data) 
+		  })
+		})
 		this.id = this.route.snapshot.params['id'];
 		this.isAddMode = !this.id;
 
@@ -150,7 +171,7 @@ export class ProgramAddEditComponent implements OnInit {
 
 	onCancle() {
 		this.form.reset();
-		console.log(this.form, this.form.value);
+		//console.log(this.form, this.form.value);
 	}
 
 	onSubmit(): void {

@@ -53,13 +53,9 @@ export class ViewAthleteProgramComponent implements OnInit {
     getProgramByID(){
 		const url = `${environment.apiUrl}/athlete/program/all`;
 		this.http.get(url).subscribe(
-		programs => {
-			this.program = programs;
-			for(let x of this.program.data){
-					if(`${x.id}` === `${this.id}`){
-					this.programDetails = x;
-				}
-			}
+		(programs:any) => {
+			let program = programs.data.filter(x => x.id === this.id)
+			this.programDetails = program[0]
 		})
 	}
 

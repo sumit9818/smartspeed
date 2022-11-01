@@ -97,9 +97,11 @@ export class AthleteDetailsComponent implements OnInit {
 				this.subscriptions = subscriptions;
 				
 				for (let X of this.subscriptions.data) {
-					if(this.id === X.user_id._id){
-						this.getsubsctiptiondetails(X.subscription_id);
-						this.status = X.status
+					if(X?.user_id){
+						if(this.id === X?.user_id?._id){
+							this.getsubsctiptiondetails(X.subscription_id);
+							this.status = X.status
+						}
 					}
 					
 				}

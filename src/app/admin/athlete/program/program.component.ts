@@ -52,12 +52,9 @@ export class ViewAthleteProgramsComponent implements OnInit {
 
 	getProgram(){
 		this.ProgramService.getAthleteProgramAll(this.id).subscribe(
-			data => {
-				for(let x of data){
-					if(x.id === this.programID){
-						this.programDetails = x;
-					}
-				}
+			(data:any) => {
+			let p = data.filter(x=> x.id === this.programID)
+			this.programDetails = p[0]
 			} 
 		)
 	}	

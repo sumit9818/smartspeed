@@ -84,16 +84,16 @@
                                     <div class="modal-body ">
                                         <ng-container *ngIf="videos">
                                             <label>Select Video</label>
-                                            <label class="d-flex" style="flex-wrap: wrap;">
-                                                <div *ngFor="let item of videos.data" class="videobox">
+                                            <label class="d-flex" style="flex-wrap: wrap;" >
+                                                <label *ngFor="let item of videos.data" class="videobox" [id]="item.id">
                                                     <p>
-                                                        <input type="radio" formControlName="videoLink" name="videoLink" [value]="item.id" id="">
+                                                        <input type="radio" formControlName="videoLink" name="videoLink" [value]="item.id" [id]="item.id">
                                                         {{item.title}}</p>
                                                     <video  poster="{{item.thumbnail_image ? filepath+item.thumbnail_image : ''}}"  controls="" style="width: 100%;border: 1px solid #ccc;">
                                                         <source [src]="filepath+item.video_url" type="video/mp4">
                                                         <source src="filepath+item.video_url" type="video/ogg">
                                                     </video>
-                                                </div>
+                                                </label>
                                             </label>
                                             <!-- <select name="" class="form-control mb-1" formControlName="videoLink">
                                                 <option value="">Select Video</option>

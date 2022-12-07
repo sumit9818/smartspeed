@@ -85,7 +85,7 @@ exports.getAllChatByUser = async (req, res) => {
             id: value._id,
             message: value.message,
             is_admin: value.is_admin,
-            sent_date: moment(value.createdAt).format("MM/DD/YYYY h:mm a"),
+            sent_date: value.createdAt,
           };
         }),
       });
@@ -140,7 +140,7 @@ exports.getSelfChat = async (req, res) => {
             id: value._id,
             message: value.message,
             is_admin: value.is_admin,
-            sent_date: moment(value.createdAt).format("MM/DD/YYYY h:mm a"),
+            sent_date: value.createdAt,
           };
         }),
       });
@@ -183,7 +183,7 @@ exports.updateIsRead = async (req, res) => {
 exports.deleteChats = async (req, res) => {
   try {
       //Delete Blog
-      await ChatMessage.findByIdAndRemove({ user_id: req.params.id })
+      await ChatMessage.remove({ user_id: req.params.id })
           .then(data => {
               if (!data) {
                   res.status(404).send({
@@ -199,16 +199,15 @@ exports.deleteChats = async (req, res) => {
           }).catch(err => {
               res.status(500).send({
                   success: false,
-                  "message": "Something went wrong"
+                  "message": "Something went wrong",
               })
           })
   }
   catch (err) {
       res.status(400).send({
           success: false,
-          message: `Something is wrong with description!`
+          message: `Something is wrong code 400`
       });
-      return;
   }
 
 };

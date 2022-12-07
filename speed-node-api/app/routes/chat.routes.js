@@ -18,5 +18,5 @@ module.exports = function(app) {
   app.get("/api/chat/self",[authJwt.verifyToken], controller.getSelfChat);
   app.get("/api/chat/users",[authJwt.verifyToken, authJwt.isAdmin], controller.getAllUserChat);
   app.post("/api/chat/:id/markread",[authJwt.verifyToken, authJwt.isAdmin], controller.updateIsRead);
-  app.post("/api/chat/:id/clearchats",[authJwt.verifyToken], controller.deleteChats);
+  app.delete("/api/chat/clearchats/:id",[authJwt.verifyToken], controller.deleteChats);
 };

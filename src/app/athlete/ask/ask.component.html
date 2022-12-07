@@ -9,12 +9,12 @@
                     <ng-container *ngFor="let data of chats.data">
                         <div class="incoming-msg"  *ngIf="data.is_admin === true" >
                             <div >
-                                <small>{{data.sent_date}}</small> <br> {{data.message}}
+                                <small>{{data.sent_date | timezone}}</small> <br> {{data.message}}
                             </div>
                         </div>
                         <div class="outgoing-msg"  *ngIf="data.is_admin === false">
                             <div>
-                                <small>{{data.sent_date}}</small> <br> {{data.message}}
+                                <small>{{data.sent_date | timezone}}</small> <br> {{data.message}}
                             </div>
                         </div>
                     </ng-container>

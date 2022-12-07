@@ -44,19 +44,19 @@ export class UserQueryComponent implements OnInit {
 		this.checkuser()
   	}
 	  checkuser(){
-		  setInterval(()=>{
+		//   setInterval(()=>{
 			if(this.router.url === '/admin/query'){
 				this.EmailService.getEmailUser().pipe(first()).subscribe(
 					newusers=>{
 						this.newusers = newusers;
 						if (JSON.stringify(this.newusers.data) != JSON.stringify(this.users.data)) {
 							this.users = this.newusers;
-							//console.log(this.newusers)
+							
 						}else{
 						}
 					}
 				)}	
-		  }, 2000)
+		//   }, 2000)
 	  }
 	  getEmailUser(){
 		this.EmailService.getEmailUser().pipe(first()).subscribe(

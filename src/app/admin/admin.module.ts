@@ -29,7 +29,7 @@ import { TestimonialAddEditComponent,TestimonialComponent } from './pages/testim
 import { BlogAddEditComponent,BlogComponent,BlogViewComponent } from './pages/news';
 import { ImageOneComponent,ImageTwoComponent,ImageThreeComponent,ImageFourComponent,ImageFiveComponent,ImageSixComponent,ImageSevenComponent, ImageNineComponent } from './pages/about/image';
 import { DiffrentComponent,DiffrentFourComponent,DiffrentImageComponent,DiffrentOneComponent,DiffrentThreeComponent,DiffrentTwoComponent } from './pages/diffrent';
-
+import { AdminTimePipe } from './admin.timezone.pipe'
 
 @NgModule({
   declarations: [
@@ -53,8 +53,8 @@ import { DiffrentComponent,DiffrentFourComponent,DiffrentImageComponent,Diffrent
     BlogAddEditComponent,BlogComponent,BlogViewComponent,
     ImageOneComponent,ImageTwoComponent,ImageThreeComponent,ImageFourComponent,ImageFiveComponent,ImageSixComponent,ImageSevenComponent,ImageNineComponent,
     DiffrentComponent,DiffrentFourComponent,DiffrentImageComponent,DiffrentOneComponent,DiffrentThreeComponent,DiffrentTwoComponent,
-    TestimonialAddEditComponent,TestimonialComponent
-    
+    TestimonialAddEditComponent,TestimonialComponent,
+    AdminTimePipe
   ],
   imports: [
 		CommonModule,

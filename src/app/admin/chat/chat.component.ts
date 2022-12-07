@@ -54,7 +54,8 @@ export class ChatComponent implements OnInit {
 				this.EmailService.ChatUser().pipe(first()).subscribe(
 					newusers=>{
 						this.newusers = newusers;
-						if (JSON.stringify(this.newusers.data) != JSON.stringify(this.users.data)) {
+						// console.log(newusers)
+						if (JSON.stringify(this.newusers?.data) != JSON.stringify(this.users?.data)) {
 							this.users = this.newusers;
 							//console.log(this.newusers.data)
 						}else{
@@ -82,7 +83,7 @@ export class ChatComponent implements OnInit {
 				}
 				  
 			}	
-		  }, 2000)
+		  }, 3000)
 	}
 	getChatUser(){
 		this.usersbtn = false;
@@ -104,11 +105,11 @@ export class ChatComponent implements OnInit {
 	}
 	
 	viewChat(id , name , phone, email ){
+		this.id= id;
 		this.loadingchats = true;
 		this.email = email;
 		this.name = name;
 		this.phone= phone;
-		this.id= id;
 		document.querySelectorAll(".programs").forEach(element => {
 			element.classList.remove('active')
 		});
@@ -149,13 +150,16 @@ export class ChatComponent implements OnInit {
         this.submitChat()
 	}
 
-	private submitChat() {
+	get f (){
+		return this.form.controls
+	}
+
+	submitChat() {
         return this.EmailService.SendChatMessage(this.form.value).subscribe((data) => {
             this.loading = false;
-			this.form.reset();
+			this.f.message.setValue('');
+			// console.log(this.id)
 			this.viewChat(this.id, this.email , this.phone, this.name);
-			// $('#message').val(null)
-			// $("body").animate({ scrollTop: $("body")[0].scrollHeight}, 1000);
           },
 			error => {
 				this.alertService.error(error);
@@ -166,15 +170,13 @@ export class ChatComponent implements OnInit {
 
 
 	deleteChat(_id): void {
+		// console.log(_id)
         if (confirm("Are you sure you want to delete ?")){
 			// console.log(_id)
            this.EmailService.ClearChat(_id).subscribe(
             data => {
+				this.viewChat(this.id, this.email , this.phone, this.name);
                 this.alertService.success('Deleted successfully', { keepAfterRouteChange: true });
-                // this.EmailService.getAllFaq()
-                // .pipe(first())
-                // .subscribe(faq => this.faq = faq);
-				
             },
             error => {
                 this.alertService.error(error);

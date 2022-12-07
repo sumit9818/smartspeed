@@ -199,7 +199,7 @@ exports.signup = async (req, res) => {
 
           var mailOptions = {
             from: `${req.body.email}`,
-            to: "wbadel79@hotmail.com",
+            to: "wbadel79@hotmail.com, ckspeedacademy@gmail.com",
             subject: "New Athelete Registered Successfully",
             html:
               `<label for="html"><b>Name</b> </label> ${req.body.firstname} ${req.body.lastname}<br>` +

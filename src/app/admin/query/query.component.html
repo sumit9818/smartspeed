@@ -34,13 +34,13 @@
                     <div class="chatbox">
                         <div *ngIf="data.is_admin === false" class="incoming-msg">
                             <div>
-                                <small>{{data.sent_date}}</small> <br>
+                                <small>{{data.sent_date  | adminTime}}</small> <br>
                                 <span [innerHTML]="data.body"></span>
                             </div>
                         </div>
                         <div *ngIf="data.is_admin === true" class="outgoing-msg">
                             <div>
-                                <small>{{data.sent_date}}</small> <br>
+                                <small>{{data.sent_date | adminTime}}</small> <br>
                                 <span [innerHTML]="data.body"></span>
                             </div>
                         </div>

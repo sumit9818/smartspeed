@@ -18,5 +18,5 @@ module.exports = function(app) {
   app.get("/api/email/users",[authJwt.verifyToken, authJwt.isAdmin], controller.getAllUserEmail);
   app.get("/api/email/user/:id",[authJwt.verifyToken, authJwt.isAdmin], controller.getAllEmailsByUser);
   app.post("/api/email/:id/markread",[authJwt.verifyToken, authJwt.isAdmin], controller.updateIsRead);
-  app.post("/api/email/:id/clearemails",[authJwt.verifyToken], controller.deleteEmail);
+  app.delete("/api/email/:id/clearemails",[authJwt.verifyToken], controller.deleteEmail);
 };

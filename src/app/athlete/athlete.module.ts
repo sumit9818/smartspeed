@@ -16,7 +16,7 @@ import { AddAthleteVideoComponent,VideoAthletesComponent,ViewAthleteVideoCompone
 import { AthleteSubscriptionsComponent } from './payment/list.component';
 import { AddAthleteAssessmentComponent,LeaderBoardComponent } from './leaderbord';
 import { PackageComponent } from './package/package.component';
-
+import { UtcToLocalTimePipe } from './utc-to-local-time.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { PackageComponent } from './package/package.component';
     AddAthleteVideoComponent,VideoAthletesComponent,ViewAthleteVideoComponent,
     AthleteSubscriptionsComponent,
     AddAthleteAssessmentComponent,LeaderBoardComponent,
-    PackageComponent
+    PackageComponent,
+    UtcToLocalTimePipe
 
   ],
   imports: [

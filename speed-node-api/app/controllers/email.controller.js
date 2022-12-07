@@ -55,11 +55,10 @@ exports.sendEmail = async (req, res) => {
     });
 
   
-    console.log(req.body.email);
 
     var mailOptions = {
       from: `${req.body.name} "${req.body.email}`,
-      to: 'wbadel79@hotmail.com',//config.EMAIL_ID,
+      to: 'wbadel79@hotmail.com, ckspeedacademy@gmail.com',//config.EMAIL_ID,
       subject: req.body.subject,
       html: req.body.body,
     };
@@ -213,7 +212,7 @@ exports.getAllEmailsByUser = async (req, res) => {
                   subject:value.subject,
                   body:value.body,
                   is_admin:value.is_admin,
-                  sent_date:moment(value.createdAt).format("MM/DD/YYYY h:mm a")
+                  sent_date:value.createdAt
                 }
               })
           })
@@ -235,7 +234,6 @@ exports.updateIsRead = async (req, res) => {
   else {
 
     EmailUser.findById(req.params.id).then(instance => {
-console.log(instance)
       return instance.update({ isread:true,updatedAt:instance.updatedAt}, {
       });
     }).then(instance => {
@@ -254,7 +252,8 @@ console.log(instance)
 exports.deleteEmail = async (req, res) => {
   try {
       //Delete Blog
-      await Email.findByIdAndRemove({unique_email_id:req.params.id})
+      await EmailUser.findByIdAndRemove(req.params.id);
+      await Email.remove({unique_email_id:req.params.id})
           .then(data => {
               if (!data) {
                   res.status(404).send({
@@ -266,6 +265,7 @@ exports.deleteEmail = async (req, res) => {
                       success: true,
                       message: "Emails deleted successfully."
                   });
+                  
               }
           }).catch(err => {
               res.status(500).send({

@@ -52,7 +52,7 @@ export class EmailService {
     return this.http.get(`${environment.apiUrl}/chat/users`);
   }
   ClearChat(id) {
-    return this.http.delete(`${environment.apiUrl}/chat/${id}/clearchats`);
+    return this.http.delete(`${environment.apiUrl}/chat/clearchats/${id}`);
   }
 
   

@@ -107,7 +107,7 @@ exports.getAthletesAssesmentSprint = async (req, res) => {
               return prev + cur.time;
             }, 0);
 
-            var max_time = Math.max(...data.map((o) => o.time));
+            var max_time = Math.min(...data.map((o) => o.time));
             var max_speed = Math.max(...data.map((o) => o.speed));
 
             var dates = data.map(function (x) {

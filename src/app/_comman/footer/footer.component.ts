@@ -1,5 +1,5 @@
 ﻿import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray  } from '@angular/forms';
 import { AlertService, EmailService } from '@app/_services';
 import { environment } from '@environments/environment';
@@ -24,6 +24,8 @@ export class FooterComponent implements OnInit{
         private http: HttpClient,
         private EmailService: EmailService,
         private alertService: AlertService,
+        private renderer: Renderer2, 
+        private el: ElementRef
         ) {}
 
     ngOnInit() {
@@ -31,11 +33,26 @@ export class FooterComponent implements OnInit{
             });
         
         this.form = this.buildForm();
-		setTimeout(() => {
-			$('#insta').append(`<div data-mc-src="f05ffeba-5a6c-41b7-8af5-7483cdd51296#instagram"></div>
-			<script  src="https://cdn2.woxo.tech/a.js#60096cbe44647b0015c0673c"  async data-usrc></script>`)
-		}, 1000);
+		this.loadInstagramWidget()
      }
+
+    loadInstagramWidget() {
+        const container = this.el.nativeElement.querySelector('#insta');
+
+        // Create div
+        const div = this.renderer.createElement('div');
+        div.setAttribute('data-mc-src', 'f05ffeba-5a6c-41b7-8af5-7483cdd51296#instagram');
+
+        this.renderer.appendChild(container, div);
+
+        // Create script
+        const script = this.renderer.createElement('script');
+        script.src = 'https://cdn2.woxo.tech/a.js#60096cbe44647b0015c0673c';
+        script.async = true;
+        script.setAttribute('data-usrc', '');
+
+        this.renderer.appendChild(container, script);
+    }
      get f() {
         return this.form.controls;
       }

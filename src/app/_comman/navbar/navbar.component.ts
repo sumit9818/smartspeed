@@ -44,30 +44,28 @@ export class NavbarComponent implements OnInit {
         });
 		
 		this.getLogo()
+		const self = this;
 
-		
+		window.addEventListener('scroll', function() { 
+		let scrollpos = window.scrollY;
 
-		var scrollpos = window.scrollY;
-		var header = document.getElementById("brand");
-
-		function add_class_on_scroll() {
-			header.classList.add("fade-in");
+		if (scrollpos > 50) {
+			self.add_class_on_scroll();
+		} else {
+			self.remove_class_on_scroll();
 		}
-		function remove_class_on_scroll() {
-			header.classList.remove("fade-in");
-		}
-
-		window.addEventListener('scroll', function(){ 
-			scrollpos = window.scrollY;
-
-			if(scrollpos > 50){
-				add_class_on_scroll();
-			}
-			else {
-				remove_class_on_scroll();
-			}
 		});
   	}
+
+ 	add_class_on_scroll() {
+		const header:any = document.getElementById("brand");
+		header.classList.add("fade-in");
+	}
+	remove_class_on_scroll() {
+		const header:any = document.getElementById("brand");
+		header.classList.remove("fade-in");
+	}
+
 
 	  getLogo(){
 		this.http.get(`${env.apiUrl}/website/logo`).subscribe(
